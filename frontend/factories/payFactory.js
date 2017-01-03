@@ -1,4 +1,4 @@
-app.factory('PestFactory', function($http, $rootScope) {
+app.factory('PayFactory', function($http, $rootScope) {
 
     var data = {};
     var baseUrl = location.origin +'/money/backend/public/api/pay';
@@ -9,7 +9,7 @@ app.factory('PestFactory', function($http, $rootScope) {
         $http.get(baseUrl);
     }
 
-    data.createPest = function (pay) {
+    data.createPay = function (pay) {
         $http({
             method: "POST",
             url: baseUrl + '/createPay',
@@ -21,7 +21,7 @@ app.factory('PestFactory', function($http, $rootScope) {
         });
     }
 
-    data.updatePest = function(pest){
+    data.updatePay = function(pay){
         $http({
             method: "PUT",
             url: baseUrl + '/updatePay',
