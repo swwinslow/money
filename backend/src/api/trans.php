@@ -1,8 +1,7 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set("display_errors", true);
-use donation_backend\src\Model\Donor;
+use backend\src\Model\Trans;
 require_once "../utilities/response.php";
 
 $app->group('/api', function () use ($app){
@@ -13,18 +12,21 @@ $app->group('/api', function () use ($app){
          * ========================================================== */
 
         $app->get('', function($request, $response, $args) use ($app){
-//            $allDonors = Donor::getAll();
-//            $output = new Response($allDonors);
-//            $response->getBody()->write(json_encode($output));
+            $allTransactions = Trans::getAll();
+            $output = new Response($allTransactions);
+            $response->getBody()->write(json_encode($output));
         });
-
 
 
         /* ========================================================== *
          * POST
          * ========================================================== */
 
-        $app->post('/create', function ($request, $response, $args) use ($app){
+        $app->post('/createTransaction', function ($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $transaction = Trans::createTrans($body);
+            $output = new Response($transaction);
+            $response->getBody()->write(json_encode($output));
 
         });
 
@@ -32,13 +34,24 @@ $app->group('/api', function () use ($app){
          * PUT
          * ========================================================== */
 
-        $app->put('/update', function ($request, $response, $args) use ($app){
-
+        $app->put('/updateTrans', function ($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $plant = Trans::updateTrans($body);
+            $output = new Response($plant);
+            $response->getBody()->write(json_encode($output));
         });
 
         /* ========================================================== *
          * DELETE
          * ========================================================== */
+        
+        $app->delete('/deleteTrans', function ($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $plant = Trans::deleteTrans($body);
+            $output = new Response($plant);
+            $response->getBody()->write(json_encode($output));
+        });
+        
     });
 });
 

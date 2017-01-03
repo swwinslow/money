@@ -47,25 +47,10 @@ require __DIR__ . '/../src/dependencies.php';
 require __DIR__ . '/../src/middleware.php';
 
 // Register routes
-require __DIR__ . '/../src/api/donation.php';
-require __DIR__ . '/../src/api/donation_item.php';
-require __DIR__ . '/../src/api/donation_stock.php';
-require __DIR__ . '/../src/api/donor.php';
-require __DIR__ . '/../src/api/employee.php';
-require __DIR__ . '/../src/api/notes.php';
-require __DIR__ . '/../src/api/store.php';
-require __DIR__ . '/../src/api/works_at.php';
+require __DIR__ . '/../src/api/trans.php';
 
 //Register Models
-
-require __DIR__ . '/../src/Model/Donation.php';
-require __DIR__ . '/../src/Model/Donation_Item.php';
-require __DIR__ . '/../src/Model/Donation_Stock.php';
-require __DIR__ . '/../src/Model/Donor.php';
-require __DIR__ . '/../src/Model/Employee.php';
-require __DIR__ . '/../src/Model/Notes.php';
-require __DIR__ . '/../src/Model/Store.php';
-require __DIR__ . '/../src/Model/Works_At.php';
+require __DIR__ . '/../src/Model/Trans.php';
 
 
 
