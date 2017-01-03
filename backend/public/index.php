@@ -48,9 +48,15 @@ require __DIR__ . '/../src/middleware.php';
 
 // Register routes
 require __DIR__ . '/../src/api/trans.php';
+require __DIR__ . '/../src/api/pay.php';
+require __DIR__ . '/../src/api/investments.php';
+
 
 //Register Models
 require __DIR__ . '/../src/Model/Trans.php';
+require __DIR__ . '/../src/Model/Pay.php';
+require __DIR__ . '/../src/Model/Investments.php';
+
 
 
 
