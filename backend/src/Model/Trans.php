@@ -24,6 +24,8 @@ class Trans implements \JsonSerializable
     public $parents;
     
     public $date;
+    
+    public $category;
 
     public function __construct($data)
     {
@@ -34,6 +36,7 @@ class Trans implements \JsonSerializable
             $this->items = $data['items'];
             $this->parents = $data['parents'];
             $this->date = $data['date'];
+            $this->category = $data['category'];
         }
     }
 
@@ -46,6 +49,7 @@ class Trans implements \JsonSerializable
             'items' => $this->items,
             'parents' => $this->parents,
             'date' => $this->date,
+            'category' => $this->category,
         ];
     }
 
@@ -56,7 +60,7 @@ class Trans implements \JsonSerializable
     public static function getAll()
     {
         global $database;
-        $statement = $database->prepare('SELECT * FROM trans');
+        $statement = $database->prepare('SELECT * FROM trans ORDER BY id DESC');
         $statement->execute();
 
         if ($statement->rowCount() <= 0) {
@@ -169,11 +173,24 @@ class Trans implements \JsonSerializable
 
             die(json_encode( (object) $response ));
         }
+        
+        if ($body['category'] == "" || $body['category'] == null  ) {
+            $code = 400;
+            header('Content-Type: application/javascript');
+            http_response_code($code);
+
+            $response = array(
+                "status" => "Category is not definded",
+                "message" => $message
+            );
+
+            die(json_encode( (object) $response ));
+        }
 
         global $database;
        
-        $statement = $database->prepare('INSERT INTO trans (`id`, `business`, `money`, `items`, `parents`, `date`) VALUES (NULL, ?, ?, ?, ?, ?)');
-        $statement->execute(array($body['business'], $body['money'], $body['items'], $body['parents'], $body['date']));
+        $statement = $database->prepare('INSERT INTO trans (`id`, `business`, `money`, `items`, `parents`, `date`, `category`) VALUES (NULL, ?, ?, ?, ?, ?, ?)');
+        $statement->execute(array($body['business'], $body['money'], $body['items'], $body['parents'], $body['date'], $body['category']));
 
         $id = $database->lastInsertId();
 
@@ -226,11 +243,24 @@ class Trans implements \JsonSerializable
 
             die(json_encode( (object) $response ));
         }
+        
+        if ($body['category'] == "" || $body['category'] == null  ) {
+            $code = 400;
+            header('Content-Type: application/javascript');
+            http_response_code($code);
+
+            $response = array(
+                "status" => "Category is not definded",
+                "message" => $message
+            );
+
+            die(json_encode( (object) $response ));
+        }
 
         global $database;
        
-        $statement = $database->prepare('UPDATE trans SET business = ?, money = ?, items = ?, parents = ?, date = ? WHERE id = ?');
-        $statement->execute(array($body['business'], $body['money'], $body['items'], $body['parents'], $body['date'], $body['id']));
+        $statement = $database->prepare('UPDATE trans SET business = ?, money = ?, items = ?, parents = ?, date = ?, category = ? WHERE id = ?');
+        $statement->execute(array($body['business'], $body['money'], $body['items'], $body['parents'], $body['date'], $body['category'], $body['id']));
 
         $id = self::getSpecificID($body['id']);
     
