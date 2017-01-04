@@ -16,6 +16,7 @@ app.factory('TransFactory', function($http, $rootScope) {
                 "money": pay.money,
                 "items" : pay.items,
                 "parents" : pay.parents,
+                "category" : pay.category,
                 "date": pay.date
             }
         });
@@ -31,6 +32,7 @@ app.factory('TransFactory', function($http, $rootScope) {
                 "items" : pay.items,
                 "parents" : pay.parents,
                 "date": pay.date,
+                "category" : pay.category,
                 "id" : pay.id
             }
         });

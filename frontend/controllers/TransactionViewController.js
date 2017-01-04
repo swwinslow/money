@@ -1,6 +1,18 @@
  app.controller('TransactionViewController', function(CONFIG, $scope, $location, TransFactory){
      
      $scope.showNewTransaction = false;
+     
+     $scope.categories = [
+         "Grocercies",
+         "School",
+         "Parents",
+         "Desserts",
+         "Misc",
+         "Friends",
+         "Meal",
+         "Gas",
+         "Need"
+     ]
     
     TransFactory.getAllTrans().then(function (response){
         $scope.transaction = response.data.data;
@@ -9,7 +21,6 @@
                 $scope.transaction[i].parents = true;
             }
         }
-        console.log(response.data.data);
     }, function (error){
         
     });
@@ -36,7 +47,7 @@
          }
             
          TransFactory.createTransaction(money).then(function (respoonse){
-             $scope.transaction.push(ogMoney);
+             $scope.transaction.unshift(ogMoney);
              $scope.newTrans = {};
              $scope.showNewTransaction = false;
          }, function (error){

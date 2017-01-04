@@ -1,33 +1,6 @@
 <h1>TRANS</h1>
 
 <P ng-show='showError'>{{showErrorMessage}}</P>
-
-<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Business</th>
-        <th>Amount</th>
-        <th>Items</th>
-        <th>Date</th>
-        <th>Parents</th>
-        <th>Edit</th>
-        <th>Delete</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat='trans in transaction'>
-        <td><input type="text" ng-model="trans.business"></td>
-        <td><input type="text" ng-model="trans.money"></td>
-        <td><input type="text" ng-model="trans.items"></td>
-        <td><input type="text" ng-model="trans.date"></td>
-        <td><input type="checkbox" ng-model="trans.parents"></td>
-        <td><button ng-click='updateTrans(trans)'>Update</button></td>
-        <td><button ng-click='deleteTrans(trans)'>Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-
 <button ng-click="addTransaction()"> Add Transaction</button>
 
 <div ng-show='showNewTransaction'>
@@ -35,19 +8,21 @@
     <thead>
       <tr>
         <th>Business</th>
-        <th>Amount</th>
         <th>Items</th>
+        <th>Category</th>
+        <th>Amount</th>
         <th>Date</th>
-        <th>Parents</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><input type="text" ng-model="newTrans.business"></td>
-        <td><input type="text" ng-model="newTrans.money"></td>
         <td><input type="text" ng-model="newTrans.items"></td>
+        <td><select ng-model="newTrans.category" >
+            <option ng-repeat="c in categories">{{c}}</option>
+        </select></td>
+        <td><input type="text" ng-model="newTrans.money"></td>
         <td><input type="date" ng-model="newTrans.date"></td>
-        <td><input type="checkbox" ng-model="newTrans.parents"></td>
 
       </tr>
     </tbody>
@@ -57,3 +32,33 @@
 <div ng-show='showErrorWithNew'>
     <h1>{{showErrorMessage}}</h1>
 </div>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Business</th>
+        <th>Items</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='trans in transaction'>
+        <td><input type="text" ng-model="trans.business"></td>
+        <td><input type="text" ng-model="trans.items"></td>
+        <td><select ng-model="trans.category" >
+            <option ng-repeat="c in categories">{{c}}</option>
+        </select></td>
+        <td><input type="text" ng-model="trans.money"></td>
+        <td><input type="text" ng-model="trans.date"></td>
+          
+        <td><button ng-click='updateTrans(trans)'>Update</button></td>
+        <td><button ng-click='deleteTrans(trans)'>Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
