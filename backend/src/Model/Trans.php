@@ -60,7 +60,7 @@ class Trans implements \JsonSerializable
     public static function getAll()
     {
         global $database;
-        $statement = $database->prepare('SELECT * FROM trans ORDER BY id DESC');
+        $statement = $database->prepare('SELECT * FROM trans ORDER BY id DESC LIMIT 20');
         $statement->execute();
 
         if ($statement->rowCount() <= 0) {
