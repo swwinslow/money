@@ -243,20 +243,6 @@ class Trans implements \JsonSerializable
      * ========================================================== */
     
     public static function deleteTrans($body){
-        
-        if ($body['id'] == null) {
-            $code = 400;
-            header('Content-Type: application/javascript');
-            http_response_code($code);
-
-            $response = array(
-                "status" => "ID is not definded",
-                "message" => $message
-            );
-
-            die(json_encode( (object) $response ));
-        }
-        
         global $database;
        
         $statement = $database->prepare('DELETE FROM trans WHERE id = ?');

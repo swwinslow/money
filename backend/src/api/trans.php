@@ -34,7 +34,7 @@ $app->group('/api', function () use ($app){
          * PUT
          * ========================================================== */
 
-        $app->put('/updateTrans', function ($request, $response, $args) use ($app){
+        $app->put('/updateTransaction', function ($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $plant = Trans::updateTrans($body);
             $output = new Response($plant);
@@ -45,7 +45,7 @@ $app->group('/api', function () use ($app){
          * DELETE
          * ========================================================== */
         
-        $app->delete('/deleteTrans', function ($request, $response, $args) use ($app){
+        $app->put('/deleteTransaction', function ($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $plant = Trans::deleteTrans($body);
             $output = new Response($plant);
