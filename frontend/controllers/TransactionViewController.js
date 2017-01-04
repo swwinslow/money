@@ -45,4 +45,31 @@
              $scope.showErrorMessage = error;
          });
      }
+     
+     $scope.updateTrans = function(updateMoney){
+         
+         if(updateMoney.parents == true){
+             updateMoney.parents = 1;
+         } else {
+            updateMoney.parents = 0;
+         }
+         TransFactory.updateTransaction(updateMoney).then(function (respoonse){
+             console.log('we are done');
+         }, function (error){
+             $scope.showError = true;
+             $scope.showErrorMessage = error;
+         });
+     }
+     
+     $scope.deleteTrans = function(deleteMoney){
+         console.log(deleteMoney);
+         $scope.transaction.splice(deleteMoney, 1);
+         
+         TransFactory.deleteTransaction(deleteMoney).then(function (response){
+             
+         }, function (error){
+             $scope.showError = true;
+             $scope.showErrorMessage = error;
+         })
+     }
 });

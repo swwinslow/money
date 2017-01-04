@@ -35,6 +35,16 @@ app.factory('TransFactory', function($http, $rootScope) {
             }
         });
     }
+    
+    data.deleteTransaction = function(pay){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/deleteTransaction',
+            data: {
+                "id" : pay.id
+            }
+        });
+    }
 
     return data;
 });
