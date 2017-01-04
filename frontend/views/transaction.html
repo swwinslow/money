@@ -1,1 +1,53 @@
 <h1>TRANS</h1>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Business</th>
+        <th>Amount</th>
+        <th>Items</th>
+        <th>Date</th>
+        <th>Parents</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='trans in transaction'>
+        <td><input type="text" ng-model="trans.business"></td>
+        <td><input type="text" ng-model="trans.money"></td>
+        <td><input type="text" ng-model="trans.items"></td>
+        <td><input type="text" ng-model="trans.date"></td>
+        <td><input type="checkbox" ng-model="trans.parents"></td>
+      </tr>
+    </tbody>
+  </table>
+
+<button ng-click="addTransaction()"> Add Transaction</button>
+
+<div ng-show='showNewTransaction'>
+<table class="table table-bordered" >
+    <thead>
+      <tr>
+        <th>Business</th>
+        <th>Amount</th>
+        <th>Items</th>
+        <th>Date</th>
+        <th>Parents</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" ng-model="newTrans.business"></td>
+        <td><input type="text" ng-model="newTrans.money"></td>
+        <td><input type="text" ng-model="newTrans.items"></td>
+        <td><input type="date" ng-model="newTrans.date"></td>
+        <td><input type="checkbox" ng-model="newTrans.parents"></td>
+      </tr>
+    </tbody>
+  </table>
+    <button ng-click='submitTransaction(newTrans)'> Save Transaction</button>
+</div>
+<div ng-show='showErrorWithNew'>
+    <h1>{{showErrorMessage}}</h1>
+</div>

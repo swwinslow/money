@@ -4,31 +4,31 @@ app.factory('TransFactory', function($http, $rootScope) {
     var baseUrl = location.origin +'/money/backend/public/api/trans';
 
     data.getAllTrans = function(plant_id) {
-        $http.get(baseUrl);
+        return $http.get(baseUrl);
     }
 
-    data.createInvestment = function (pay) {
-        $http({
+    data.createTransaction = function (pay) {
+        return $http({
             method: "POST",
             url: baseUrl + '/createTransaction',
             data: {
                 "business": pay.business,
                 "money": pay.money,
-                "itmes" : pay.itmes,
+                "items" : pay.items,
                 "parents" : pay.parents,
                 "date": pay.date
             }
         });
     }
 
-    data.updateInvestment = function(pay){
-        $http({
+    data.updateTransaction = function(pay){
+        return $http({
             method: "PUT",
             url: baseUrl + '/updateTransaction',
             data: {
                 "business": pay.business,
                 "money": pay.money,
-                "itmes" : pay.itmes,
+                "items" : pay.items,
                 "parents" : pay.parents,
                 "date": pay.date,
                 "id" : pay.id

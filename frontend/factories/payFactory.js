@@ -6,11 +6,11 @@ app.factory('PayFactory', function($http, $rootScope) {
 
 
     data.getAllPay = function(plant_id) {
-        $http.get(baseUrl);
+        return $http.get(baseUrl);
     }
 
     data.createPay = function (pay) {
-        $http({
+        return $http({
             method: "POST",
             url: baseUrl + '/createPay',
             data: {
@@ -22,7 +22,7 @@ app.factory('PayFactory', function($http, $rootScope) {
     }
 
     data.updatePay = function(pay){
-        $http({
+        return $http({
             method: "PUT",
             url: baseUrl + '/updatePay',
             data: {
