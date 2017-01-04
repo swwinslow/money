@@ -11,7 +11,8 @@
          "Friends",
          "Meal",
          "Gas",
-         "Need"
+         "Need",
+         "Business"
      ]
     
     TransFactory.getAllTrans().then(function (response){
