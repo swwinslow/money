@@ -7,6 +7,11 @@ app.controller('HomePageController', function(CONFIG, $scope, $location, Complet
     CompleteFactory.getIRATotal().then(function (response){
         $scope.totalIRA = response.data.data.amount;
     });
+    
+    CompleteFactory.getPayTotal().then(function (response){
+        $scope.totalPay = response.data.data[0].total;
+        console.log(response.data.data[0].total);
+    });
 
 
 

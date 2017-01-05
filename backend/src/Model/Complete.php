@@ -110,7 +110,9 @@ class Complete implements \JsonSerializable
     }
     
     public static function getTotalPayWithMonths(){
-                
+        $total = [];
+
+        
         global $database;
         $statement = $database->prepare("SELECT EXTRACT(YEAR FROM date) AS year, EXTRACT(MONTH FROM date) AS month, EXTRACT(DAY FROM date) AS day FROM pay WHERE 1=1 ORDER BY date DESC LIMIT 1");
         $statement->execute();
@@ -138,7 +140,20 @@ class Complete implements \JsonSerializable
             array_push($years, $i);
         }
         
-        $total = [];
+        $statement4 = $database->prepare("SELECT SUM(amount) AS totalAmount FROM pay");
+        $statement4->execute();
+        if ($statement2->rowCount() <= 0) {
+            return;
+        }
+        
+         $totalAmountString = $statement4->fetch(PDO::FETCH_ASSOC);
+        $totalAmountDouble = $totalAmountString['totalAmount'];
+     
+        $totalAmount = (object) ['total' => $totalAmountDouble];
+        array_push($total, $totalAmount);
+
+        
+        
         $monthlyTotal = [];
     
         for($year = $oldestYear; $year < $newestYear +1; $year++){
