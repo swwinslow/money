@@ -33,6 +33,19 @@ app.factory('PayFactory', function($http, $rootScope) {
             }
         });
     }
+    
+    data.deletePay = function(pay){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/deletePay',
+            data: {
+                "company": pay.company,
+                "amount": pay.amount,
+                "date": pay.date,
+                "id": pay.id,
+            }
+        });
+    };
 
     return data;
 });
