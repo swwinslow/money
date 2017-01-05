@@ -3,12 +3,12 @@ app.factory('InvestmentFactory', function($http, $rootScope) {
     var data = {};
     var baseUrl = location.origin +'/money/backend/public/api/investments';
 
-    data.getAllInvestments = function(plant_id) {
-        $http.get(baseUrl);
+    data.getAllInvestments = function() {
+        return $http.get(baseUrl);
     }
 
     data.createInvestment = function (pay) {
-        $http({
+        return $http({
             method: "POST",
             url: baseUrl + '/createInvestment',
             data: {
@@ -20,7 +20,7 @@ app.factory('InvestmentFactory', function($http, $rootScope) {
     }
 
     data.updateInvestment = function(pay){
-        $http({
+        return $http({
             method: "PUT",
             url: baseUrl + '/updateInvestment',
             data: {
@@ -31,6 +31,18 @@ app.factory('InvestmentFactory', function($http, $rootScope) {
             }
         });
     }
+    
+    data.deleteInvestment = function(pay){
+        return $http({
+            method: "PUT",
+            url: baseUrl + '/deleteInvestment',
+            data: {
+                "id": pay.id,
+            }
+        });
+    }
+    
+    
 
     return data;
 });
