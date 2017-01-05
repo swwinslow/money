@@ -45,7 +45,7 @@ $app->group('/api', function () use ($app){
          * DELETE
          * ========================================================== */
         
-        $app->delete('/deletePay', function ($request, $response, $args) use ($app){
+        $app->put('/deletePay', function ($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $plant = Pay::deletePay($body);
             $output = new Response($plant);
