@@ -39,33 +39,7 @@ class Complete implements \JsonSerializable
         
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
-    
-    public static function getTotalIRA()
-    {    
-        global $database;
-        $statement = $database->prepare("select SUM(money) AS money from trans where date between '2017/01/01' and '2017/12/31' AND FIELD(`category`, 'Parents');");
-        $statement->execute();
-
-        if ($statement->rowCount() <= 0) {
-            return;
-        }    
-        $stringNumber = $statement->fetch(PDO::FETCH_ASSOC);
-         $parentsMoney = floatval($stringNumber['money']);
-      
-        $statement2 = $database->prepare("select SUM(money) AS money from trans where date between '2017/01/01' and '2017/12/31';");
-        $statement2->execute();
-
-        if ($statement2->rowCount() <= 0) {
-            return;
-        } 
-        $stringNumber = $statement2->fetch(PDO::FETCH_ASSOC);
-         $totalAmount = floatval($stringNumber['money']);
-        
-        $newValue = $totalAmount - $parentsMoney;
-        
-        return $newValue;
-    }
-    
+       
     public static function getTotalTransWithMonths(){
                 
         global $database;
