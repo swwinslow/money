@@ -11,8 +11,14 @@ $app->group('/api', function () use ($app){
          * GET
          * ========================================================== */
 
-        $app->get('', function($request, $response, $args) use ($app){
+        $app->get('/IRATotal', function($request, $response, $args) use ($app){
             $totalIRA = Complete::getTotalIRA();
+            $output = new Response($totalIRA);
+            $response->getBody()->write(json_encode($output));
+        });
+        
+        $app->get('/TransTotal', function($request, $response, $args) use ($app){
+            $totalIRA = Complete::getTotalTransWithMonths();
             $output = new Response($totalIRA);
             $response->getBody()->write(json_encode($output));
         });
