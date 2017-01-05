@@ -45,7 +45,7 @@ $app->group('/api', function () use ($app){
          * DELETE
          * ========================================================== */
         
-        $app->delete('/deleteInvestment', function ($request, $response, $args) use ($app){
+        $app->put('/deleteInvestment', function ($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $investment = Investments::deleteInvestment($body);
             $output = new Response($investment);

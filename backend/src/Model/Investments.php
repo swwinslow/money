@@ -50,7 +50,7 @@ class Investments implements \JsonSerializable
     public static function getAll()
     {
         global $database;
-        $statement = $database->prepare('SELECT * FROM investments');
+        $statement = $database->prepare('SELECT * FROM investments ORDER BY id DESC');
         $statement->execute();
 
         if ($statement->rowCount() <= 0) {
