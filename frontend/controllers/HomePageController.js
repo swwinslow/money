@@ -11,4 +11,8 @@ app.controller('HomePageController', function(CONFIG, $scope, $location){
     $scope.transaction = function(){
         $location.path("/transaction");
     };
+    
+    $scope.home = function(){
+        $location.path("/");
+    }
 });
