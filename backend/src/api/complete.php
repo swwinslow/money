@@ -10,9 +10,8 @@ $app->group('/api', function () use ($app){
         /* ========================================================== *
          * GET
          * ========================================================== */
-
-        $app->get('/IRATotal', function($request, $response, $args) use ($app){
-            $totalIRA = Complete::getTotalIRA();
+        $app->get('/InvestmentTotal', function($request, $response, $args) use ($app){
+            $totalIRA = Complete::getTotalInvestments();
             $output = new Response($totalIRA);
             $response->getBody()->write(json_encode($output));
         });

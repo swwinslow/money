@@ -39,6 +39,25 @@ class Complete implements \JsonSerializable
         
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public static function getTotalInvestments(){
+        global $database;
+        $statement = $database->prepare('SELECT SUM(amount) AS amount FROM investments');
+        $statement->execute();
+        
+        $totalInvestment = ($statement->fetch(PDO::FETCH_ASSOC));
+        
+        $statement = $database->prepare('SELECT SUM(amount) AS amount FROM investments WHERE investment="IRA"');
+        $statement->execute();
+        $totalIRAInvestment = ($statement->fetch(PDO::FETCH_ASSOC));
+        
+        $doubleTotal = ($totalInvestment['amount']);
+        $doubleIRA = ($totalIRAInvestment['amount']);
+
+        $difference = $doubleTotal - $doubleIRA ;
+        $TransObject = (object) ['total' => $doubleTotal, 'totalIRA' => $doubleIRA, 'Difference' => $difference];
+        return $TransObject;
+    }
        
     public static function getTotalTransWithMonths(){
                 
@@ -71,10 +90,12 @@ class Complete implements \JsonSerializable
         
         $total = [];
         $monthlyTotal = [];
-    
-        for($year = $oldestYear; $year < $newestYear +1; $year++){
 
-         for($month = 1; $month < 13; $month++){
+        for($year = $oldestYear; $year < $newestYear + 1; $year++){
+            $totalYear = 0;
+            $monthlyTotal = [];
+
+            for($month = 1; $month < 13; $month++){
                 $days = 0;
                 if($month == 2){
                     if(checkdate($month, 29, $year)){
@@ -96,14 +117,21 @@ class Complete implements \JsonSerializable
             
                 $monthAmount = $statement3->fetch(PDO::FETCH_ASSOC);
             
-        
                 $amount = floatval($monthAmount['amount']);
+    
                 $singleMonthObject = (object) ['month' => $month, 'amount' => $amount];
+
                 array_push($monthlyTotal, $singleMonthObject);
             }
-            $singleMonthObject = (object) ['year' => $year, 'months' => $monthlyTotal];
+
+            $statement4 = $database->prepare("SELECT SUM(money) AS totalAmount FROM trans WHERE date BETWEEN '".$year."-01-01' AND '".$year."-12-31'");
+            $statement4->execute();
+
+            $monthAmount = $statement4->fetch(PDO::FETCH_ASSOC);
             
-            array_push($total, $singleMonthObject);
+            $singleYear = (object) ['year' => $year, 'months' => $monthlyTotal, 'Year Total' => $monthAmount['totalAmount']];
+
+            array_push($total, $singleYear);
         }
         
         return $total;    
@@ -112,7 +140,6 @@ class Complete implements \JsonSerializable
     public static function getTotalPayWithMonths(){
         $total = [];
 
-        
         global $database;
         $statement = $database->prepare("SELECT EXTRACT(YEAR FROM date) AS year, EXTRACT(MONTH FROM date) AS month, EXTRACT(DAY FROM date) AS day FROM pay WHERE 1=1 ORDER BY date DESC LIMIT 1");
         $statement->execute();
@@ -149,17 +176,17 @@ class Complete implements \JsonSerializable
          $totalAmountString = $statement4->fetch(PDO::FETCH_ASSOC);
         $totalAmountDouble = $totalAmountString['totalAmount'];
      
-        $totalAmount = (object) ['total' => $totalAmountDouble];
+        $totalAmount = (object) ['CompleteTotalForPay' => $totalAmountDouble];
         array_push($total, $totalAmount);
 
-        
-        
         $monthlyTotal = [];
     
         for($year = $oldestYear; $year < $newestYear +1; $year++){
+                         $monthlyTotal = [];
 
          for($month = 1; $month < 13; $month++){
                 $days = 0;
+
                 if($month == 2){
                     if(checkdate($month, 29, $year)){
                         $days = 29;
@@ -180,12 +207,17 @@ class Complete implements \JsonSerializable
             
                 $monthAmount = $statement3->fetch(PDO::FETCH_ASSOC);
             
-        
                 $amount = floatval($monthAmount['amount']);
                 $singleMonthObject = (object) ['month' => $month, 'amount' => $amount];
                 array_push($monthlyTotal, $singleMonthObject);
             }
-            $singleMonthObject = (object) ['year' => $year, 'months' => $monthlyTotal];
+            
+            $statement4 = $database->prepare("SELECT SUM(amount) AS totalAmount FROM pay WHERE date BETWEEN '".$year."-01-01' AND '".$year."-12-31'");
+            $statement4->execute();
+
+            $monthAmount = $statement4->fetch(PDO::FETCH_ASSOC);
+            
+            $singleMonthObject = (object) ['year' => $year, 'months' => $monthlyTotal, 'Single Year Total' => $monthAmount['totalAmount']];
             
             array_push($total, $singleMonthObject);
         }
