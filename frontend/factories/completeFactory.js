@@ -8,6 +8,10 @@ app.factory('CompleteFactory', function($http, $rootScope) {
         return $http.get(baseUrl + "/IRATotal");
     }
     
+    data.getTotalInvestment = function(){
+        return $http.get(baseUrl + "/InvestmentTotal");
+    }
+    
     data.getTransTotal = function() {
         return $http.get(baseUrl + "/TransTotal");
     }
