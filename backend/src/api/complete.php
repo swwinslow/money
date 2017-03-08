@@ -15,13 +15,13 @@ $app->group('/api', function () use ($app){
             $output = new Response($totalIRA);
             $response->getBody()->write(json_encode($output));
         });
-        
+
         $app->get('/TransTotal', function($request, $response, $args) use ($app){
             $totalIRA = Complete::getTotalTransWithMonths();
             $output = new Response($totalIRA);
             $response->getBody()->write(json_encode($output));
         });
-        
+
         $app->get('/PayTotal', function($request, $response, $args) use ($app){
             $totalIRA = Complete::getTotalPayWithMonths();
             $output = new Response($totalIRA);
@@ -41,8 +41,8 @@ $app->group('/api', function () use ($app){
         /* ========================================================== *
          * DELETE
          * ========================================================== */
-        
-        
+
+
     });
 });
 
