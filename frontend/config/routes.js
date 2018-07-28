@@ -16,6 +16,14 @@ app.config(function ($routeProvider, CONFIG) {
         controller: 'InvestmentViewController',
         templateUrl: 'views/investments.html'
     }).
+    when('/test', {
+        controller: 'InvestmentViewController',
+        templateUrl: 'views/test.html'
+    }).
+    when('/budget', {
+        controller: "BudgetController",
+        templateUrl: 'views/budget.html'
+    })  .
     otherwise({
         controller: '404ViewController',
         templateUrl: 'views/404.html'

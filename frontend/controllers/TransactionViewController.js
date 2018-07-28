@@ -12,7 +12,11 @@
          "Meal",
          "Gas",
          "Need",
-         "Business"
+         "Business",
+         "AWS",
+         "Insurance",
+         "Car",
+         "Housing"
      ]
     
     TransFactory.getAllTrans().then(function (response){

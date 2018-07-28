@@ -11,6 +11,10 @@ app.controller('HeaderViewController', function(CONFIG, $scope, $location){
     $scope.transaction = function(){
         $location.path("/transaction");
     };
+
+    $scope.budget = function(){
+        $location.path("/budget");
+    };
     
     $scope.home = function(){
         $location.path("/");

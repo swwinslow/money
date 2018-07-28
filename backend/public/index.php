@@ -51,12 +51,15 @@ require __DIR__ . '/../src/api/trans.php';
 require __DIR__ . '/../src/api/pay.php';
 require __DIR__ . '/../src/api/investments.php';
 require __DIR__ . '/../src/api/complete.php';
+require __DIR__ . '/../src/api/budget.php';
 
 //Register Models
 require __DIR__ . '/../src/Model/Trans.php';
 require __DIR__ . '/../src/Model/Pay.php';
 require __DIR__ . '/../src/Model/Investments.php';
 require __DIR__ . '/../src/Model/Complete.php';
+require __DIR__ . '/../src/Model/Budget.php';
+
 
 // Run app
 $app->run();

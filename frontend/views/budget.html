@@ -1,0 +1,53 @@
+<h1>Budget Mapping</h1>
+
+<P ng-show='showError'>{{showErrorMessage}}</P>
+<button ng-click="addPay()"> Add Budget</button>
+
+
+
+<div ng-show='showNewPay'>
+    <table class="table table-bordered" >
+        <thead>
+        <tr>
+            <th>Company</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input type="text" ng-model="newPay.company"></td>
+            <td><input type="text" ng-model="newPay.amount"></td>
+            <td><input type="date" ng-model="newPay.date"></td>
+        </tr>
+        </tbody>
+    </table>
+    <button ng-click='submitPay(newPay)'> Save Budget</button>
+</div>
+
+<div ng-show='showErrorWithNew'>
+    <h1>{{showErrorMessage}}</h1>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Update</th>
+        <th>Delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat='cat in categories'>
+        <td><input type="text" ng-model="cat.category"></td>
+        <td><input type="text" ng-model="cat.amount"></td>
+        <td><button ng-click='updateBudget(cat)'>Update</button></td>
+        <td><button ng-click='deleteBudget(cat)'>Delete</button></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<div id="pieChart"></div>

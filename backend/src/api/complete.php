@@ -28,6 +28,11 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
+        $app->get('/hello', function($request, $response, $args) use ($app){
+            var_dump("this is the dump");
+            die();
+        });
+
         //hello
 
 
