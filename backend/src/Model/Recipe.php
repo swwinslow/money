@@ -10,24 +10,18 @@ require_once '../utilities/response.php';
 require_once '../utilities/database.php';
 use PDO;
 
-class Pay implements \JsonSerializable
+class Recipe implements \JsonSerializable
 {
 
     public $id;
-    
-    public $company;
-    
-    public $amount;
-    
-    public $date;
+
+    public $url;
 
     public function __construct($data)
     {
         if (is_array($data)) {
             $this->id = intval($data['id']);
-            $this->company = $data['company'];
-            $this->amount = $data['amount'];
-            $this->date = $data['date'];
+            $this->url = $data['URL'];
         }
     }
 
@@ -35,9 +29,7 @@ class Pay implements \JsonSerializable
     {
         return [
             'id' => $this->id,
-            'company' => $this->company,
-            'amount' => $this->amount,
-            'date' => $this->date,
+            'url' => $this->url
         ];
     }
 
@@ -48,42 +40,41 @@ class Pay implements \JsonSerializable
     public static function getAll()
     {
         global $database;
-        $statement = $database->prepare('SELECT * FROM pay');
+        $statement = $database->prepare('SELECT * FROM recipies');
         $statement->execute();
 
         if ($statement->rowCount() <= 0) {
             return;
         };
 
-        $areas = [];
-    
-        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-            $areas[] = new Pay(($row));
-        }
-        
-        return $areas;
-    }
-
-    public static function totalPay()
-    {
-        global $database;
-        $statement = $database->prepare('SELECT SUM(amount) AS AMOUNT FROM pay');
-        $statement->execute();
-
-        if ($statement->rowCount() <= 0) {
-            return;
-        };
+        $recipe = [];
+        $allinformation = [];
 
 
         while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-             $total = $row['AMOUNT'];
+            $recipe[] = new Recipe($row);
+        }
+        $counter = 0;
+
+        for($i = 0; $i < count($recipe); $i++){
+            $statement1 = $database->prepare('SELECT recipies_cateogries.tag_name FROM recipies INNER JOIN recipies_connection ON recipies.id = recipies_connection.recipie_id inner join recipies_cateogries ON recipies_connection.recipie_cat = recipies_cateogries.id');
+            $statement1->execute();
+            $allinformation[$counter]['information'] = $recipe[$i];
+            $items = [];
+            while ($row = $statement1->fetch(PDO::FETCH_ASSOC)) {
+                $items[] = $row;
+            }
+
+            $allinformation[$counter]['category'] = $items;
+            $counter++;
         }
 
-        return $total;
+        return $allinformation;
     }
 
 
-    
+
+
     public static function getSpecificID($id)
     {
         global $database;
@@ -95,87 +86,28 @@ class Pay implements \JsonSerializable
         };
 
         $areas = [];
-    
-        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-            $areas[] = new Pay(($row));
-        }
-        
-        return $areas;
-    }
-    
-    public static function getSpecificCompany($body)
-    {
-        if ($body['company'] == "" || $body['company'] == null) {
-            $code = 400;
-            header('Content-Type: application/javascript');
-            http_response_code($code);
-
-            $response = array(
-                "status" => "Company is not definend",
-                "message" => $message
-            );
-
-            die(json_encode( (object) $response ));
-        }
-        
-        global $database;
-        $statement = $database->prepare('SELECT * FROM pay WHERE company = ?');
-        $statement->execute(array($body['company']));
-
-        if ($statement->rowCount() <= 0) {
-            return;
-        };
-
-        $areas = [];
-    
 
         while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
             $areas[] = new Pay(($row));
         }
-        
+
         return $areas;
     }
 
     /* ========================================================== *
      * POST
      * ========================================================== */
-    
 
-    public static function createPay($body)
+
+    public static function createRecipie($body)
     {
-        if ($body['company'] == "" || $body['company'] == null  ) {
+        if ($body['URL'] == "" || $body['URL'] == null  ) {
             $code = 400;
             header('Content-Type: application/javascript');
             http_response_code($code);
 
             $response = array(
-                "status" => "Company is not defiend",
-                "message" => $message
-            );
-
-            die(json_encode( (object) $response ));
-        }
-        
-        if ($body['amount'] == 0 || $body['amount'] == null  ) {
-            $code = 400;
-            header('Content-Type: application/javascript');
-            http_response_code($code);
-
-            $response = array(
-                "status" => "Amount is not defined",
-                "message" => $message
-            );
-
-            die(json_encode( (object) $response ));
-        }
-        
-        if ($body['date'] == "" || $body['date'] == null  ) {
-            $code = 400;
-            header('Content-Type: application/javascript');
-            http_response_code($code);
-
-            $response = array(
-                "status" => "Date is not definded",
+                "status" => "URL is not defiend",
                 "message" => $message
             );
 
@@ -183,23 +115,23 @@ class Pay implements \JsonSerializable
         }
 
         global $database;
-       
-        $statement = $database->prepare('INSERT INTO pay (`id`, `company`, `amount`, `date`) VALUES (NULL, ?, ?, ?)');
-        $statement->execute(array($body['company'], $body['amount'], $body['date']));
+
+        $statement = $database->prepare('INSERT INTO recipies (`id`, `URL`) VALUES (NULL, ?)');
+        $statement->execute(array($body['URL']));
 
         $id = $database->lastInsertId();
 
         $statement->closeCursor();
-    
+
         return self::getSpecificID($id);
     }
 
     /* ========================================================== *
      * PUT
      * ========================================================== */
-    
+
     public static function updatePay($body){
-  
+
         if ($body['company'] == "" || $body['company'] == null  ) {
             $code = 400;
             header('Content-Type: application/javascript');
@@ -212,7 +144,7 @@ class Pay implements \JsonSerializable
 
             die(json_encode( (object) $response ));
         }
-        
+
         if ($body['amount'] == 0 || $body['amount'] == null  ) {
             $code = 400;
             header('Content-Type: application/javascript');
@@ -225,7 +157,7 @@ class Pay implements \JsonSerializable
 
             die(json_encode( (object) $response ));
         }
-        
+
         if ($body['date'] == "" || $body['date'] == null  ) {
             $code = 400;
             header('Content-Type: application/javascript');
@@ -242,7 +174,7 @@ class Pay implements \JsonSerializable
 //        die();
 
         global $database;
-       
+
         $statement = $database->prepare('UPDATE pay SET company = ?, amount = ?, date = ? WHERE id = ?');
         $statement->execute(array($body['company'], $body['amount'], $body['date'], $body['id']));
 
@@ -253,9 +185,9 @@ class Pay implements \JsonSerializable
     /* ========================================================== *
      * DELETE
      * ========================================================== */
-    
+
     public static function deletePay($body){
-        
+
         if ($body['id'] == null) {
             $code = 400;
             header('Content-Type: application/javascript');
@@ -268,12 +200,12 @@ class Pay implements \JsonSerializable
 
             die(json_encode( (object) $response ));
         }
-        
+
         global $database;
-       
+
         $statement = $database->prepare('DELETE FROM pay WHERE id = ?');
         $statement->execute(array($body['id']));
-    
+
         return true;
     }
 }

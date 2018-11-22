@@ -11,5 +11,14 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         return $http.get(baseUrl + "/past");
     }
 
+    data.getAllPastMonths = function(){
+        return $http.get(baseUrl + "/allpast");
+    }
+
+    data.getOverview = function(){
+        return $http.get(baseUrl + "/overview");
+    }
+
+
     return data;
 });

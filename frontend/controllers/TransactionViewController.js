@@ -3,7 +3,7 @@
      $scope.showNewTransaction = false;
      
      $scope.categories = [
-         "Grocercies",
+         "Groceries",
          "School",
          "Parents",
          "Desserts",

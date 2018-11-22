@@ -75,6 +75,24 @@ class Trans implements \JsonSerializable
         
         return $areas;
     }
+
+    public static function totalTrans()
+    {
+        global $database;
+        $statement = $database->prepare('SELECT SUM(money) AS AMOUNT FROM trans');
+        $statement->execute();
+
+        if ($statement->rowCount() <= 0) {
+            return;
+        };
+
+
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $total = $row['AMOUNT'];
+        }
+
+        return $total;
+    }
     
     public static function getSpecificID($id)
     {

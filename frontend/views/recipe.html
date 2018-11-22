@@ -1,0 +1,45 @@
+<h1>Reci</h1>
+
+<P ng-show='showError'>{{showErrorMessage}}</P>
+
+
+<div ng-show='showErrorWithNew'>
+    <h1>{{showErrorMessage}}</h1>
+</div>
+
+<div>
+<table class="table table-bordered" >
+    <thead>
+      <tr>
+        <th>URL</th>
+        <th>Cat</th>
+        <th>Save</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" ng-model="newRec.URL"></td>
+        <td>DISPLAY CATS</td>   
+        <td><button ng-click='submitRecipe(newRec)'> Save Pay</button></td>
+      </tr>
+    </tbody>
+</table>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>URL</th>
+        <th>Cats</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat='singleRecipe in recipes'>
+        <td><a href={{singleRecipe.information.url}}>{{singleRecipe.information.url}}</a></td>
+        <tr ng-repeat='cat in singleRecipe.category'>
+            <td>{{cat.tag_name}}</td>
+        </tr>
+    </tr>
+    </tbody>
+</table>

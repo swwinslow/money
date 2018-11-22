@@ -1,4 +1,4 @@
-app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFactory){
+app.controller('BudgetAllController', function(CONFIG, $scope, $location, BudgetFactory){
 
     $scope.showNewPay = false;
     $scope.showError = false;

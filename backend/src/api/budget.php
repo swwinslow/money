@@ -23,6 +23,20 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
+        
+        $app->get('/allpast', function($request, $response, $args) use ($app){
+            $allBudget = Budget::getAllPast();
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        $app->get('/overview', function($request, $response, $args) use ($app){
+            $allBudget = Budget::getOverview();
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+
 
         /* ========================================================== *
          * POST
