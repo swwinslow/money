@@ -2,6 +2,25 @@
 
 <P ng-show='showError'>{{showErrorMessage}}</P>
 <button ng-click="addTransaction()"> Add Transaction</button>
+<button ng-click="addKroger()"> Add Kroger</button>
+
+<div ng-show='showNewKroger'>
+  <table class="table table-bordered" >
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" ng-model="newTrans.money"></td>
+          <td><input type="date" ng-model="newTrans.date"></td>
+        </tr>
+      </tbody>
+    </table>
+      <button ng-click='submitKroger(newTrans)'> Save Transaction</button>
+  </div>
 
 <div ng-show='showNewTransaction'>
 <table class="table table-bordered" >
@@ -23,7 +42,6 @@
         </select></td>
         <td><input type="text" ng-model="newTrans.money"></td>
         <td><input type="date" ng-model="newTrans.date"></td>
-
       </tr>
     </tbody>
   </table>
@@ -60,5 +78,3 @@
       </tr>
     </tbody>
   </table>
-
-

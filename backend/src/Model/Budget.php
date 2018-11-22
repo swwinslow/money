@@ -89,6 +89,26 @@ class Budget implements \JsonSerializable
         return $areas;
     }
 
+    public static function getSaving($budget){
+        $count = 0;
+                $lol = 0;
+        for($i = 0; $i < count($budget) + 1; $i++){
+            for($j = 0; $j < count(budget[$i]); $j++){
+                $year = $budget[$i]->months[$j];
+                
+                if($budget[0]->year === "2018" && $year->month < 6){
+                    //small month here
+                    $count++;
+                } else {
+                    var_dump("hello");
+                    // die();
+                    $lol++;
+                }
+                
+            }
+        }
+    }
+
     public static function getPast()
     {
         global $database;
@@ -101,16 +121,7 @@ class Budget implements \JsonSerializable
         $dateArray = $statement->fetch(PDO::FETCH_ASSOC);
         $newestYear = $dateArray['year'];
 
-        //Getting the OLDEST YEAR
-
-        $statement2 = $database->prepare("SELECT EXTRACT(YEAR FROM date) AS year, EXTRACT(MONTH FROM date) AS month, EXTRACT(DAY FROM date) AS day FROM trans WHERE 1=1 ORDER BY date ASC LIMIT 1");
-        $statement2->execute();
-        if ($statement2->rowCount() <= 0) {
-            return;
-        }
-
-        $dateArrayOLD = $statement2->fetch(PDO::FETCH_ASSOC);
-        $oldestYear = 2018;
+        $oldestYear = date("Y");
 
         $years = [];
         $i = $oldestYear;
@@ -126,21 +137,8 @@ class Budget implements \JsonSerializable
             $monthlyTotal = [];
 
             for ($month = 1; $month < 13; $month++) {
-                $days = 0;
-                if ($month == 2) {
-                    if (checkdate($month, 29, $year)) {
-                        $days = 29;
-                    } else {
-                        $days = 28;
-                    }
-                } else {
-                    if ($month == 1 || $month == 3 || $month == 5 || $month == 7 || $month == 8 || $month == 10 || $month == 12) {
-                        $days = 31;
-                    } else {
-                        $days = 30;
-                    }
-                }
 
+                $days = date('t', mktime(0, 0, 0, $month, 1, $year)); 
 
                 $statement3 = $database->prepare("select SUM(money) AS amount, trans.category AS category from trans where 1=1 AND date between '" . $year . "/" . $month . "/01' and '" . $year . "/" . $month . "/" . $days . "' GROUP BY trans.category ORDER BY amount DESC");
                 $statement3->execute();
@@ -162,47 +160,11 @@ class Budget implements \JsonSerializable
                 $amountTotal = $statement4->fetch(PDO::FETCH_ASSOC);
 
                 if ($together != []) {
-                    if ($month == 1) {
-                        $monthName = 'January';
-                    }
-                    if ($month == 2) {
-                        $monthName = 'February';
-                    }
-                    if ($month == 3) {
-                        $monthName = 'March';
-                    }
-                    if ($month == 4) {
-                        $monthName = 'April';
-                    }
-                    if ($month == 5) {
-                        $monthName = 'May';
-                    }
-                    if ($month == 6) {
-                        $monthName = 'June';
-                    }
-                    if ($month == 7) {
-                        $monthName = 'July';
-                    }
-                    if ($month == 8) {
-                        $monthName = 'August';
-                    }
-                    if ($month == 9) {
-                        $monthName = 'September';
-                    }
-                    if ($month == 10) {
-                        $monthName = 'October';
-                    }
-                    if ($month == 11) {
-                        $monthName = 'November';
-                    }
-                    if ($month == 12) {
-                        $monthName = 'December';
-                    }
+
+                    $monthName = date("F", mktime(0, 0, 0, $month, 10));
 
                     //SHOWING THE BUDGET AND THE AMOUNTS!!!
-
-
-                    if (($month > 5 && $year >= 2018) || ($year >= 2019)) {
+                    if (($month > 5 && $year >= 2018) || ($year >= $oldestYear + 1)) {
                         $amount = floatval($amountTotal['amount']);
 
                         $statement5 = $database->prepare("SELECT * FROM budget WHERE display = 1");
@@ -475,7 +437,7 @@ class Budget implements \JsonSerializable
                         while ($row = $statement6->fetch(PDO::FETCH_ASSOC)) {
                             $amountA = floatval($row['amount']);
 
-                            $budgetTogether = ['amount' => $amountA, 'category' => "Saving", 'difference' => 0];
+                            $budgetTogether = ['amount' => $amountA, 'category' => "Saving", 'difference' => 0, 'amount' => $spent];
 
                             array_push($bugetTopics, $budgetTogether);
                         }

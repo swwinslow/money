@@ -1,6 +1,8 @@
  app.controller('TransactionViewController', function(CONFIG, $scope, $location, TransFactory){
      
      $scope.showNewTransaction = false;
+     $scope.showNewKroger = false;
+     $scope.searchText='asd';
      
      $scope.categories = [
          "Groceries",
@@ -32,8 +34,36 @@
      
      $scope.addTransaction = function(){
        $scope.showNewTransaction = true; 
-    $scope.newTrans = {};
+       $scope.newTrans = {};
      };
+
+     $scope.addKroger = function(){
+        $scope.showNewKroger = true; 
+        $scope.newTrans = {};
+      };
+
+      $scope.submitKroger = function(money){
+        money.business = 'Kroger';
+        money.items= 'Grocercies';
+        money.category='Grocercies';         
+        ogMoney = money;
+        if(money == undefined){
+            console.log("There is no object");
+        }
+        
+        console.log(money);
+        console.log('this is it');
+           
+        TransFactory.createTransaction(money).then(function (respoonse){
+            $scope.transaction.unshift(ogMoney);
+            $scope.newTrans = {};
+            $scope.showNewTransaction = false;
+        }, function (error){
+            console.log("There is an error");
+            $scope.showErrorWithNew = true;
+            $scope.showErrorMessage = error;
+        });
+    }
      
      $scope.submitTransaction = function(money){         
          ogMoney = money;

@@ -21,8 +21,6 @@ class Trans implements \JsonSerializable
     
     public $itmes;
     
-    public $parents;
-    
     public $date;
     
     public $category;
@@ -34,7 +32,6 @@ class Trans implements \JsonSerializable
             $this->business = $data['business'];
             $this->money = $data['money'];
             $this->items = $data['items'];
-            $this->parents = $data['parents'];
             $this->date = $data['date'];
             $this->category = $data['category'];
         }
@@ -47,7 +44,6 @@ class Trans implements \JsonSerializable
             'business' => $this->business,
             'money' => $this->money,
             'items' => $this->items,
-            'parents' => $this->parents,
             'date' => $this->date,
             'category' => $this->category,
         ];
@@ -207,8 +203,8 @@ class Trans implements \JsonSerializable
 
         global $database;
        
-        $statement = $database->prepare('INSERT INTO trans (`id`, `business`, `money`, `items`, `parents`, `date`, `category`) VALUES (NULL, ?, ?, ?, ?, ?, ?)');
-        $statement->execute(array($body['business'], $body['money'], $body['items'], $body['parents'], $body['date'], $body['category']));
+        $statement = $database->prepare('INSERT INTO trans (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, ?, ?, ?, ?, ?)');
+        $statement->execute(array($body['business'], $body['money'], $body['items'], $body['date'], $body['category']));
 
         $id = $database->lastInsertId();
 
