@@ -19,6 +19,7 @@ class Budget implements \JsonSerializable
 
     public $amount;
 
+    public $ending_date;
 
     public function __construct($data)
     {
@@ -26,6 +27,7 @@ class Budget implements \JsonSerializable
             $this->id = intval($data['id']);
             $this->category = $data['category'];
             $this->amount = $data['amount'];
+            $this->ending_date = $data['ending_date'];
         }
     }
 
@@ -35,6 +37,8 @@ class Budget implements \JsonSerializable
             'id' => $this->id,
             'category' => $this->category,
             'amount' => $this->amount,
+            'ending_date' => $this->ending_date,
+
         ];
     }
 
@@ -90,23 +94,64 @@ class Budget implements \JsonSerializable
     }
 
     public static function getSaving($budget){
-        $count = 0;
-                $lol = 0;
-        for($i = 0; $i < count($budget) + 1; $i++){
-            for($j = 0; $j < count(budget[$i]); $j++){
-                $year = $budget[$i]->months[$j];
-                
-                if($budget[0]->year === "2018" && $year->month < 6){
-                    //small month here
-                    $count++;
+
+        $HousingSaving = 0;
+        $CarSaving = 0;
+        $GrocerciesSaving = 0;
+        $SpendingMoney = 0;
+
+        for($i = 0; $i < count($budget); $i++){
+            $year = $budget[$i]->months;
+            $yearName = $budget[$i]->year;
+            
+            for($j = 0; $j < count($year); $j++){
+                $year1 = $year[$j];
+                $monthNumber = $year1->month;
+
+                $gointo = false;
+
+                // var_dump($yearName);
+                // die();
+
+                if(($yearName == "2018" && $monthNumber < 6)||(intval($yearName) > date('Y') )){
+                    //nothing to report here 
                 } else {
-                    var_dump("hello");
-                    // die();
-                    $lol++;
+                    if(2018 == date('Y') - 1 || 2019 == date('Y')){ //if this is 2018
+                        if($monthNumber > date('m')){ //if month is less than current
+                            $gointo = false;
+                        } else {
+                            $gointo = true;
+                        }
+                    }
+                    if($yearName == "2018"){
+                        if($monthNumber >= 6){
+                            $gointo = true;
+                        } else {
+                            $gointo = false;
+                        }
+                    }
+
+                    if($gointo == true){
+                        $cats = $year1->money;
+                        for($t = 0; $t < count($cats); $t++){
+                            $catName = $cats[$t]['category'];
+
+                            if($catName == 'Housing'){
+                                $HousingSaving += $cats[$t]['difference'];
+                            } else if ($catName == 'Car'){
+                                $CarSaving += $cats[$t]['difference'];
+                            } else if ($catName == 'Groceries'){
+                                $GrocerciesSaving += $cats[$t]['difference'];
+                            } else if ($catName == 'SpendingMoney'){
+                                $SpendingMoney += $cats[$t]['difference'];
+                            }
+                        }
+                    }
                 }
-                
             }
         }
+        $amount = ['Housing' => $HousingSaving, 'Car' => $CarSaving, 'Grocercies' => $GrocerciesSaving, 'Spending' => $SpendingMoney];
+        return $amount;
     }
 
     public static function getPast()
@@ -132,7 +177,12 @@ class Budget implements \JsonSerializable
         $total = [];
         $monthlyTotal = [];
 
-        for ($year = $oldestYear; $year < $newestYear + 1; $year++) {
+        for ($year = 2018; $year < $newestYear + 1; $year++) {
+
+            // var_dump($year);
+            // var_dump($oldestYear);
+            // var_dump($newestYear);
+
             $totalYear = 0;
             $monthlyTotal = [];
 
@@ -162,9 +212,9 @@ class Budget implements \JsonSerializable
                 if ($together != []) {
 
                     $monthName = date("F", mktime(0, 0, 0, $month, 10));
-
+                    
                     //SHOWING THE BUDGET AND THE AMOUNTS!!!
-                    if (($month > 5 && $year >= 2018) || ($year >= $oldestYear + 1)) {
+                    if (($month > 5 && $year >= 2018) || ($year >= 2019)) {
                         $amount = floatval($amountTotal['amount']);
 
                         $statement5 = $database->prepare("SELECT * FROM budget WHERE display = 1");
@@ -343,7 +393,6 @@ class Budget implements \JsonSerializable
                         $days = 30;
                     }
                 }
-
 
                 $statement3 = $database->prepare("select SUM(money) AS amount, trans.category AS category from trans where 1=1 AND date between '" . $year . "/" . $month . "/01' and '" . $year . "/" . $month . "/" . $days . "' GROUP BY trans.category ORDER BY amount DESC");
                 $statement3->execute();

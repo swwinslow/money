@@ -1,5 +1,10 @@
 app.controller('BudgetAllController', function(CONFIG, $scope, $location, BudgetFactory){
 
+    console.log("hello");
+    console.log("hello");
+    console.log("hello");
+    console.log("hello");
+
     $scope.showNewPay = false;
     $scope.showError = false;
 
@@ -19,16 +24,15 @@ app.controller('BudgetAllController', function(CONFIG, $scope, $location, Budget
 
     });
 
-    BudgetFactory.getPastMonths().then(function (response) {
-        $scope.pastMonths = response.data.data;
-        console.log($scope.pastMonths);
-        for(var i = 0; i < $scope.pastMonths.length; i++){
+    // BudgetFactory.getPastMonths().then(function (response) {
+    //     $scope.pastMonths = response.data.data;
+    // }, function (error) {
+    //     $scope.showError = true;
+    //     $scope.showErrorMessage = error;
+    // });
+   
 
-        }
-    }, function (error) {
-        $scope.showError = true;
-        $scope.showErrorMessage = error;
-    });
+
 
     $scope.updatePay = function(pay){
 

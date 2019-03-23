@@ -3,13 +3,22 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
     $scope.showNewPay = false;
     $scope.showError = false;
 
-
     BudgetFactory.getAll().then(function (response){
         $scope.categories = response.data.data;
     }, function(error){
         $scope.showError = true;
         $scope.showErrorMessage = error;
 
+    });
+
+    BudgetFactory.getSavings().then(function (response) {
+        $scope.getHousingSavings = 123;
+        $scope.getCarSavings = response.data.data.Car;
+        $scope.getGrocerciesSavings = response.data.data.Grocercies;
+        $scope.getSpendingSavings = response.data.data.Spending;
+    }, function (error) {
+        $scope.showError = true;
+        $scope.showErrorMessage = error;
     });
 
     BudgetFactory.getOverview().then(function(response){

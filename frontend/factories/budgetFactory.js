@@ -18,7 +18,10 @@ app.factory('BudgetFactory', function($http, $rootScope) {
     data.getOverview = function(){
         return $http.get(baseUrl + "/overview");
     }
-
+     
+    data.getSavings = function(){
+        return $http.get(baseUrl + "/saving");
+    }
 
     return data;
 });

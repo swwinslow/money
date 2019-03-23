@@ -2,7 +2,9 @@
      
      $scope.showNewTransaction = false;
      $scope.showNewKroger = false;
-     $scope.searchText='asd';
+     $scope.showNewGas = false;
+     $scope.showNewMeal = false;
+
      
      $scope.categories = [
          "Groceries",
@@ -34,26 +36,85 @@
      
      $scope.addTransaction = function(){
        $scope.showNewTransaction = true; 
+       $scope.showNewGas = false;
+       $scope.showNewKroger = false; 
+       $scope.showNewMeal = false;
        $scope.newTrans = {};
      };
 
      $scope.addKroger = function(){
         $scope.showNewKroger = true; 
+        $scope.showNewGas = false;
+        $scope.showNewTransaction = false; 
+        $scope.showNewMeal = false;
         $scope.newTrans = {};
       };
 
-      $scope.submitKroger = function(money){
-        money.business = 'Kroger';
-        money.items= 'Grocercies';
-        money.category='Grocercies';         
+      $scope.addGas = function(){
+        $scope.showNewGas = true;
+        $scope.showNewKroger = false; 
+        $scope.showNewTransaction = false; 
+        $scope.showNewMeal = false;
+
+        $scope.newTrans = {};
+      };
+
+      $scope.showMeal = function(){
+          $scope.showNewMeal = true;
+        $scope.showNewGas = false;
+        $scope.showNewKroger = false; 
+        $scope.showNewTransaction = false; 
+
+        $scope.newTrans = {};
+      }
+
+      $scope.submitMeal = function(money){
+        money.items= 'Breakfast / Lunch / Dinner';
+        money.category='Meal';         
         ogMoney = money;
         if(money == undefined){
             console.log("There is no object");
         }
-        
-        console.log(money);
-        console.log('this is it');
-           
+
+        TransFactory.createTransaction(money).then(function (respoonse){
+            $scope.transaction.unshift(ogMoney);
+            $scope.newTrans = {};
+            $scope.showNewTransaction = false;
+        }, function (error){
+            console.log("There is an error");
+            $scope.showErrorWithNew = true;
+            $scope.showErrorMessage = error;
+        });
+    }
+
+    $scope.submitKroger = function(money){
+        money.business = 'Kroger';
+        money.items= 'Grocercies';
+        money.category='Groceries';         
+        ogMoney = money;
+        if(money == undefined){
+            console.log("There is no object");
+        }
+
+        TransFactory.createTransaction(money).then(function (respoonse){
+            $scope.transaction.unshift(ogMoney);
+            $scope.newTrans = {};
+            $scope.showNewTransaction = false;
+        }, function (error){
+            console.log("There is an error");
+            $scope.showErrorWithNew = true;
+            $scope.showErrorMessage = error;
+        });
+    }
+
+    $scope.submitGas = function(money){
+        money.items= 'Gas';
+        money.category='Gas';         
+        ogMoney = money;
+        if(money == undefined){
+            console.log("There is no object");
+        }
+
         TransFactory.createTransaction(money).then(function (respoonse){
             $scope.transaction.unshift(ogMoney);
             $scope.newTrans = {};
