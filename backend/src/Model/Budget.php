@@ -153,6 +153,44 @@ class Budget implements \JsonSerializable
         $amount = ['Housing' => $HousingSaving, 'Car' => $CarSaving, 'Grocercies' => $GrocerciesSaving, 'Spending' => $SpendingMoney];
         return $amount;
     }
+    public static function getAllPastSeth(){
+        global $database;
+        $statement = $database->prepare("SELECT budget_months.month, budget_months.year, budget_months.category, budget_months.c_money, trans_sql.MONEY, (budget_months.c_money - trans_sql.MONEY) as money_difference, CASE WHEN (budget_months.c_money - trans_sql.MONEY) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE from (SELECT SUM(money) AS 'MONEY', YEAR(date) AS 'YEAR', category AS 'CAT', MONTH(date) AS 'MONTH' from trans where YEAR(date) = '2019' group by category, MONTH(date)) as trans_sql inner join budget_months on trans_sql.MONTH = budget_months.month_id and trans_sql.CAT = budget_months.category where budget_months.year = '2019' order by year,month_id, category");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function yearReview()
+    {
+        global $database;
+        $statement = $database->prepare("SELECT (t1.money - t2.money) as 'difference', t2.category, CASE WHEN (t1.money - t2.money) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE FROM (SELECT category, SUM(c_money) AS money from budget_months where budget_months.year = '2019' group by category) as t1, (SELECT SUM(money) AS 'money', YEAR(date) AS 'YEAR', category AS 'category', MONTH(date) AS 'MONTH' from trans where YEAR(date) = '2019' group by category ) as t2 WHERE t1.category = t2.category");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function yearReview2019()
+    {
+        global $database;
+        $statement = $database->prepare("SELECT (t1.money -  t2.money) AS money, t1.money AS salary, t2.money AS trans  FROM (SELECT SUM(amount) AS money FROM pay where year(date) = '2019') as t1, (select sum(money) AS money from trans where YEAR(date) = '2019') as t2 ");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
 
     public static function getPast()
     {
@@ -341,6 +379,9 @@ class Budget implements \JsonSerializable
 
         return $total;
     }
+
+    
+    
 
      public static function getAllPast()
     {

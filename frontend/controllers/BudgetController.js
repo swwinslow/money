@@ -3,84 +3,19 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
     $scope.showNewPay = false;
     $scope.showError = false;
 
-    BudgetFactory.getAll().then(function (response){
-        $scope.categories = response.data.data;
-    }, function(error){
-        $scope.showError = true;
-        $scope.showErrorMessage = error;
+    BudgetFactory.getOverviewSeth().then(function(response){
+        $scope.SethData = response.data.data; 
+     });
 
-    });
+     BudgetFactory.yearReview().then(function(response){
+        $scope.yearReview = response.data.data; 
+        console.log($scope.yearReview);
+     })
 
-    BudgetFactory.getSavings().then(function (response) {
-        $scope.getHousingSavings = 123;
-        $scope.getCarSavings = response.data.data.Car;
-        $scope.getGrocerciesSavings = response.data.data.Grocercies;
-        $scope.getSpendingSavings = response.data.data.Spending;
-    }, function (error) {
-        $scope.showError = true;
-        $scope.showErrorMessage = error;
-    });
-
-    BudgetFactory.getOverview().then(function(response){
-       $scope.data = response.data.data;
-       $scope.Pay = $scope.data['Pay'];
-        $scope.Trans = $scope.data['Trans'];
-
-    });
-
-    BudgetFactory.getPastMonths().then(function (response) {
-        $scope.pastMonths = response.data.data;
-        console.log($scope.pastMonths);
-        for(var i = 0; i < $scope.pastMonths.length; i++){
-
-        }
-    }, function (error) {
-        $scope.showError = true;
-        $scope.showErrorMessage = error;
-    });
-
-    $scope.updatePay = function(pay){
-
-        PayFactory.updatePay(pay).then(function (response){
-            console.log("update is complete")
-        }, function(error){
-            $scope.showError = true;
-            $scope.showErrorMessage = error;
-        });
-    }
-
-    $scope.deletePay = function(pay){
-        PayFactory.deletePay(pay).then(function (response){
-            $scope.payments.splice(pay, 1);
-            console.log("delete is complete")
-        }, function(error){
-            $scope.showError = true;
-            $scope.showErrorMessage = error;
-        });
-    }
-
-    $scope.addPay = function(pay){
-        $scope.showNewPay = true;
-    }
-
-    $scope.submitPay = function(pay){
-        ogMoney = pay;
-        if(pay == undefined){
-            console.log("There is no object");
-        }
-
-        PayFactory.createPay(pay).then(function (respoonse){
-            $scope.payments.unshift(pay);
-            $scope.newPay = {};
-            $scope.showNewPay = false;
-            console.log('good');
-
-        }, function (error){
-            console.log('asdf');
-            console.log("There is an error");
-            $scope.showError = true;
-            $scope.showErrorMessage = error;
-        });
-    }
-
+   
+    BudgetFactory.yearReview2019().then(function(response){
+        $scope.year2019Difference = response.data.data[0]['money'];
+        $scope.year2019Trans = response.data.data[0]['trans'];
+        $scope.year2019Salary = response.data.data[0]['salary'];
+     });
 });

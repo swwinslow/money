@@ -1,160 +1,56 @@
 <h1>Budget Mapping</h1>
 
-<P ng-show='showError'>{{showErrorMessage}}</P>
-<button ng-click="addPay()"> Add Budget</button>
-
-
-
-<div ng-show='showNewPay'>
-    <table class="table table-bordered" >
-        <thead>
-        <tr>
-            <th>Company</th>
-            <th>Amount</th>
-            <th>Date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><input type="text" ng-model="newPay.company"></td>
-            <td><input type="text" ng-model="newPay.amount"></td>
-            <td><input type="date" ng-model="newPay.date"></td>
-        </tr>
-        </tbody>
-    </table>
-    <button ng-click='submitPay(newPay)'> Save Budget</button>
-</div>
-
-<div ng-show='showErrorWithNew'>
-    <h1>{{showErrorMessage}}</h1>
-</div>
-
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>Category</th>
-        <th>Amount</th>
-        <th>Update</th>
-        <th>Delete</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat='cat in categories'>
-        <td><input type="text" ng-model="cat.category"></td>
-        <td><input type="text" ng-model="cat.amount"></td>
-        <td><button ng-click='updateBudget(cat)'>Update</button></td>
-        <td><button ng-click='deleteBudget(cat)'>Delete</button></td>
-    </tr>
-    </tbody>
-</table>
+<h2>YEAR 2019</h2>
 
 <div>
     <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Year</th>
-        </tr>
-        </thead>
         <tbody>
-        <tr ng-repeat='past in pastMonths'>
-            <td>
-            <a href="#/budget#{{past.year}}">
-                <button type="button">{{past.year}}</button>
-            </a>
-            </td>
+        <tr>
+            <td>Salary</td>
+            <td>Trans</td>
+            <td>Difference</td>
+        </tr>
+        <tr>
+            <td>{{year2019Salary}}</td>
+            <td>{{year2019Trans}}</td>
+            <td>{{year2019Difference}}</td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<div>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>Savings</th>
-                <th>Amount</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Housing</td>
-                <td>{{getHousingSavings}}</td>
-            </tr>
-            <tr>
-                <td>Car</td>
-                <td>{{getCarSavings}}</td>
-            </tr>
-            <tr>
-                <td>Grocercies</td>
-                <td>{{getGrocerciesSavings}}</td>
-            </tr>
-            <tr>
-                <td>SpendingMoney</td>
-                <td>{{getSpendingSavings}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+<h2>Cats</h2>
+
+
 
 <div>
-
     <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th><h2>Year</h2></th>
 
-
-        </tr>
-        </thead>
         <tbody>
-        <tr ng-repeat='past in pastMonths'>
-
-            <td id="{{past.year}}">{{past.year}} :: Total {{past.YearTotal}}
-
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Month</th>
-
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat='month in past.months'>
-
-                        <td>{{month.name}} :: SPENT: ${{month.Total}} :: LEFT OVER : ${{month.LeftOver}} :: PAYED: ${{month.Pay}} :: SAVED : ${{month.Saved}}
-
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr>
-
-                                    <th>Category</th>
-                                    <th>Amount</th>
-                                    <th>Difference</th>
-
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat='amounts in month.money'>
-
-                                    <td>{{amounts.category}}</td>
-                                    <td>{{amounts.amount}}</td>
-                                    <td>{{amounts.difference}}</td>
-
-                                </tr>
-                                </tbody>
-                            </table>
-
-                        </td>
-
-                    </tr>
-                    </tbody>
-                </table>
-
-            </td>
-        </tr>
+        <tr ng-repeat='year in yearReview'>
+            <td>{{year.category}}</td>
+            <td  ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{year.difference}}</td>
+           </tr>
         </tbody>
     </table>
 </div>
+
+
+<h2>MONTHS 2019</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr ng-repeat='data in SethData'>
+            <td>{{data.month}}</td>
+            <td>{{data.year}}</td>
+            <td>{{data.category}}</td>
+            <td>{{data.c_money}}</td>
+            <td>{{data.MONEY}}</td>
+            <td  ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{data.money_difference}}</td>
+           </tr>
+        </tbody>
+    </table>
+</div>
+
+

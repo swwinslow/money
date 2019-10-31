@@ -43,6 +43,24 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
+        $app->get('/overviewSeth', function($request, $response, $args) use ($app){
+            $allBudget = Budget::getAllPastSeth();
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        $app->get('/yearReview', function($request, $response, $args) use ($app){
+            $allBudget = Budget::yearReview();
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+        
+        $app->get('/yearReview2019', function($request, $response, $args) use ($app){
+            $allBudget = Budget::yearReview2019();
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+        
         /* ========================================================== *
          * POST
          * ========================================================== */
