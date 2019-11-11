@@ -3,17 +3,25 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
     $scope.showNewPay = false;
     $scope.showError = false;
 
-    BudgetFactory.getOverviewSeth().then(function(response){
-        $scope.SethData = response.data.data; 
+    BudgetFactory.fullYearReview2019().then(function(response){
+        $scope.year2019 = response.data.data; 
      });
 
-     BudgetFactory.yearReview().then(function(response){
-        $scope.yearReview = response.data.data; 
-        console.log($scope.yearReview);
+     BudgetFactory.fullYearReview2020().then(function(response){
+      $scope.year2020 = response.data.data; 
+    });
+
+     BudgetFactory.yearCategoryReview2019().then(function(response){
+        $scope.yearCategory2019 = response.data.data; 
      })
 
-   
-    BudgetFactory.yearReview2019().then(function(response){
+     BudgetFactory.yearReview2020().then(function(response){
+      $scope.yearReview2020 = response.data.data;
+      console.log($scope.yearReview2020); 
+   })
+
+    BudgetFactory.salaryReview2019().then(function(response){
+       console.log(response);
         $scope.year2019Difference = response.data.data[0]['money'];
         $scope.year2019Trans = response.data.data[0]['trans'];
         $scope.year2019Salary = response.data.data[0]['salary'];

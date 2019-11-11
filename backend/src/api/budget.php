@@ -11,22 +11,9 @@ $app->group('/api', function () use ($app){
          * GET
          * ========================================================== */
 
-        $app->get('', function($request, $response, $args) use ($app){
-            $allBudget = Budget::getAll();
-            $output = new Response($allBudget);
-            $response->getBody()->write(json_encode($output));
-        });
-
         $app->get('/past', function($request, $response, $args) use ($app){
             $allBudget = Budget::getPast();
             $output = new Response($allBudget);
-            $response->getBody()->write(json_encode($output));
-        });
-
-        $app->get('/saving', function($request, $response, $args) use ($app){
-            $allBudget = Budget::getPast();
-            $saving = Budget::getSaving($allBudget);
-            $output = new Response($saving);
             $response->getBody()->write(json_encode($output));
         });
 
@@ -43,20 +30,31 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
-        $app->get('/overviewSeth', function($request, $response, $args) use ($app){
-            $allBudget = Budget::getAllPastSeth();
+        $app->POST('/fullYearReview', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::bigbudgetOnYear($body);
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
 
-        $app->get('/yearReview', function($request, $response, $args) use ($app){
-            $allBudget = Budget::yearReview();
+        
+        $app->POST('/yearReview', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::yearReviewOnYear($body);
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
-        
-        $app->get('/yearReview2019', function($request, $response, $args) use ($app){
-            $allBudget = Budget::yearReview2019();
+
+        $app->POST('/salaryReview', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::highLevelSalary($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        $app->POST('/yearCategoryReview', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::yearCategoryReview($body);
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });

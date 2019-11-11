@@ -21,13 +21,11 @@
 
 <h2>Cats</h2>
 
-
-
 <div>
     <table class="table table-bordered">
 
         <tbody>
-        <tr ng-repeat='year in yearReview'>
+        <tr ng-repeat='year in yearCategory2019'>
             <td>{{year.category}}</td>
             <td  ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{year.difference}}</td>
            </tr>
@@ -35,15 +33,36 @@
     </table>
 </div>
 
-
 <h2>MONTHS 2019</h2>
 <div>
     <table class="table table-bordered">
 
         <tbody>
-        <tr ng-repeat='data in SethData'>
-            <td>{{data.month}}</td>
-            <td>{{data.year}}</td>
+        <tr ng-repeat='data in year2019'>
+            <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
+             data.month === 'FEBUARY' && {'background-color': 'pink'}|| 
+             data.month === 'MARCH' && {'background-color': 'green'}|| 
+             data.month === 'APRIL' && {'background-color': 'gray'}|| 
+             data.month === 'MAY' && {'background-color': '#40e0d0'}|| 
+             data.month === 'JUNE' && {'background-color': 'yellow'}|| 
+             data.month === 'JULY' && {'background-color': 'white'}|| 
+             data.month === 'AUGUST' && {'background-color': 'blue'}|| 
+             data.month === 'SEPTEMBER' && {'background-color': '#FF4500'}|| 
+             data.month === 'OCTOBER' && {'background-color': 'orange'}|| 
+             data.month === 'NOVEMBER' && {'background-color': 'green'}||
+            data.month === 'DECEMBER' && {'background-color': 'red'}"> {{data.month}}</td>
+            <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
+            data.month === 'FEBUARY' && {'background-color': 'pink'}|| 
+            data.month === 'MARCH' && {'background-color': 'green'}|| 
+            data.month === 'APRIL' && {'background-color': 'gray'}|| 
+            data.month === 'MAY' && {'background-color': '#40e0d0'}|| 
+            data.month === 'JUNE' && {'background-color': 'yellow'}|| 
+            data.month === 'JULY' && {'background-color': 'white'}|| 
+            data.month === 'AUGUST' && {'background-color': 'blue'}|| 
+            data.month === 'SEPTEMBER' && {'background-color': '#FF4500'}|| 
+            data.month === 'OCTOBER' && {'background-color': 'orange'}|| 
+            data.month === 'NOVEMBER' && {'background-color': 'green'}||
+           data.month === 'DECEMBER' && {'background-color': 'red'}">{{data.year}}</td>
             <td>{{data.category}}</td>
             <td>{{data.c_money}}</td>
             <td>{{data.MONEY}}</td>
@@ -54,3 +73,61 @@
 </div>
 
 
+<h2>YEAR 2019</h2>
+
+<div>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>Salary</td>
+            <td>Trans</td>
+            <td>Difference</td>
+        </tr>
+        <tr>
+            <td>{{year2020Salary}}</td>
+            <td>{{year2020Trans}}</td>
+            <td>{{year2020Difference}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h2>MONTHS 2020</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr ng-repeat='data in year2020'>
+            <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
+             data.month === 'FEBUARY' && {'background-color': 'pink'}|| 
+             data.month === 'MARCH' && {'background-color': 'green'}|| 
+             data.month === 'APRIL' && {'background-color': 'gray'}|| 
+             data.month === 'MAY' && {'background-color': '#40e0d0'}|| 
+             data.month === 'JUNE' && {'background-color': 'yellow'}|| 
+             data.month === 'JULY' && {'background-color': 'white'}|| 
+             data.month === 'AUGUST' && {'background-color': 'blue'}|| 
+             data.month === 'SEPTEMBER' && {'background-color': '#FF4500'}|| 
+             data.month === 'OCTOBER' && {'background-color': 'orange'}|| 
+             data.month === 'NOVEMBER' && {'background-color': 'green'}||
+            data.month === 'DECEMBER' && {'background-color': 'red'}"> {{data.month}}</td>
+            <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
+            data.month === 'FEBUARY' && {'background-color': 'pink'}|| 
+            data.month === 'MARCH' && {'background-color': 'green'}|| 
+            data.month === 'APRIL' && {'background-color': 'gray'}|| 
+            data.month === 'MAY' && {'background-color': '#40e0d0'}|| 
+            data.month === 'JUNE' && {'background-color': 'yellow'}|| 
+            data.month === 'JULY' && {'background-color': 'white'}|| 
+            data.month === 'AUGUST' && {'background-color': 'blue'}|| 
+            data.month === 'SEPTEMBER' && {'background-color': '#FF4500'}|| 
+            data.month === 'OCTOBER' && {'background-color': 'orange'}|| 
+            data.month === 'NOVEMBER' && {'background-color': 'green'}||
+           data.month === 'DECEMBER' && {'background-color': 'red'}">{{data.year}}</td>
+            <td>{{data.category}}</td>
+            <td>{{data.c_money}}</td>
+            <td>{{data.MONEY}}</td>
+            <td  ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{data.money_difference}}</td>
+           </tr>
+        </tbody>
+    </table>
+</div>
