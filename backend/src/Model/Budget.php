@@ -73,7 +73,22 @@ class Budget implements \JsonSerializable
             $year = $body['year'];
         }        
         global $database;
-        $statement = $database->prepare("SELECT (t1.money - t2.money) as 'difference', t2.category, CASE WHEN (t1.money - t2.money) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE FROM (SELECT category, SUM(c_money) AS money from budget_months where budget_months.year = $year group by category) as t1, (SELECT SUM(money) AS 'money', YEAR(date) AS 'YEAR', category AS 'category', MONTH(date) AS 'MONTH' from trans where YEAR(date) = $year group by category ) as t2 WHERE t1.category = t2.category");
+        $statement = $database->prepare("SELECT ROUND(t1.money,2) AS budget_money, ROUND(t2.money,2) AS spent_money, ROUND((t1.money - t2.money),2) as 'difference', t2.category, CASE WHEN (t1.money - t2.money) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE FROM (SELECT category, SUM(c_money) AS money from budget_months where budget_months.year = $year group by category) as t1, (SELECT SUM(money) AS 'money', YEAR(date) AS 'YEAR', category AS 'category', MONTH(date) AS 'MONTH' from trans where YEAR(date) = $year group by category ) as t2 WHERE t1.category = t2.category");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+    }
+
+    public static function payVSpent($body)
+    {
+        if ($body['year'] == "" || $body['year'] == null  ) {
+            $year = '2019';
+        } else {
+            $year = $body['year'];
+        }        
+        global $database;
+        $statement = $database->prepare("SELECT ROUND(t1.spent_amount, 2) as spent_amount, ROUND(t2.pay_amount,2) as pay_amount,CASE WHEN (t2.pay_amount - t1.spent_amount ) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE, ROUND((t2.pay_amount - t1.spent_amount),2) as 'money_difference',   t1.year, t1.month FROM (SELECT SUM(MONEY) as spent_amount, MONTH(DATE) as month, YEAR(DATE) as year from trans where YEAR(DATE) = $year group by MONTH(DATE), YEAR(DATE)) as t1, (SELECT SUM(amount) AS pay_amount, YEAR(DATE), MONTH(DATE) as month from pay where YEAR(date) = $year group by MONTH(DATE) ) as t2 WHERE t1.month = t2.month");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;

@@ -58,7 +58,15 @@ $app->group('/api', function () use ($app){
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
+
+        $app->POST('/payVSpent', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::payVSpent($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
         
+        //
         /* ========================================================== *
          * POST
          * ========================================================== */

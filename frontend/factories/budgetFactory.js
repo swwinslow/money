@@ -29,12 +29,24 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+   
+
     data.salaryReview2019 = function(){
         return $http({
             method: "POST",
             url: baseUrl + '/salaryReview',
             data: {
                 "year": '2019'
+            }
+        });    
+    }
+
+    data.salaryReview2020 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/salaryReview',
+            data: {
+                "year": '2020'
             }
         });    
     }
@@ -48,6 +60,38 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
+
+    data.yearCategoryReview2020 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/yearCategoryReview',
+            data: {
+                "year": '2020'
+            }
+        });    
+    }
+
+    data.payVSpent2019 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/payVSpent',
+            data: {
+                "year": '2019'
+            }
+        });    
+    }
+
+    data.payVSpent2020 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/payVSpent',
+            data: {
+                "year": '2020'
+            }
+        });    
+    }
+
+    //
 
 
     data.yearReview2018 = function(){

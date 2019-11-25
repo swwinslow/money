@@ -24,10 +24,6 @@ app.config(function ($routeProvider, CONFIG) {
         controller: "BudgetController",
         templateUrl: 'views/budget.html'
     }).
-    when('/allBudget', {
-        controller: "BudgetAllController",
-        templateUrl: 'views/allBudget.html'
-    }).
     when('/recipe', {
         controller: "RecipeController",
         templateUrl: 'views/recipe.html'
