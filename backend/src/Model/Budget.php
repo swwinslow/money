@@ -78,6 +78,8 @@ class Budget implements \JsonSerializable
         if ($statement->rowCount() <= 0) {
             return;
         }
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
     }
 
     public static function payVSpent($body)

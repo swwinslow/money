@@ -16,6 +16,9 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
      })
 
      BudgetFactory.yearCategoryReview2020().then(function(response){
+
+      console.log('hello');
+      console.log(response.data.data);
       $scope.yearCategory2020 = response.data.data; 
    })
 
@@ -30,6 +33,13 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
         $scope.year2019Trans = response.data.data[0]['trans'];
         $scope.year2019Salary = response.data.data[0]['salary'];
      });
+
+     BudgetFactory.salaryReview2020().then(function(response){
+      console.log(response);
+       $scope.year2020Difference = response.data.data[0]['money'];
+       $scope.year2020Trans = response.data.data[0]['trans'];
+       $scope.year2020Salary = response.data.data[0]['salary'];
+    });
 
      BudgetFactory.payVSpent2019().then(function(response){
       $scope.payvspent2019 = response.data.data;
