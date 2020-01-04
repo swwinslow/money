@@ -1,5 +1,50 @@
 <h1>Budget Mapping</h1>
 
+<h1>YEAR 2018</h1>
+
+
+
+<div>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>Salary</td>
+            <td>Trans</td>
+            <td>Difference</td>
+        </tr>
+        <tr>
+            <td>{{year2018Salary}}</td>
+            <td>{{year2018Trans}}</td>
+            <td>{{year2018Difference}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<h2>Cats 2018</h2>
+
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <td>Catgory</td>
+        <td>Budget Money</td>
+        <td>Spent Money</td>
+        <td>Budget %</td>
+        <td>Spent %</td>
+        <td>Left Over</td>
+
+        <tr ng-repeat='year in yearCategory2018'>
+            <td>{{year.category}}</td>
+            <td>{{year.budget_money}}</td>
+            <td>{{year.spent_money}}</td>
+            <td>{{year.budget_percentage}}</td>
+            <td>{{year.spent_percentage}}</td>
+            <td  ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{year.difference}}</td>
+           </tr>
+        </tbody>
+    </table>
+</div>
+
 <h2>YEAR 2019</h2>
 
 <div>
@@ -28,12 +73,16 @@
         <td>Catgory</td>
         <td>Budget Money</td>
         <td>Spent Money</td>
+        <td>Budget %</td>
+        <td>Spent %</td>
         <td>Left Over</td>
 
         <tr ng-repeat='year in yearCategory2019'>
             <td>{{year.category}}</td>
             <td>{{year.budget_money}}</td>
             <td>{{year.spent_money}}</td>
+            <td>{{year.budget_percentage}}</td>
+            <td>{{year.spent_percentage}}</td>
             <td  ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{year.difference}}</td>
            </tr>
         </tbody>
@@ -84,6 +133,15 @@
     <table class="table table-bordered">
 
         <tbody>
+        <tr>
+            <td>MONTH ID</td>
+            <td>YEAR</td>
+            <td>Budget Amount</td>
+            <td>Pay Amount</td>
+            <td>Spent Amount</td>
+            <td>Difference</td>
+
+        </tr>
         <tr ng-repeat='data in payvspent2019'>
             <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
              data.month === '2' && {'background-color': 'pink'}|| 
@@ -109,7 +167,9 @@
             data.month === '10' && {'background-color': 'orange'}|| 
             data.month === '11' && {'background-color': 'green'}||
            data.month === '12' && {'background-color': 'red'}">{{data.year}}</td>
-            <td>{{data.pay_amount}}</td>
+           <td>{{data.budget_amount}}</td>
+ 
+           <td>{{data.pay_amount}}</td>
             <td>{{data.spent_amount}}</td>
             <td  ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{data.money_difference}}</td>
            </tr>
@@ -140,23 +200,27 @@
 <h2>Cats 2020</h2>
 
 <div>
-    <table class="table table-bordered">
-
-
-        <tbody>
-                <td>Catgory</td>
-                <td>Budget Money</td>
-                <td>Spent Money</td>
-                <td>Left Over</td>
-        <tr ng-repeat='year in yearCategory2020'>
-            <td>{{year.category}}</td>
-            <td>{{year.budget_money}}</td>
-            <td>{{year.spent_money}}</td>
-            <td  ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{year.difference}}</td>
-           </tr>
-        </tbody>
-    </table>
-</div>
+        <table class="table table-bordered">
+    
+            <tbody>
+            <td>Catgory</td>
+            <td>Budget Money</td>
+            <td>Spent Money</td>
+            <td>Budget %</td>
+            <td>Spent %</td>
+            <td>Left Over</td>
+    
+            <tr ng-repeat='year in yearCategory2020'>
+                <td>{{year.category}}</td>
+                <td>{{year.budget_money}}</td>
+                <td>{{year.spent_money}}</td>
+                <td>{{year.budget_percentage}}</td>
+                <td>{{year.spent_percentage}}</td>
+                <td  ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{year.difference}}</td>
+               </tr>
+            </tbody>
+        </table>
+    </div>
 
 
 <h2>MONTHS 2020</h2>
@@ -197,3 +261,159 @@
         </tbody>
     </table>
 </div>
+
+<h2>Pay V Spent 2020</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>MONTH ID</td>
+            <td>YEAR</td>
+            <td>Budget Amount</td>
+            <td>Pay Amount</td>
+            <td>Spent Amount</td>
+            <td>Difference</td>
+
+        </tr>
+        <tr ng-repeat='data in payvspent2020'>
+            <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
+             data.month === '2' && {'background-color': 'pink'}|| 
+             data.month === '3' && {'background-color': 'green'}|| 
+             data.month === '4' && {'background-color': 'gray'}|| 
+             data.month === '5' && {'background-color': '#40e0d0'}|| 
+             data.month === '6' && {'background-color': 'yellow'}|| 
+             data.month === '7' && {'background-color': 'white'}|| 
+             data.month === '8' && {'background-color': 'blue'}|| 
+             data.month === '9' && {'background-color': '#FF4500'}|| 
+             data.month === '10' && {'background-color': 'orange'}|| 
+             data.month === '11' && {'background-color': 'green'}||
+            data.month === '12' && {'background-color': 'red'}"> {{data.month}}</td>
+            <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
+            data.month === '2' && {'background-color': 'pink'}|| 
+            data.month === '3' && {'background-color': 'green'}|| 
+            data.month === '4' && {'background-color': 'gray'}|| 
+            data.month === '5' && {'background-color': '#40e0d0'}|| 
+            data.month === '6' && {'background-color': 'yellow'}|| 
+            data.month === '7' && {'background-color': 'white'}|| 
+            data.month === '8' && {'background-color': 'blue'}|| 
+            data.month === '9' && {'background-color': '#FF4500'}|| 
+            data.month === '10' && {'background-color': 'orange'}|| 
+            data.month === '11' && {'background-color': 'green'}||
+           data.month === '12' && {'background-color': 'red'}">{{data.year}}</td>
+           <td>{{data.budget_amount}}</td>
+ 
+           <td>{{data.pay_amount}}</td>
+            <td>{{data.spent_amount}}</td>
+            <td  ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{data.money_difference}}</td>
+           </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h2>Insight Data - BLDDD</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>MONEY</td>
+            <td>YEAR</td>
+        </tr>
+        <tr ng-repeat='data in BLDDD'>
+                <td>{{data.year}}</td>
+            <td>{{data.money}}</td>
+         </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>Insight Data - Lilly Lunch</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>MONEY</td>
+            <td>YEAR</td>
+        </tr>
+        <tr ng-repeat='data in BLDDDLL'>
+                <td>{{data.year}}</td>
+            <td>{{data.money}}</td>
+         </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h2>Insight Data - Menards</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>MONEY</td>
+            <td>YEAR</td>
+        </tr>
+        <tr ng-repeat='data in Menards'>
+                <td>{{data.year}}</td>
+            <td>{{data.money}}</td>
+         </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>Insight Data - Grocercies</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>MONEY</td>
+            <td>YEAR</td>
+        </tr>
+        <tr ng-repeat='data in Grocercies'>
+                <td>{{data.year}}</td>
+            <td>{{data.money}}</td>
+         </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>Insight Data - Gas</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>MONEY</td>
+            <td>YEAR</td>
+        </tr>
+        <tr ng-repeat='data in CarGas'>
+            <td>{{data.year}}</td>
+            <td>{{data.money}}</td>
+         </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h2>Insight Data - state farm Car</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>MONEY</td>
+            <td>YEAR</td>
+        </tr>
+        <tr ng-repeat='data in SFCar'>
+                <td>{{data.year}}</td>
+            <td>{{data.money}}</td>
+         </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="curve_chart" style="width: 900px; height: 500px"></div>

@@ -29,6 +29,31 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.salaryReview2018 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/salaryReview',
+            data: {
+                "year": '2018'
+            }
+        });    
+    }
+
+
+    data.insightData = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/insightData',
+            data: {
+                "year": '2018'
+            }
+        });    
+    }
+
+
+    ///
+
+
    
 
     data.salaryReview2019 = function(){
@@ -50,6 +75,17 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
+
+    data.yearCategoryReview2018 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/yearCategoryReview',
+            data: {
+                "year": '2018'
+            }
+        });    
+    }
+
 
     data.yearCategoryReview2019 = function(){
         return $http({
@@ -91,7 +127,26 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-    //
+    data.miscItems2019 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/miscItems',
+            data: {
+                "year": '2019'
+            }
+        });    
+    }
+
+    data.miscItems2020 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/miscItems',
+            data: {
+                "year": '2020'
+            }
+        });    
+    }
+
 
 
     data.yearReview2018 = function(){
