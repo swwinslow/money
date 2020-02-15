@@ -1,0 +1,12 @@
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-01-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-02-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-03-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-04-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-05-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-06-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-07-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-08-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-09-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-10-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-11-01', 'NAME-CAT');
+INSERT INTO `money`.`trans` (`id`, `business`, `money`, `items`, `date`, `category`) VALUES (NULL, 'NAME-BUS', 0.00, 'NAME-DES', '2020-12-01', 'NAME-CAT');
