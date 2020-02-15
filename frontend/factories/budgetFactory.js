@@ -127,6 +127,75 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.HouseUtils = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/HouseUtils',
+            data: {}
+        });    
+    }
+
+    data.CarPaymentLeft = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/CarPaymentLeft',
+            data: {}
+        });    
+    }
+
+
+    data.networthYearCalculation = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/networthYearCalculation',
+            data: { }
+        });    
+    }
+
+    data.lillyPay = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/lillyPay',
+            data: { }
+        });    
+    }
+
+
+    data.elementsPay = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/elementsPay',
+            data: { }
+        });    
+    }
+
+
+    data.chaseCreditCardPay = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/chaseCreditCardPay',
+            data: { }
+        });    
+    }
+
+    data.houseExtraPrin = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/houseExtraPrin',
+            data: { }
+        });    
+    }
+    
+    data.specialEvents = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/specialEvents',
+            data: { }
+        });    
+    }
+
+    //
+
     data.miscItems2019 = function(){
         return $http({
             method: "POST",

@@ -1,0 +1,12 @@
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-01-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-02-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-03-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-04-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-05-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-06-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-07-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-08-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-09-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-10-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-11-31', 'Work - Lilly');
+INSERT INTO `money`.`pay` (`id`, `company`, `amount`, `date`, `type_payment`) VALUES (NULL, 'Lilly', '0', '2020-12-31', 'Work - Lilly');

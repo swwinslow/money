@@ -64,6 +64,86 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
+    public static function networthYearCalculation(){
+        global $database;
+        $statement = $database->prepare("select end_of_year, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth group by end_of_year order by end_of_year DESC");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    //
+
+    public static function elementsPay(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(AMOUNT),2) as money FROM `pay` WHERE `company` = 'Elements' GROUP BY YEAR(DATE) ORDER BY YEAR(DATE) DESC;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function lillyPay(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(AMOUNT),2) as money FROM `pay` WHERE `company` = 'Lilly' GROUP BY YEAR(DATE) ORDER BY YEAR(DATE) DESC;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function chaseCreditCardPay(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(AMOUNT),2) as money FROM `pay` WHERE `company` = 'Chase Credit Card' GROUP BY YEAR(DATE) ORDER BY YEAR(DATE) DESC;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+
+    public static function houseExtraPrin(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `items` LIKE '%Extra Principal%' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function specialEvents(){
+        global $database;
+        $statement = $database->prepare("SELECT DATEDIFF(`event_date`, NOW()) as difference_date, event_name from special_events order by difference_date");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    //
+
+
+    //Chase Credit Card
+
     public static function miscItems($body){
         if ($body['year'] == "" || $body['year'] == null  ) {
             $year = '2019';
@@ -90,7 +170,7 @@ class Budget implements \JsonSerializable
             $year = $body['year'];
         }        
         global $database;
-        $statement = $database->prepare("SELECT ROUND((ROUND(t1.money, 2) / pay_money * 100),2) AS budget_percentage,ROUND((ROUND(t2.money, 2) / pay_money * 100),2) AS  spent_percentage, ROUND(t1.money, 2) AS budget_money, ROUND(t2.money,2) AS spent_money, ROUND((t1.money - t2.money),2) as 'difference', t2.category, CASE WHEN (t1.money - t2.money) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE FROM (SELECT category, SUM(c_money) AS money from budget_months where budget_months.year = $year group by category) as t1, (SELECT SUM(money) AS 'money', YEAR(date) AS 'YEAR', category AS 'category', MONTH(date) AS 'MONTH' from trans where YEAR(date) = $year group by category ) as t2, (SELECT SUM(amount) AS pay_money, YEAR(DATE) as year_date from pay where YEAR(date) = $year) as t3 WHERE t1.category = t2.category and t2.YEAR = t3.year_date");
+        $statement = $database->prepare("SELECT ROUND((ROUND(t1.money, 2) / pay_money * 100),2) AS budget_percentage,ROUND((ROUND(t2.money, 2) / pay_money * 100),2) AS  spent_percentage, ROUND(t1.money, 2) AS budget_money, ROUND(t2.money,2) AS spent_money, ROUND((t1.money - t2.money),2) as 'difference', t2.category, CASE WHEN (t1.money - t2.money) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE FROM (SELECT category, SUM(c_money) AS money from budget_months where budget_months.year = $year group by category) as t1, (SELECT SUM(money) AS 'money', YEAR(date) AS 'YEAR', category AS 'category', MONTH(date) AS 'MONTH' from trans where YEAR(date) = $year group by category ) as t2, (SELECT SUM(amount) AS pay_money, YEAR(DATE) as year_date from pay where YEAR(date) = $year and type_payment != 'Initial Money') as t3 WHERE t1.category = t2.category and t2.YEAR = t3.year_date");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -107,7 +187,36 @@ class Budget implements \JsonSerializable
             $year = $body['year'];
         }        
         global $database;
-        $statement = $database->prepare("SELECT ROUND(t1.spent_amount, 2) as spent_amount, ROUND(t2.pay_amount,2) as pay_amount, CASE WHEN (t2.pay_amount - t1.spent_amount) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE,  ROUND((t2.pay_amount - t1.spent_amount),2) as 'money_difference', t1.year, t1.month, t3.budget_amount as budget_amount FROM (SELECT SUM(MONEY) as spent_amount, MONTH(DATE) as month, YEAR(DATE) as year from trans where YEAR(DATE) = $year group by MONTH(DATE), YEAR(DATE)) as t1, (SELECT SUM(amount) AS pay_amount, YEAR(DATE), MONTH(DATE) as month from pay where YEAR(date) = $year group by MONTH(DATE) ) as t2, (SELECT SUM(c_money) AS budget_amount, year,month_id as month from budget_months where year = $year  AND category != 'SAVING'group by month ) t3 WHERE t1.month = t2.month and t1.month = t3.month order by t1.month  ");
+        $statement = $database->prepare("SELECT ROUND(t1.spent_amount, 2) as spent_amount, ROUND(t2.pay_amount,2) as pay_amount, (ROUND(t2.pay_amount,2) - ROUND(t3.budget_amount, 2)) as uncounted_money, CASE WHEN (t2.pay_amount - t1.spent_amount) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE,  ROUND((t2.pay_amount - t1.spent_amount),2) as 'money_difference', t1.year, t1.month, t3.budget_amount as budget_amount FROM (SELECT SUM(MONEY) as spent_amount, MONTH(DATE) as month, YEAR(DATE) as year from trans where YEAR(DATE) = $year group by MONTH(DATE), YEAR(DATE)) as t1, (SELECT SUM(amount) AS pay_amount, YEAR(DATE), MONTH(DATE) as month from pay where YEAR(date) = $year and type_payment != 'Initial Money' group by MONTH(DATE) ) as t2, (SELECT SUM(c_money) AS budget_amount, year,month_id as month from budget_months where year = $year group by month ) t3 WHERE t1.month = t2.month and t1.month = t3.month order by t1.month ");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function CarPaymentLeft($body)
+    {
+          
+        global $database;
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money FROM trans where items LIKE 'Car Payment%' and date > DATE(NOW()); ");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    //
+    public static function HouseUtils($body)
+    {
+          
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(date) as year, MONTH(date) as month, ROUND(SUM(money),2) as money FROM trans where business = 'Citizen Energy' OR business = 'IPL' and YEAR(DATE) >= '2019' and MONTH(DATE) >= '4' group by YEAR(Date), MONTH(date) ORDER BY YEAR(date) ASC");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -120,8 +229,7 @@ class Budget implements \JsonSerializable
     public static function insightData($body){
         global $database;
 
-       
-
+    
         //BLDDD
         $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, YEAR(DATE) as year FROM `trans` WHERE `items` LIKE '%BLDDD%' GROUP BY YEAR(DATE) ORDER BY `trans`.`date` ASC");
         $statement->execute();
@@ -150,7 +258,7 @@ class Budget implements \JsonSerializable
          $gas = $statement->fetchAll(\PDO::FETCH_ASSOC); 
 
          //State farm car
-         $statement = $database->prepare("SELECT SUM(money) as money, YEAR(date) as year FROM `trans` WHERE `business` LIKE '%state farm%' AND `category` = 'CAR' group by year         ");
+         $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, YEAR(date) as year FROM `trans` WHERE `business` LIKE '%state farm%' AND `category` = 'CAR' group by year         ");
          $statement->execute();
          $statefarmcar = $statement->fetchAll(\PDO::FETCH_ASSOC); 
 
@@ -167,7 +275,7 @@ class Budget implements \JsonSerializable
             $year = $body['year'];
         }        
         global $database;
-        $statement = $database->prepare("SELECT ROUND((t1.money -  t2.money),2) AS money, ROUND(t1.money,2) AS salary, ROUND(t2.money,2) AS trans  FROM (SELECT SUM(amount) AS money FROM pay where year(date) = $year) as t1, (select sum(money) AS money from trans where YEAR(date) = $year) as t2 ");
+        $statement = $database->prepare("SELECT ROUND((t1.money - t2.money),2) AS money, ROUND(t1.money,2) AS salary, ROUND(t2.money,2) AS trans, (ROUND(t3.budget_money,2) - ROUND(t1.money,2)) as left_over, ROUND(t3.budget_money,2) as budget, ROUND((t1.money -t3.budget_money ),2) as 'uncounted_money' FROM (SELECT SUM(amount) AS money FROM pay where year(date) = $year) as t1, (select sum(money) AS money from trans where YEAR(date) = $year) as t2, (SELECT SUM(c_money) as budget_money FROM `budget_months` WHERE `year` = $year) as t3");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;

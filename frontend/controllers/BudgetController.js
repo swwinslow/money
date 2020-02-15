@@ -40,6 +40,8 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
         $scope.year2019Difference = response.data.data[0]['money'];
         $scope.year2019Trans = response.data.data[0]['trans'];
         $scope.year2019Salary = response.data.data[0]['salary'];
+        $scope.year2019Budget = response.data.data[0]['budget'];
+        $scope.year2019Uncounted = response.data.data[0]['uncounted_money'];
      });
 
      BudgetFactory.salaryReview2018().then(function(response){
@@ -66,6 +68,9 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
        $scope.year2020Difference = response.data.data[0]['money'];
        $scope.year2020Trans = response.data.data[0]['trans'];
        $scope.year2020Salary = response.data.data[0]['salary'];
+       $scope.year2020budget = response.data.data[0]['budget'];
+       $scope.year2020Uncounted = response.data.data[0]['uncounted_money'];
+
     });
 
      BudgetFactory.payVSpent2019().then(function(response){
@@ -132,11 +137,47 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
          console.log(``);
 
     });
+
+    //
+    BudgetFactory.HouseUtils().then(function(response){
+      $scope.HouseUtils = response.data.data;
+   });
     
     BudgetFactory.payVSpent2020().then(function(response){
       $scope.payvspent2020 = response.data.data;
    });
 
+   //networthYearCalculation
+
+   BudgetFactory.networthYearCalculation().then(function(response){
+      $scope.networthYearCalculation = response.data.data;
+      console.log($scope.networthYearCalculation);
+   });
+
+   BudgetFactory.CarPaymentLeft().then(function(response){
+      $scope.CarPaymentLeft = response.data.data;
+   });
+
+   BudgetFactory.elementsPay().then(function(response){
+      $scope.elementsPay = response.data.data;
+   });
+
+   BudgetFactory.lillyPay().then(function(response){
+      $scope.lillyPay = response.data.data;
+   });
+
+   BudgetFactory.specialEvents().then(function(response){
+      $scope.specialEvents = response.data.data;
+   });
+
+   BudgetFactory.chaseCreditCardPay().then(function(response){
+      $scope.chaseCreditCardPay = response.data.data;
+   });
+
+   BudgetFactory.houseExtraPrin().then(function(response){
+      $scope.houseExtraPrin = response.data.data;
+   });
+   
    // Load google charts
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
