@@ -29,6 +29,16 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.fullYearReview2021 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/fullYearReview',
+            data: {
+                "year": '2021'
+            }
+        });    
+    }
+
     data.salaryReview2018 = function(){
         return $http({
             method: "POST",
@@ -76,6 +86,16 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.salaryReview2021 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/salaryReview',
+            data: {
+                "year": '2021'
+            }
+        });    
+    }
+
     data.yearCategoryReview2018 = function(){
         return $http({
             method: "POST",
@@ -107,6 +127,16 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.yearCategoryReview2021 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/yearCategoryReview',
+            data: {
+                "year": '2021'
+            }
+        });    
+    }
+
     data.payVSpent2019 = function(){
         return $http({
             method: "POST",
@@ -123,6 +153,16 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             url: baseUrl + '/payVSpent',
             data: {
                 "year": '2020'
+            }
+        });    
+    }
+
+    data.payVSpent2021 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/payVSpent',
+            data: {
+                "year": '2021'
             }
         });    
     }
@@ -216,6 +256,15 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.miscItems2021 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/miscItems',
+            data: {
+                "year": '2021'
+            }
+        });    
+    }
 
 
     data.yearReview2018 = function(){
@@ -230,6 +279,16 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             url: baseUrl + '/yearReview',
             data: {
                 "year": '2020'
+            }
+        });
+    }
+
+    data.yearReview2021 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/yearReview',
+            data: {
+                "year": '2021'
             }
         });
     }

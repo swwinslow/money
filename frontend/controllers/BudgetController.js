@@ -11,6 +11,11 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
       $scope.year2020 = response.data.data; 
     });
 
+    BudgetFactory.fullYearReview2021().then(function(response){
+      $scope.year2021 = response.data.data; 
+    });
+
+
      BudgetFactory.yearCategoryReview2019().then(function(response){
         $scope.yearCategory2019 = response.data.data; 
      })
@@ -23,8 +28,15 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
       $scope.yearCategory2020 = response.data.data; 
    })
 
+   BudgetFactory.yearCategoryReview2021().then(function(response){
+      $scope.yearCategory2021 = response.data.data; 
+   })
+
      BudgetFactory.yearReview2020().then(function(response){
       $scope.yearReview2020 = response.data.data;
+   })
+   BudgetFactory.yearReview2021().then(function(response){
+      $scope.yearReview2021 = response.data.data;
    })
 
    BudgetFactory.miscItems2019().then(function(response){
@@ -33,6 +45,9 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
 
    BudgetFactory.miscItems2020().then(function(response){
       $scope.miscItems2020 = response.data.data;
+   })
+   BudgetFactory.miscItems2021().then(function(response){
+      $scope.miscItems2021 = response.data.data;
    })
 
     BudgetFactory.salaryReview2019().then(function(response){
@@ -70,6 +85,15 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
        $scope.year2020Salary = response.data.data[0]['salary'];
        $scope.year2020budget = response.data.data[0]['budget'];
        $scope.year2020Uncounted = response.data.data[0]['uncounted_money'];
+    });
+
+    BudgetFactory.salaryReview2021().then(function(response){
+      console.log(response);
+       $scope.year2021Difference = response.data.data[0]['money'];
+       $scope.year2021Trans = response.data.data[0]['trans'];
+       $scope.year2021Salary = response.data.data[0]['salary'];
+       $scope.year2021budget = response.data.data[0]['budget'];
+       $scope.year2021Uncounted = response.data.data[0]['uncounted_money'];
 
     });
 
@@ -145,6 +169,10 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
     
     BudgetFactory.payVSpent2020().then(function(response){
       $scope.payvspent2020 = response.data.data;
+   });
+
+   BudgetFactory.payVSpent2021().then(function(response){
+      $scope.payvspent2021 = response.data.data;
    });
 
    //networthYearCalculation

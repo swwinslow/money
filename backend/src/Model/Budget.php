@@ -216,7 +216,7 @@ class Budget implements \JsonSerializable
     {
           
         global $database;
-        $statement = $database->prepare("SELECT YEAR(date) as year, MONTH(date) as month, ROUND(SUM(money),2) as money FROM trans where business = 'Citizen Energy' OR business = 'IPL' and YEAR(DATE) >= '2019' and MONTH(DATE) >= '4' group by YEAR(Date), MONTH(date) ORDER BY YEAR(date) ASC");
+        $statement = $database->prepare("SELECT *, MONTH(NOW()) as month_current FROM (select * from (SELECT YEAR(date) as year, MONTH(date) as month, ROUND(SUM(money),2) as money FROM trans where business = 'Citizen Energy' OR business = 'IPL' and category = 'HOUSING' group by YEAR(Date), MONTH(date) ORDER BY YEAR(date)) as query1 where query1.year <= YEAR(NOW())) as query2 where (query2.year = YEAR(NOW()) - 1 OR query2.year = YEAR(NOW()));        ");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
