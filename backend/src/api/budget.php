@@ -32,7 +32,14 @@ $app->group('/api', function () use ($app){
 
         $app->POST('/fullYearReview', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
-            $allBudget = Budget::bigbudgetOnYear($body);
+            $allBudget = Budget::fullYearReview($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        $app->POST('/fullYearReviewLeft', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::fullYearReviewLeft($body);
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
@@ -71,6 +78,13 @@ $app->group('/api', function () use ($app){
         $app->POST('/miscItems', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $allBudget = Budget::miscItems($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        $app->POST('/gerneralData', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::gerneralData($body);
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });

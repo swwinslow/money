@@ -41,20 +41,35 @@ class Budget implements \JsonSerializable
 
         ];
     }
-
     /* ========================================================== *
      * GET
      * ========================================================== */
-    
-    public static function bigbudgetOnYear($body){
+    public static function fullYearReview($body){
         if ($body['year'] == "" || $body['year'] == null  ) {
-            $year = '2019';
+            $year = '2020';
+        } else {
+            $year = $body['year'];
+        }  
+        global $database;
+        $statement = $database->prepare("SELECT budget_months.month, budget_months.year, budget_months.category, ROUND(budget_months.c_money, 2) as c_money, ROUND(trans_sql.MONEY,2) AS MONEY, ROUND((budget_months.c_money - trans_sql.MONEY),2) as money_difference, CASE WHEN (budget_months.c_money - trans_sql.MONEY) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE from (SELECT SUM(money) AS 'MONEY', YEAR(date) AS 'YEAR', category AS 'CAT', MONTH(date) AS 'MONTH' from trans where YEAR(date) = $year group by category, MONTH(date)) as trans_sql inner join budget_months on trans_sql.MONTH = budget_months.month_id and trans_sql.CAT = budget_months.category where budget_months.year = $year order by year,month_id, category");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function fullYearReviewLeft($body){
+        if ($body['year'] == "" || $body['year'] == null  ) {
+            $year = '2020';
         } else {
             $year = $body['year'];
         }  
 
         global $database;
-        $statement = $database->prepare("SELECT budget_months.month, budget_months.year, budget_months.category, ROUND(budget_months.c_money, 2) as c_money, ROUND(trans_sql.MONEY,2) AS MONEY, ROUND((budget_months.c_money - trans_sql.MONEY),2) as money_difference, CASE WHEN (budget_months.c_money - trans_sql.MONEY) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE from (SELECT SUM(money) AS 'MONEY', YEAR(date) AS 'YEAR', category AS 'CAT', MONTH(date) AS 'MONTH' from trans where YEAR(date) = $year group by category, MONTH(date)) as trans_sql inner join budget_months on trans_sql.MONTH = budget_months.month_id and trans_sql.CAT = budget_months.category where budget_months.year = $year order by year,month_id, category");
+        $statement = $database->prepare("SELECT CATEGORY, SUM(money_difference) AS MONEY_DIFFERENCE FROM (SELECT budget_months.month AS MONTH, budget_months.month_id AS MONTH_ID, budget_months.year AS YEAR, budget_months.category AS CATEGORY, ROUND(budget_months.c_money, 2) as c_money, ROUND(trans_sql.MONEY,2) AS MONEY, ROUND((budget_months.c_money - trans_sql.MONEY),2) as money_difference, CASE WHEN (budget_months.c_money - trans_sql.MONEY) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE from (SELECT SUM(money) AS 'MONEY', YEAR(date) AS 'YEAR', category AS 'CAT', MONTH(date) AS 'MONTH' from trans where YEAR(date) = '2020' group by category, MONTH(date)) as trans_sql inner join budget_months on trans_sql.MONTH = budget_months.month_id and trans_sql.CAT = budget_months.category where budget_months.year = '2020' order by year,month_id, category) as select_month WHERE MONTH_ID < MONTH(NOW()) group by CATEGORY");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -139,14 +154,14 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
-    //
+
 
 
     //Chase Credit Card
 
     public static function miscItems($body){
         if ($body['year'] == "" || $body['year'] == null  ) {
-            $year = '2019';
+            $year = '2020';
         } else {
             $year = $body['year'];
         }  
@@ -165,7 +180,7 @@ class Budget implements \JsonSerializable
     public static function yearCategoryReview($body)
     {
         if ($body['year'] == "" || $body['year'] == null  ) {
-            $year = '2019';
+            $year = '2020';
         } else {
             $year = $body['year'];
         }        
@@ -182,7 +197,7 @@ class Budget implements \JsonSerializable
     public static function payVSpent($body)
     {
         if ($body['year'] == "" || $body['year'] == null  ) {
-            $year = '2019';
+            $year = '2020';
         } else {
             $year = $body['year'];
         }        
@@ -201,7 +216,7 @@ class Budget implements \JsonSerializable
     {
           
         global $database;
-        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money FROM trans where items LIKE 'Car Payment%' and date > DATE(NOW()); ");
+        $statement = $database->prepare("select t1.money, t2.COUNT FROM (SELECT ROUND(SUM(money),2) as money FROM trans where items LIKE 'Car Payment%' and date > DATE(NOW())) as t1, (select COUNT(*) as COUNT from trans where category = 'Car' and items LIKE 'Car Payment%' and date > DATE(NOW())) as t2; ");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -211,7 +226,45 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
-    //
+
+    public static function gerneralData($body){
+        global $database;
+
+        //grocercies
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, 'Grocercies' as Type FROM `trans` WHERE `category` = 'GROCERIES';");
+        $statement->execute();
+        $grocercies = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        //Car
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, 'Car' as Type FROM `trans` WHERE `category` = 'CAR';");
+        $statement->execute();
+        $car = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        
+        //Apartment
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, 'Apartment' as Type FROM `trans` WHERE `category` = 'HOUSING - APT'");
+        $statement->execute();
+        $apartment = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        // //General Housing
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, 'General Housing Cost - (utils, items)' as Type FROM `trans` WHERE `category` = 'HOUSING' and business != 'Mortgage';");
+        $statement->execute();
+        $generalHousing = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        //Total Mortage Costs
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2)  as money, 'Total Mortage Payments' as Type FROM `trans` WHERE `category` = 'HOUSING' and  business = 'Mortgage' and `items` NOT LIKE '%Extra Principal%';");
+        $statement->execute();
+        $totalmMortage = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        // //Extra Princibal
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, 'Extra Princibal' as Type FROM `trans` WHERE `category` = 'HOUSING' and business = 'Mortgage' and `items` LIKE '%Extra Principal%'");
+        $statement->execute();
+        $extraPrin = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+         $data = array('Grocercies' => $grocercies, 'Car' => $car,'Apartment' => $apartment,'GeneralHousing' => $generalHousing,'TotalMortage' => $totalmMortage,'ExtraPrincibal' => $extraPrin);
+
+       return $data;
+    }
+
     public static function HouseUtils($body)
     {
           
@@ -228,8 +281,6 @@ class Budget implements \JsonSerializable
 
     public static function insightData($body){
         global $database;
-
-    
         //BLDDD
         $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, YEAR(DATE) as year FROM `trans` WHERE `items` LIKE '%BLDDD%' GROUP BY YEAR(DATE) ORDER BY `trans`.`date` ASC");
         $statement->execute();
@@ -262,7 +313,12 @@ class Budget implements \JsonSerializable
          $statement->execute();
          $statefarmcar = $statement->fetchAll(\PDO::FETCH_ASSOC); 
 
-         $data = array('BLDDD' => $blddd,  'BLDDDLL' => $bldddlilly, 'Menards' => $menards, 'Grocercies' => $grocercies, 'CarGas' => $gas, 'SFCar' => $statefarmcar);
+        //Pay by year
+         $statement = $database->prepare("SELECT ROUND(SUM(amount),2) as money, YEAR(DATE) as year FROM `pay` WHERE type_payment != 'Initial Money' GROUP BY YEAR(DATE) ORDER BY `pay`.`date` ASC");
+         $statement->execute();
+         $payYear = $statement->fetchAll(\PDO::FETCH_ASSOC);   
+        
+         $data = array('BLDDD' => $blddd,  'BLDDDLL' => $bldddlilly, 'Menards' => $menards, 'Grocercies' => $grocercies, 'CarGas' => $gas, 'SFCar' => $statefarmcar, 'PayYear' => $payYear);
 
        return $data;
     }
@@ -270,7 +326,7 @@ class Budget implements \JsonSerializable
     public static function highLevelSalary($body)
     {
         if ($body['year'] == "" || $body['year'] == null  ) {
-            $year = '2019';
+            $year = '2020';
         } else {
             $year = $body['year'];
         }        

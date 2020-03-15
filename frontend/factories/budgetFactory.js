@@ -29,6 +29,18 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+
+    data.fullYearReviewLeft2020 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/fullYearReviewLeft',
+            data: {
+                "year": '2020'
+            }
+        });    
+    }
+
+
     data.fullYearReview2021 = function(){
         return $http({
             method: "POST",
@@ -255,6 +267,18 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
+
+    data.gerneralData = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/gerneralData',
+            data: {
+                "year": '2020'
+            }
+        });    
+    }
+
+    //
 
     data.miscItems2021 = function(){
         return $http({

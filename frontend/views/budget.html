@@ -92,6 +92,25 @@
     </table>
 </div>
 
+
+<h2>LEFT OVER BY MONTH 2020</h2>
+
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>CATEGORY</td>
+            <td>MONEY</td>
+        </tr>
+        <tr ng-repeat='data in fullYearReviewLeft2020'>
+            <td>{{data.CATEGORY}}</td>
+            <td>{{data.MONEY_DIFFERENCE}}</td>
+           </tr>
+        </tbody>
+    </table>
+</div>
+
 <h2>Pay V Spent 2020</h2>
 <div>
     <table class="table table-bordered">
@@ -255,9 +274,12 @@
         <tbody>
         <tr>
             <td>MONEY</td>
+            <td>Payments Left:</td>
+
         </tr>
         <tr ng-repeat='data in CarPaymentLeft'>
             <td>{{data.money}}</td>
+            <td>{{data.COUNT}}</td>
          </tr>
         </tbody>
     </table>
@@ -301,6 +323,43 @@
     </table>
 </div>
 
+<h2>Gerneral Data</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>Category</td>
+            <td>Money</td>
+        </tr>
+        <tr>
+            <td>{{Data_Grocercies.Type}}</td>
+            <td>{{Data_Grocercies.money}}</td>
+         </tr>
+         <tr>
+            <td>{{Data_Car.Type}}</td>
+            <td>{{Data_Car.money}}</td>
+         </tr>
+         <tr>
+            <td>{{Data_Apartment.Type}}</td>
+            <td>{{Data_Apartment.money}}</td>
+         </tr>
+         <tr>
+            <td>{{Data_GeneralHousing.Type}}</td>
+            <td>{{Data_GeneralHousing.money}}</td>
+         </tr>
+         <tr>
+            <td>{{Data_TotalMortage.Type}}</td>
+            <td>{{Data_TotalMortage.money}}</td>
+         </tr>
+         <tr>
+            <td>{{Data_ExtraPrincibal.Type}}</td>
+            <td>{{Data_ExtraPrincibal.money}}</td>
+         </tr>
+        </tbody>
+    </table>
+</div>
+
 <h2>NETWORTH</h2>
 <div>
     <table class="table table-bordered">
@@ -320,6 +379,23 @@
 
 
 <H1>------------PAY PAY PAY--------------</H1>
+
+<h2>Insight Data - Pay By Year</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>MONEY</td>
+            <td>YEAR</td>
+        </tr>
+        <tr ng-repeat='data in PayYear'>
+                <td>{{data.year}}</td>
+                <td>{{data.money}}</td>
+         </tr>
+        </tbody>
+    </table>
+</div>
 
 <h2>Elements Pay</h2>
 <div>

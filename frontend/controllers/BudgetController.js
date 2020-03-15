@@ -10,6 +10,11 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
      BudgetFactory.fullYearReview2020().then(function(response){
       $scope.year2020 = response.data.data; 
     });
+    
+    //fullYearReviewLeft2020
+    BudgetFactory.fullYearReviewLeft2020().then(function(response){
+      $scope.fullYearReviewLeft2020 = response.data.data; 
+    });
 
     BudgetFactory.fullYearReview2021().then(function(response){
       $scope.year2021 = response.data.data; 
@@ -73,6 +78,7 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
        $scope.Grocercies = response.data.data.Grocercies;
        $scope.CarGas = response.data.data.CarGas;
        $scope.SFCar = response.data.data.SFCar;
+       $scope.PayYear = response.data.data.PayYear;
     });
 
 
@@ -162,7 +168,18 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
 
     });
 
-    //
+    BudgetFactory.gerneralData().then(function(response){
+      $scope.gerneralData = response.data.data;
+      console.log(response.data.data);
+
+      $scope.Data_Grocercies = response.data.data.Grocercies[0];
+      $scope.Data_Car = response.data.data.Car[0];
+      $scope.Data_Apartment = response.data.data.Apartment[0];
+      $scope.Data_GeneralHousing = response.data.data.GeneralHousing[0];
+      $scope.Data_TotalMortage = response.data.data.TotalMortage[0];
+      $scope.Data_ExtraPrincibal = response.data.data.ExtraPrincibal[0];
+   });
+
     BudgetFactory.HouseUtils().then(function(response){
       $scope.HouseUtils = response.data.data;
    });
