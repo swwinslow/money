@@ -44,7 +44,13 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
-        
+        $app->POST('/predictValues', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::predictValues($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
         $app->POST('/yearReview', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $allBudget = Budget::yearReviewOnYear($body);

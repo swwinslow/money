@@ -139,6 +139,18 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.predictValues2020 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/predictValues',
+            data: {
+                "year": '2020'
+            }
+        });    
+    }
+
+    //
+
     data.yearCategoryReview2021 = function(){
         return $http({
             method: "POST",

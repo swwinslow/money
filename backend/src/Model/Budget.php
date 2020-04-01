@@ -194,6 +194,25 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
+    public static function predictValues($body)
+    {
+        if ($body['year'] == "" || $body['year'] == null  ) {
+            $year = '2020';
+        } else {
+            $year = $body['year'];
+        }        
+        global $database;
+        $statement = $database->prepare("SELECT ((end_month_predict + current_end_predict) / 2) as middle_number, end_month_predict, current_end_predict, CATEGORY, TOTAL_MONEY_SPENT  FROM (SELECT *, (end_month_predict_year_percentage * TOTAL_MONEY_SPENT) AS end_month_predict, (current_predict_year_percentage * TOTAL_MONEY_SPENT) AS current_end_predict  FROM (SELECT *, (all_days / end_of_month) as end_month_predict_year_percentage,(all_days / current_days) as current_predict_year_percentage FROM (SELECT CATEGORY, SUM(money_difference) AS TOTAL_MONEY_SPENT,DAYOFYEAR(NOW()) AS current_days,365 AS all_days,DAYOFYEAR(LAST_DAY(NOW())) as end_of_month FROM (SELECT budget_months.month AS MONTH, budget_months.month_id AS MONTH_ID, budget_months.year AS YEAR, budget_months.category AS CATEGORY, ROUND(budget_months.c_money, 2) as c_money, ROUND(trans_sql.MONEY,2) AS MONEY, ROUND(trans_sql.MONEY,2) as money_difference FROM (SELECT SUM(money) AS 'MONEY', YEAR(date) AS 'YEAR', category AS 'CAT', MONTH(date) AS 'MONTH' from trans where YEAR(date) = $year group by category, MONTH(date)) as trans_sql inner join budget_months on trans_sql.MONTH = budget_months.month_id and trans_sql.CAT = budget_months.category where budget_months.year = $year order by year,month_id, category) as select_month WHERE MONTH_ID <= MONTH(NOW()) group by CATEGORY) as p1) as p2) as p3");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+
+
     public static function payVSpent($body)
     {
         if ($body['year'] == "" || $body['year'] == null  ) {

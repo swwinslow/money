@@ -20,6 +20,12 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
       $scope.year2021 = response.data.data; 
     });
 
+    //
+
+    BudgetFactory.predictValues2020().then(function(response){
+      $scope.predictValues2020 = response.data.data; 
+   })
+
 
      BudgetFactory.yearCategoryReview2019().then(function(response){
         $scope.yearCategory2019 = response.data.data; 
