@@ -207,11 +207,37 @@ class Budget implements \JsonSerializable
         if ($statement->rowCount() <= 0) {
             return;
         }
+
         $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
     }
 
 
+            //
+
+    public static function predictValuesItems($body)
+    {
+        if ($body['year'] == "" || $body['year'] == null  ) {
+            $year = '2020';
+        } else {
+            $year = $body['year'];
+        }        
+        global $database;
+        $statement = $database->prepare("SELECT ((end_month_predict + current_end_predict) / 2) as middle_number, end_month_predict,  current_end_predict,    TOTAL_MONEY_SPENT      FROM (SELECT *, (end_month_predict_year_percentage * TOTAL_MONEY_SPENT) AS end_month_predict, (current_predict_year_percentage * TOTAL_MONEY_SPENT) AS current_end_predict  FROM (SELECT *, (all_days / end_of_month) as end_month_predict_year_percentage,(all_days / current_days) as current_predict_year_percentage FROM (SELECT SUM(money) AS TOTAL_MONEY_SPENT,DAYOFYEAR(NOW()) AS current_days, 365 AS all_days,DAYOFYEAR(LAST_DAY(NOW())) as end_of_month FROM (SELECT ROUND(SUM(money),2) as money, MONTH(DATE) as month FROM `trans` WHERE `items` LIKE '%BLDDD%' and YEAR(DATE) = $year GROUP BY MONTH(DATE) ORDER BY `trans`.`date` ASC) as p1) as p2) as p3) as p4;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+        $blddd = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        $statement = $database->prepare("SELECT ((end_month_predict + current_end_predict) / 2) as middle_number, end_month_predict, current_end_predict, TOTAL_MONEY_SPENT FROM (SELECT *, (end_month_predict_year_percentage * TOTAL_MONEY_SPENT) AS end_month_predict, (current_predict_year_percentage * TOTAL_MONEY_SPENT) AS current_end_predict FROM (SELECT *, (all_days / end_of_month) as end_month_predict_year_percentage,(all_days / current_days) as current_predict_year_percentage FROM (SELECT SUM(money) AS TOTAL_MONEY_SPENT,DAYOFYEAR(NOW()) AS current_days, 365 AS all_days,DAYOFYEAR(LAST_DAY(NOW())) as end_of_month FROM (SELECT ROUND(SUM(money),2) as money, MONTH(DATE) as month FROM `trans` WHERE CATEGORY = 'Car' and `items` LIKE 'Gas' and YEAR(DATE) = $year GROUP BY MONTH(DATE) ORDER BY `trans`.`date` ASC) as p1) as p2) as p3) as p4");
+        $statement->execute();
+        $gas = $statement->fetchAll(\PDO::FETCH_ASSOC);   
+       
+        $data = array('BLDDD' => $blddd,  'Gas' => $gas);
+
+        return $data;
+    }
 
     public static function payVSpent($body)
     {

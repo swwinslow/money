@@ -87,8 +87,12 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
        $scope.PayYear = response.data.data.PayYear;
     });
 
-
     //
+    BudgetFactory.predictValuesItems().then(function(response){
+      $scope.predictValuesBLDDD2020 = response.data.data.BLDDD;
+      $scope.predictValuesGas2020 = response.data.data.Gas;
+
+   });
 
      BudgetFactory.salaryReview2020().then(function(response){
       console.log(response);
