@@ -65,6 +65,13 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
+        $app->POST('/resturantsData', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::resturantsData($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
         $app->POST('/salaryReview', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $allBudget = Budget::highLevelSalary($body);

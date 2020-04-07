@@ -239,6 +239,25 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
+
+    public static function resturantsData($body)
+    {
+        if ($body['year'] == "" || $body['year'] == null  ) {
+            $year = '2020';
+        } else {
+            $year = $body['year'];
+        }        
+        global $database;
+        $statement = $database->prepare("SELECT p1.business, p1.money, p2.count, (p1.money / p2.count) as PER_VISIT FROM (SELECT business, ROUND(SUM(money),2) as money FROM `trans` WHERE `items` LIKE '%BLDDD%' AND `category` = 'MISC' group by business order by money desc) as p1, (SELECT business, COUNT(*) as count FROM `trans` WHERE `items` LIKE '%BLDDD%' AND `category` = 'MISC' group by business order by count desc) as p2 where p1.business = p2.business order by p1.money desc LIMIT 15");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
     public static function payVSpent($body)
     {
         if ($body['year'] == "" || $body['year'] == null  ) {

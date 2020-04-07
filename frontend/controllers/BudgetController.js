@@ -91,8 +91,13 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
     BudgetFactory.predictValuesItems().then(function(response){
       $scope.predictValuesBLDDD2020 = response.data.data.BLDDD;
       $scope.predictValuesGas2020 = response.data.data.Gas;
-
    });
+
+   BudgetFactory.resturantsData().then(function(response){
+      $scope.resturantsData = response.data.data;
+   });
+
+   //
 
      BudgetFactory.salaryReview2020().then(function(response){
       console.log(response);

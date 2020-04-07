@@ -71,6 +71,16 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.resturantsData = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/resturantsData',
+            data: {
+                "year": '2020'
+            }
+        });    
+    }
+
     //
 
 
