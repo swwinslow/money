@@ -213,6 +213,37 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.BLDDDPerYear2020 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/BLDDDPerYear',
+            data: {
+                "year": '2020'
+            }
+        });    
+    }
+
+    data.BLDDDPerYear2019 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/BLDDDPerYear',
+            data: {
+                "year": '2019'
+            }
+        });    
+    }
+
+    data.BLDDDPerYear2018 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/BLDDDPerYear',
+            data: {
+                "year": '2018'
+            }
+        });    
+    }
+    //
+
     data.HouseUtils = function(){
         return $http({
             method: "POST",
@@ -280,7 +311,14 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-    //
+    data.lifeEvents = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/lifeEvents',
+            data: { }
+        });    
+    }
+
 
     data.miscItems2019 = function(){
         return $http({

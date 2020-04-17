@@ -266,6 +266,25 @@
     </table>
 </div>
 
+<h2>Insight Data - 2020 Lilly Lunch</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr>
+            <td>Business</td>
+            <td>YEAR</td>
+        </tr>
+        <tr ng-repeat='data in BLDDDPerYear2020'>
+            <td>{{data.business}}</td>
+            <td>{{data.money}}</td>
+         </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
 
 <h2>Insight Data - Menards</h2>
 <div>
@@ -371,8 +390,6 @@
         </tbody>
     </table>
 </div>
-
-
 
 <h2>Insight Data - HouseUtils</h2>
 <div>
@@ -735,3 +752,44 @@
     </table>
 </div>
 
+
+
+<h2>Days Unitil</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>YEAR</td>
+                <td>JAN</td>
+                <td>FEB</td>
+                <td>MAR</td>
+                <td>APR</td>
+                <td>MAY</td>
+                <td>JUN</td>
+                <td>JUL</td>
+                <td>AUG</td>
+                <td>SEP</td>
+                <td>OCT</td>
+                <td>NOV</td>
+                <td>DEC</td>
+            </tr>
+            <tr ng-repeat='data in lifeEvents'>
+                <td>{{data.year}}</td>
+                <td ng-style="data.JAN === 'RED' && {'background-color': 'red'} || data.JAN === 'BLUE' && {'background-color': 'blue'} ||  data.JAN === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.FEB === 'RED' && {'background-color': 'red'} || data.FEB === 'BLUE' && {'background-color': 'blue'} ||  data.FEB === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.MAR === 'RED' && {'background-color': 'red'} || data.MAR === 'BLUE' && {'background-color': 'blue'} ||  data.MAR === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.APR === 'RED' && {'background-color': 'red'} || data.APR === 'BLUE' && {'background-color': 'blue'} ||  data.APR === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.MAY === 'RED' && {'background-color': 'red'} || data.MAY === 'BLUE' && {'background-color': 'blue'} ||  data.MAY === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.JUN === 'RED' && {'background-color': 'red'} || data.JUN === 'BLUE' && {'background-color': 'blue'} ||  data.JUN === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.JUL === 'RED' && {'background-color': 'red'} || data.JUL === 'BLUE' && {'background-color': 'blue'} ||  data.JUL === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.AUG === 'RED' && {'background-color': 'red'} || data.AUG === 'BLUE' && {'background-color': 'blue'} ||  data.AUG === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.SEP === 'RED' && {'background-color': 'red'} || data.SEP === 'BLUE' && {'background-color': 'blue'} ||  data.SEP === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.OCT === 'RED' && {'background-color': 'red'} || data.OCT === 'BLUE' && {'background-color': 'blue'} ||  data.OCT === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.NOV === 'RED' && {'background-color': 'red'} || data.NOV === 'BLUE' && {'background-color': 'blue'} ||  data.NOV === 'YELLOW' && {'background-color': 'yellow'}"></td>
+                <td ng-style="data.DECE === 'RED' && {'background-color': 'red'} || data.DECE === 'BLUE' && {'background-color': 'blue'} ||  data.DECE === 'YELLOW' && {'background-color': 'yellow'}"></td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

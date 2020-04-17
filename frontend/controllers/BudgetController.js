@@ -237,7 +237,15 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
    BudgetFactory.houseExtraPrin().then(function(response){
       $scope.houseExtraPrin = response.data.data;
    });
-   
+
+   BudgetFactory.lifeEvents().then(function(response){
+      $scope.lifeEvents = response.data.data;
+   });
+
+   BudgetFactory.BLDDDPerYear2020().then(function(response){
+      $scope.BLDDDPerYear2020 = response.data.data;
+   });
+
    // Load google charts
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);

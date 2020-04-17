@@ -154,6 +154,55 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
+    public static function lifeEvents(){
+        global $database;
+        $statement = $database->prepare("select * from life_events order by year;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+    
+
+    public static function HouseUtilsByYear($body){
+        if ($body['year'] == "" || $body['year'] == null  ) {
+            $year = '2020';
+        } else {
+            $year = $body['year'];
+        }  
+
+        global $database;
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, MONTH(date) as month FROM trans where ((business = 'IPL') OR (business = 'Citizen Energy') OR (business = 'Mortgage' AND items != '%Extra Principal%')) and YEAR(date) = $year group by MONTH(date)");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function BLDDDPerYear($body){
+        if ($body['year'] == "" || $body['year'] == null  ) {
+            $year = '2020';
+        } else {
+            $year = $body['year'];
+        }  
+
+        global $database;
+        $statement = $database->prepare("    SELECT business, ROUND(SUM(money),2) as money FROM `trans` WHERE `category` = 'MISC' and YEAR(DATE) = $year and items like '%BLDDD%' group by business order by money desc");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
 
 
 

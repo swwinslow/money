@@ -145,6 +145,30 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
+        $app->POST('/lifeEvents', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::lifeEvents($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        //
+        $app->POST('/HouseUtilsByYear', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::HouseUtilsByYear($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        //
+        $app->POST('/BLDDDPerYear', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::BLDDDPerYear($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+
         $app->POST('/houseExtraPrin', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $allBudget = Budget::houseExtraPrin($body);
