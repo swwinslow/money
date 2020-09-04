@@ -81,7 +81,7 @@ class Budget implements \JsonSerializable
 
     public static function networthYearCalculation(){
         global $database;
-        $statement = $database->prepare("select end_of_year, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth group by end_of_year order by end_of_year DESC");
+        $statement = $database->prepare("select end_of_year, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth where MONTH(date) = '12' group by end_of_year order by end_of_year DESC");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -91,7 +91,20 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
-    //
+
+    //need to implement in the front end
+    public static function networthYearCalculationCategory() {
+        global $database;
+        $statement = $database->prepare("select `category_type`, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth where MONTH(date) = '12' and YEAR(date) = '2020' group by category_type");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
 
     public static function elementsPay(){
         global $database;
@@ -119,7 +132,19 @@ class Budget implements \JsonSerializable
 
     public static function chaseCreditCardPay(){
         global $database;
-        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(AMOUNT),2) as money FROM `pay` WHERE `company` = 'Chase Credit Card' GROUP BY YEAR(DATE) ORDER BY YEAR(DATE) DESC;");
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(AMOUNT),2) as money FROM `pay` WHERE `type_payment` = 'Credit Card' GROUP BY YEAR(DATE) ORDER BY YEAR(DATE) DESC;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function paymentTypesTrans(){
+        global $database;
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as amount, payment_type FROM trans group by payment_type");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -141,6 +166,108 @@ class Budget implements \JsonSerializable
         $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
     }
+
+    public static function amazonSpent(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `business` LIKE 'Amazon' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function KrogerSpent(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `business` LIKE 'Kroger' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function ATTSpent(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `business` LIKE 'ATT' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+
+    //
+    public static function medicalSpent(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `category` = 'MEDICAL' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function nextPayDay(){
+        global $database;
+        $statement = $database->prepare("SELECT date as next_pay_day FROM pay where company = 'Lilly' and date >= NOW() order by date asc LIMIT 2");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    //
+
+    
+
+    public static function IPLSpent(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `business` LIKE 'IPL' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function CitizenEnergySpent(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `business` LIKE 'Citizen Energy' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    // public static function (){
+    //     global $database;
+    //     $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `business` LIKE 'Amazon' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");
+    //     $statement->execute();
+    //     if ($statement->rowCount() <= 0) {
+    //         return;
+    //     }
+
+    //     $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+    //     return $data;
+    // }
 
     public static function specialEvents(){
         global $database;
@@ -165,6 +292,21 @@ class Budget implements \JsonSerializable
         $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
     }
+
+    public static function totalCreditCards(){
+        global $database;
+        $statement = $database->prepare("SELECT company, SUM(amount) AS total_sum from pay where `type_payment` = 'Credit Card' group by company;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    
+
     
 
     public static function HouseUtilsByYear($body){
@@ -392,6 +534,51 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
+    public static function EmilyPay($body)
+    {
+          
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) as year, ROUND(SUM(amount),2) as amount FROM `pay` WHERE `person_name` = 'Emily' and type_payment = 'Work - Kronos' group by year");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function SethPay($body)
+    {
+          
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) as year, ROUND(SUM(amount),2) as amount FROM `pay` WHERE `person_name` = 'Seth' and type_payment = 'Work - Lilly' group by year");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function BLDDDMonths($body)
+    {
+          
+        global $database;
+        $statement = $database->prepare("SELECT *, MONTH(NOW()) as month_current FROM (select * from (SELECT YEAR(date) as year, MONTH(date) as month, ROUND(SUM(money),2) as money FROM trans where items LIKE 'BLDDD%' group by YEAR(Date), MONTH(date) ORDER BY YEAR(date)) as query1 where query1.year <= YEAR(NOW())) as query2 where (query2.year = YEAR(NOW()) - 1 OR query2.year = YEAR(NOW()));  ");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    
+
+
     public static function insightData($body){
         global $database;
         //BLDDD
@@ -406,13 +593,13 @@ class Budget implements \JsonSerializable
      
         $bldddlilly = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-        //Menards money
-        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, YEAR(DATE) as year FROM `trans` WHERE `business` LIKE '%Menards%' GROUP BY YEAR(DATE) ORDER BY `trans`.`date` ASC");
+        //Home Stuff money
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, YEAR(DATE) as year FROM `trans` WHERE `business` LIKE '%Menards%' OR `business` LIKE '%Lowes%' GROUP BY YEAR(DATE) ORDER BY `trans`.`date` ASC");
         $statement->execute();
-        $menards = $statement->fetchAll(\PDO::FETCH_ASSOC);  
+        $homestuff = $statement->fetchAll(\PDO::FETCH_ASSOC);  
         
          //GROCERCIES
-         $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, YEAR(DATE) as year FROM `trans` WHERE `items` LIKE '%Groceries%' GROUP BY YEAR(DATE) ORDER BY `trans`.`date` ASC");
+         $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, YEAR(DATE) as year FROM `trans` WHERE `category` = 'Groceries' GROUP BY YEAR(DATE) ORDER BY `trans`.`date` ASC");
          $statement->execute();
          $grocercies = $statement->fetchAll(\PDO::FETCH_ASSOC);  
          
@@ -431,7 +618,7 @@ class Budget implements \JsonSerializable
          $statement->execute();
          $payYear = $statement->fetchAll(\PDO::FETCH_ASSOC);   
         
-         $data = array('BLDDD' => $blddd,  'BLDDDLL' => $bldddlilly, 'Menards' => $menards, 'Grocercies' => $grocercies, 'CarGas' => $gas, 'SFCar' => $statefarmcar, 'PayYear' => $payYear);
+         $data = array('BLDDD' => $blddd,  'BLDDDLL' => $bldddlilly, 'homestuff' => $homestuff, 'Grocercies' => $grocercies, 'CarGas' => $gas, 'SFCar' => $statefarmcar, 'PayYear' => $payYear);
 
        return $data;
     }

@@ -72,6 +72,68 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
+        //
+        $app->POST('/KrogerSpent', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::KrogerSpent($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        $app->POST('/ATTSpent', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::ATTSpent($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        $app->POST('/medicalSpent', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::medicalSpent($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        $app->POST('/totalCreditCards', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::totalCreditCards($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+        
+
+        $app->POST('/nextPayDay', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::nextPayDay($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        //
+        
+        $app->POST('/CitizenEnergySpent', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::CitizenEnergySpent($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+
+        $app->POST('/IPLSpent', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::IPLSpent($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+
+        //
+        $app->POST('/amazonSpent', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::amazonSpent($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
         $app->POST('/salaryReview', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $allBudget = Budget::highLevelSalary($body);
@@ -109,9 +171,39 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
+        //
+        $app->POST('/EmilyPay', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::EmilyPay($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        $app->POST('/SethPay', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::SethPay($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+
         $app->POST('/HouseUtils', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $allBudget = Budget::HouseUtils($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+        //
+        $app->POST('/networthYearCalculationCategory', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::networthYearCalculationCategory($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+        
+        $app->POST('/BLDDDMonths', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::BLDDDMonths($body);
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
@@ -136,7 +228,13 @@ $app->group('/api', function () use ($app){
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
-
+        //
+        $app->POST('/paymentTypesTrans', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::paymentTypesTrans($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
 
         $app->POST('/specialEvents', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();

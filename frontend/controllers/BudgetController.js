@@ -61,6 +61,34 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
       $scope.miscItems2021 = response.data.data;
    })
 
+   BudgetFactory.amazonSpent().then(function(response){
+      $scope.amazonSpent = response.data.data;
+   })
+
+   BudgetFactory.KrogerSpent().then(function(response){
+      $scope.KrogerSpent = response.data.data;
+   })
+
+   BudgetFactory.IPLSpent().then(function(response){
+      $scope.IPLSpent = response.data.data;
+   })
+
+   BudgetFactory.CitizenEnergySpent().then(function(response){
+      $scope.CitizenEnergySpent = response.data.data;
+   })
+
+   BudgetFactory.ATTSpent().then(function(response){
+      $scope.ATTSpent = response.data.data;
+   })
+
+   BudgetFactory.medicalSpent().then(function(response){
+      $scope.medicalSpent = response.data.data;
+   })
+
+   BudgetFactory.nextPayDay().then(function(response){
+      $scope.nextPayDay = response.data.data;
+   })
+
     BudgetFactory.salaryReview2019().then(function(response){
        console.log(response);
         $scope.year2019Difference = response.data.data[0]['money'];
@@ -80,7 +108,7 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
     BudgetFactory.insightData().then(function(response){
        $scope.BLDDD = response.data.data.BLDDD;
        $scope.BLDDDLL = response.data.data.BLDDDLL;
-       $scope.Menards = response.data.data.Menards;
+       $scope.homestuff = response.data.data.homestuff;
        $scope.Grocercies = response.data.data.Grocercies;
        $scope.CarGas = response.data.data.CarGas;
        $scope.SFCar = response.data.data.SFCar;
@@ -234,12 +262,39 @@ app.controller('BudgetController', function(CONFIG, $scope, $location, BudgetFac
       $scope.chaseCreditCardPay = response.data.data;
    });
 
+   BudgetFactory.paymentTypesTrans().then(function(response){
+      $scope.paymentTypesTrans = response.data.data;
+   });
+
    BudgetFactory.houseExtraPrin().then(function(response){
       $scope.houseExtraPrin = response.data.data;
    });
 
+   
+   BudgetFactory.networthYearCalculationCategory().then(function(response){
+      $scope.networthYearCalculationCategory = response.data.data;
+   });
+
+   BudgetFactory.BLDDDMonths().then(function(response){
+      $scope.BLDDDMonths = response.data.data;
+   });
+
+   BudgetFactory.EmilyPay().then(function(response){
+      $scope.EmilyPay = response.data.data;
+   });
+
+   BudgetFactory.SethPay().then(function(response){
+      $scope.SethPay = response.data.data;
+   });
+
+
+
    BudgetFactory.lifeEvents().then(function(response){
       $scope.lifeEvents = response.data.data;
+   });
+   
+   BudgetFactory.totalCreditCards().then(function(response){
+      $scope.totalCreditCards = response.data.data;
    });
 
    BudgetFactory.BLDDDPerYear2020().then(function(response){

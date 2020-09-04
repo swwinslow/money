@@ -39,8 +39,7 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
-
-
+    
     data.fullYearReview2021 = function(){
         return $http({
             method: "POST",
@@ -81,8 +80,63 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.amazonSpent = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/amazonSpent',
+        });    
+    }
+    //
+    data.KrogerSpent = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/KrogerSpent',
+        });    
+    }
+
+    data.CitizenEnergySpent = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/CitizenEnergySpent',
+        });    
+    }
+
+    data.IPLSpent = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/IPLSpent',
+        });    
+    }
+    data.ATTSpent = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/ATTSpent',
+        });    
+    }
+    data.medicalSpent = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/medicalSpent',
+        });    
+    }
+
+    data.totalCreditCards = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/totalCreditCards',
+        });    
+    }
+
     //
 
+    data.nextPayDay = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/nextPayDay',
+        });    
+    }
+
+    //
 
     data.insightData = function(){
         return $http({
@@ -93,12 +147,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
-
-
-    ///
-
-
-   
 
     data.salaryReview2019 = function(){
         return $http({
@@ -294,6 +342,50 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             data: { }
         });    
     }
+    //
+    data.networthYearCalculationCategory = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/networthYearCalculationCategory',
+            data: { }
+        });    
+    }
+
+    data.paymentTypesTrans = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/paymentTypesTrans',
+            data: { }
+        });    
+    }
+
+    
+    data.BLDDDMonths = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/BLDDDMonths',
+            data: { }
+        });    
+    }
+
+    data.SethPay = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/SethPay',
+            data: { }
+        });    
+    }
+
+    data.EmilyPay = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/EmilyPay',
+            data: { }
+        });    
+    }
+
+
+
 
     data.houseExtraPrin = function(){
         return $http({
