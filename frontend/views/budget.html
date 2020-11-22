@@ -8,21 +8,21 @@
 <div>
     <table class="table table-bordered">
         <tbody>
-        <tr>
-            <td>Salary</td>
-            <td>Trans</td>
-            <td>Salary - Trans =</td>
-            <td>Budget</td>
-            <td>Salary - Budget =</td>
+            <tr>
+                <td>Salary</td>
+                <td>Trans</td>
+                <td>Salary - Trans =</td>
+                <td>Budget</td>
+                <td>Salary - Budget =</td>
 
-        </tr>
-        <tr>
-            <td>{{year2020Salary}}</td>
-            <td>{{year2020Trans}}</td>
-            <td>{{year2020Difference}}</td>
-            <td>{{year2020budget}}</td>
-            <td>{{year2020Uncounted}}</td>
-        </tr>
+            </tr>
+            <tr>
+                <td>{{year2020Salary}}</td>
+                <td>{{year2020Trans}}</td>
+                <td>{{year2020Difference}}</td>
+                <td>{{year2020budget}}</td>
+                <td>{{year2020Uncounted}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -30,27 +30,29 @@
 <h2>Cats 2020</h2>
 
 <div>
-        <table class="table table-bordered">
-    
-            <tbody>
+    <table class="table table-bordered">
+
+        <tbody>
             <td>Catgory</td>
             <td>Budget Money</td>
             <td>Spent Money</td>
             <td>Budget %</td>
             <td>Spent %</td>
             <td>Left Over</td>
-    
+
             <tr ng-repeat='year in yearCategory2020'>
                 <td>{{year.category}}</td>
                 <td>{{year.budget_money}}</td>
                 <td>{{year.spent_money}}</td>
                 <td>{{year.budget_percentage}}</td>
                 <td>{{year.spent_percentage}}</td>
-                <td  ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{year.difference}}</td>
-               </tr>
-            </tbody>
-        </table>
-    </div>
+                <td ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}">{{year.difference}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="chartContainer" style="height: 300px; max-width: 920px; margin: 0px auto;"></div>
 
 
 <h2>MONTHS 2020</h2>
@@ -58,8 +60,8 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr ng-repeat='data in year2020'>
-            <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
+            <tr ng-repeat='data in year2020'>
+                <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
              data.month === 'FEBRUARY' && {'background-color': 'pink'}|| 
              data.month === 'MARCH' && {'background-color': 'green'}|| 
              data.month === 'APRIL' && {'background-color': 'gray'}|| 
@@ -70,8 +72,9 @@
              data.month === 'SEPTEMBER' && {'background-color': '#FF4500'}|| 
              data.month === 'OCTOBER' && {'background-color': 'orange'}|| 
              data.month === 'NOVEMBER' && {'background-color': 'green'}||
-            data.month === 'DECEMBER' && {'background-color': 'red'}"> {{data.month}}</td>
-            <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
+            data.month === 'DECEMBER' && {'background-color': 'red'}">
+                    {{data.month}}</td>
+                <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
             data.month === 'FEBRUARY' && {'background-color': 'pink'}|| 
             data.month === 'MARCH' && {'background-color': 'green'}|| 
             data.month === 'APRIL' && {'background-color': 'gray'}|| 
@@ -83,11 +86,11 @@
             data.month === 'OCTOBER' && {'background-color': 'orange'}|| 
             data.month === 'NOVEMBER' && {'background-color': 'green'}||
            data.month === 'DECEMBER' && {'background-color': 'red'}">{{data.year}}</td>
-            <td>{{data.category}}</td>
-            <td>{{data.c_money}}</td>
-            <td>{{data.MONEY}}</td>
-            <td  ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{data.money_difference}}</td>
-           </tr>
+                <td>{{data.category}}</td>
+                <td>{{data.c_money}}</td>
+                <td>{{data.MONEY}}</td>
+                <td ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}">{{data.money_difference}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -99,14 +102,14 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>CATEGORY</td>
-            <td>MONEY</td>
-        </tr>
-        <tr ng-repeat='data in fullYearReviewLeft2020'>
-            <td>{{data.CATEGORY}}</td>
-            <td>{{data.MONEY_DIFFERENCE}}</td>
-           </tr>
+            <tr>
+                <td>CATEGORY</td>
+                <td>MONEY</td>
+            </tr>
+            <tr ng-repeat='data in fullYearReviewLeft2020'>
+                <td>{{data.CATEGORY}}</td>
+                <td>{{data.MONEY_DIFFERENCE}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -116,21 +119,21 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>CATEGORY</td>
-            <td>TOTAL SPENT</td>
-            <td>current_end_predict</td>
-            <td>middle_number</td>
-            <td>end_month_predict</td>
-        </tr>
-        <tr ng-repeat='data in predictValues2020'>
-            <td>{{data.CATEGORY}}</td>
-            <td>{{data.TOTAL_MONEY_SPENT}}</td>
-            <td>{{data.current_end_predict}}</td>
-            <td>{{data.middle_number}}</td>
-            <td>{{data.end_month_predict}}</td>
+            <tr>
+                <td>CATEGORY</td>
+                <td>TOTAL SPENT</td>
+                <td>current_end_predict</td>
+                <td>middle_number</td>
+                <td>end_month_predict</td>
+            </tr>
+            <tr ng-repeat='data in predictValues2020'>
+                <td>{{data.CATEGORY}}</td>
+                <td>{{data.TOTAL_MONEY_SPENT}}</td>
+                <td>{{data.current_end_predict}}</td>
+                <td>{{data.middle_number}}</td>
+                <td>{{data.end_month_predict}}</td>
 
-           </tr>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -140,19 +143,19 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>TOTAL SPENT</td>
-            <td>current_end_predict</td>
-            <td>middle_number</td>
-            <td>end_month_predict</td>
-        </tr>
-        <tr ng-repeat='data in predictValuesBLDDD2020'>
-            <td>{{data.TOTAL_MONEY_SPENT}}</td>
-            <td>{{data.current_end_predict}}</td>
-            <td>{{data.middle_number}}</td>
-            <td>{{data.end_month_predict}}</td>
+            <tr>
+                <td>TOTAL SPENT</td>
+                <td>current_end_predict</td>
+                <td>middle_number</td>
+                <td>end_month_predict</td>
+            </tr>
+            <tr ng-repeat='data in predictValuesBLDDD2020'>
+                <td>{{data.TOTAL_MONEY_SPENT}}</td>
+                <td>{{data.current_end_predict}}</td>
+                <td>{{data.middle_number}}</td>
+                <td>{{data.end_month_predict}}</td>
 
-           </tr>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -162,42 +165,40 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>TOTAL SPENT</td>
-            <td>current_end_predict</td>
-            <td>middle_number</td>
-            <td>end_month_predict</td>
-        </tr>
-        <tr ng-repeat='data in predictValuesGas2020'>
-            <td>{{data.TOTAL_MONEY_SPENT}}</td>
-            <td>{{data.current_end_predict}}</td>
-            <td>{{data.middle_number}}</td>
-            <td>{{data.end_month_predict}}</td>
+            <tr>
+                <td>TOTAL SPENT</td>
+                <td>current_end_predict</td>
+                <td>middle_number</td>
+                <td>end_month_predict</td>
+            </tr>
+            <tr ng-repeat='data in predictValuesGas2020'>
+                <td>{{data.TOTAL_MONEY_SPENT}}</td>
+                <td>{{data.current_end_predict}}</td>
+                <td>{{data.middle_number}}</td>
+                <td>{{data.end_month_predict}}</td>
 
-           </tr>
+            </tr>
         </tbody>
     </table>
 </div>
-//
-
 
 <h2>Pay V Spent 2020</h2>
 <div>
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>MONTH ID</td>
-            <td>YEAR</td>
-            <td>Pay Amount</td>
-            <td>Budget Amount</td>
-            <td>UnCounted Amount</td>
-            <td>Spent Amount</td>
-            <td>Difference</td>
+            <tr>
+                <td>MONTH ID</td>
+                <td>YEAR</td>
+                <td>Pay Amount</td>
+                <td>Budget Amount</td>
+                <td>UnCounted Amount</td>
+                <td>Spent Amount</td>
+                <td>Difference</td>
 
-        </tr>
-        <tr ng-repeat='data in payvspent2020'>
-            <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
+            </tr>
+            <tr ng-repeat='data in payvspent2020'>
+                <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
              data.month === '2' && {'background-color': 'pink'}|| 
              data.month === '3' && {'background-color': 'green'}|| 
              data.month === '4' && {'background-color': 'gray'}|| 
@@ -208,8 +209,9 @@
              data.month === '9' && {'background-color': '#FF4500'}|| 
              data.month === '10' && {'background-color': 'orange'}|| 
              data.month === '11' && {'background-color': 'green'}||
-            data.month === '12' && {'background-color': 'red'}"> {{data.month}}</td>
-            <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
+            data.month === '12' && {'background-color': 'red'}">
+                    {{data.month}}</td>
+                <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
             data.month === '2' && {'background-color': 'pink'}|| 
             data.month === '3' && {'background-color': 'green'}|| 
             data.month === '4' && {'background-color': 'gray'}|| 
@@ -221,304 +223,307 @@
             data.month === '10' && {'background-color': 'orange'}|| 
             data.month === '11' && {'background-color': 'green'}||
            data.month === '12' && {'background-color': 'red'}">{{data.year}}</td>
-            <td>{{data.pay_amount}}</td>
-            <td>{{data.budget_amount}}</td>
-            <td>{{data.uncounted_money}}</td>
-            <td>{{data.spent_amount}}</td>
-            <td  ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{data.money_difference}}</td>
-           </tr>
+                <td>{{data.pay_amount}}</td>
+                <td>{{data.budget_amount}}</td>
+                <td>{{data.uncounted_money}}</td>
+                <td>{{data.spent_amount}}</td>
+                <td ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}">{{data.money_difference}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
 
 <style>
     table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
     }
-    
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 10px;
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 10px;
     }
-    
+
     tr:nth-child(even) {
-      background-color: #dddddd;
+        background-color: #dddddd;
     }
+
     .outer {
-  border: 5px dotted rgb(214,129,137);
-  border-radius: 5px;
-  width: absolute;
-  padding: 10px;
-  margin-bottom: 40px;
-}
+        border: 5px dotted rgb(214, 129, 137);
+        border-radius: 5px;
+        width: absolute;
+        padding: 10px;
+        margin-bottom: 40px;
+    }
 
-.float1 {
-  padding: 10px;
-  border-radius: 5px;
-  float: center;  
-  width: 800px;
-}
+    .float1 {
+        padding: 10px;
+        border-radius: 5px;
+        float: center;
+        width: 800px;
+    }
 
-.float {
-  padding: 10px;
-  border-radius: 5px;
-  float: left;  
-  width: 600px;
-}
+    .float {
+        padding: 10px;
+        border-radius: 5px;
+        float: left;
+        width: 600px;
+    }
 
-.float2 {
-  padding: 10px;
-  border-radius: 5px;
-  float: left;  
-  width: 450px;
-}
+    .float2 {
+        padding: 10px;
+        border-radius: 5px;
+        float: left;
+        width: 450px;
+    }
 
-.overflow {
-  overflow: auto;
-}
+    .overflow {
+        overflow: auto;
+    }
 </style>
 
 <!-- BLDDD & Lilly Lunch -->
 <div class="outer overflow">
 
-<div class="float2">
-<h2>Insight Data - BLDDD</h2>
-<div>
-    <table class="table table-bordered" id="customers">
+    <div class="float2">
+        <h2>Insight Data - BLDDD</h2>
+        <div>
+            <table class="table table-bordered" id="customers">
 
-        <tbody>
-        <tr>
-            <td>MONEY</td>
-            <td>YEAR</td>
-        </tr>
-        <tr ng-repeat='data in BLDDD'>
-                <td>{{data.year}}</td>
-            <td>{{data.money}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
-</div>
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in BLDDD'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-<div class="float2">
+    <div class="float2">
 
-<h2>Insight Data - BLDDD</h2>
-<div>
-    <table class="table table-bordered">
+        <h2>Insight Data - BLDDD</h2>
+        <div>
+            <table class="table table-bordered">
 
-        <tbody>
-        <tr>
-            <td>YEAR - MONTH</td>
-            <td>MONEY</td>
-        </tr>
-        <tr ng-repeat='data in BLDDDMonths'>
-                <td>{{data.year}} - {{data.month}}</td>
-                <td>{{data.money}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
-</div>
+                <tbody>
+                    <tr>
+                        <td>YEAR - MONTH</td>
+                        <td>MONEY</td>
+                    </tr>
+                    <tr ng-repeat='data in BLDDDMonths'>
+                        <td>{{data.year}} - {{data.month}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-<div class="float2">
-<h2>Insight Data - Lilly Lunch</h2>
-<div>
-    <table class="table table-bordered">
+    <div class="float2">
+        <h2>Insight Data - Lilly Lunch</h2>
+        <div>
+            <table class="table table-bordered">
 
-        <tbody>
-        <tr>
-            <td>MONEY</td>
-            <td>YEAR</td>
-        </tr>
-        <tr ng-repeat='data in BLDDDLL'>
-                <td>{{data.year}}</td>
-            <td>{{data.money}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in BLDDDLL'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-</div>
+    </div>
 
 </div>
 
 <!-- Car -->
 <div class="outer overflow">
 
-<div class="float2">
-<h2>Insight Data - Car Payment Left</h2>
-<div>
-    <table class="table table-bordered">
+    <div class="float2">
+        <h2>Insight Data - Car Payment Left</h2>
+        <div>
+            <table class="table table-bordered">
 
-        <tbody>
-        <tr>
-            <td>MONEY</td>
-            <td>Payments Left:</td>
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>Payments Left:</td>
 
-        </tr>
-        <tr ng-repeat='data in CarPaymentLeft'>
-            <td>{{data.money}}</td>
-            <td>{{data.COUNT}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
-</div>
+                    </tr>
+                    <tr ng-repeat='data in CarPaymentLeft'>
+                        <td>{{data.money}}</td>
+                        <td>{{data.COUNT}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-<div class="float2">
-<h2>Insight Data - Gas</h2>
-<div>
-    <table class="table table-bordered">
+    <div class="float2">
+        <h2>Insight Data - Gas</h2>
+        <div>
+            <table class="table table-bordered">
 
-        <tbody>
-        <tr>
-            <td>MONEY</td>
-            <td>YEAR</td>
-        </tr>
-        <tr ng-repeat='data in CarGas'>
-            <td>{{data.year}}</td>
-            <td>{{data.money}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
-</div>
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in CarGas'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </div>
 
 <!-- Resturant -->
 <div class="outer overflow">
-<div class="float2">
+    <div class="float2">
         <h2>Insight Data - 2020 Lilly Lunch</h2>
         <div>
             <table class="table table-bordered">
-        
+
                 <tbody>
-                <tr>
-                    <td>Business</td>
-                    <td>YEAR</td>
-                </tr>
-                <tr ng-repeat='data in BLDDDPerYear2020'>
-                    <td>{{data.business}}</td>
-                    <td>{{data.money}}</td>
-                 </tr>
-                </tbody>
-            </table>
-        </div>
-</div>
-        
-<div class="float2">
-        <div>
-        <h2>Resutrant Data</h2>
-        <div>
-            <table class="table table-bordered">
-        
-                <tbody>
-                <tr>
-                    <td>Business</td>
-                    <td>Money</td>
-                    <td>Count</td>
-                    <td>PER_VISIT</td>
-                </tr>
-                <tr ng-repeat='data in resturantsData'>
+                    <tr>
+                        <td>Business</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in BLDDDPerYear2020'>
                         <td>{{data.business}}</td>
                         <td>{{data.money}}</td>
-                        <td>{{data.count}}</td>
-                        <td>{{data.PER_VISIT}}</td>
-                 </tr>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+
+    <div class="float2">
+        <div>
+            <h2>Resutrant Data</h2>
+            <div>
+                <table class="table table-bordered">
+
+                    <tbody>
+                        <tr>
+                            <td>Business</td>
+                            <td>Money</td>
+                            <td>Count</td>
+                            <td>PER_VISIT</td>
+                        </tr>
+                        <tr ng-repeat='data in resturantsData'>
+                            <td>{{data.business}}</td>
+                            <td>{{data.money}}</td>
+                            <td>{{data.count}}</td>
+                            <td>{{data.PER_VISIT}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 </div>
 
+<div id="lineChartContainer" style="height: auto; width: auto;"></div>
 
 
 <div class="outer overflow">
 
-<div class="float2">
-<h2>Insight Data - IPLSpent Per Year</h2>
-    <div>
-                <table class="table table-bordered">
-            
-                    <tbody>
+    <div class="float2">
+        <h2>Insight Data - IPLSpent Per Year</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
                     <tr>
                         <td>MONEY</td>
                         <td>YEAR</td>
                     </tr>
                     <tr ng-repeat='data in IPLSpent'>
-                            <td>{{data.year}}</td>
-                            <td>{{data.money}}</td>
-                     </tr>
-                    </tbody>
-                </table>
-    </div>
-</div>
-
-<div class="float2">
-<h2>Insight Data - Citizen Energy Spent Per Year</h2>
-    <div>
-                    <table class="table table-bordered">
-                
-                        <tbody>
-                        <tr>
-                            <td>MONEY</td>
-                            <td>YEAR</td>
-                        </tr>
-                        <tr ng-repeat='data in CitizenEnergySpent'>
-                                <td>{{data.year}}</td>
-                                <td>{{data.money}}</td>
-                         </tr>
-                        </tbody>
-                    </table>
-    </div>
-</div>
-
-<div class="float2">
-
-<h2>Insight Data - ATT Spent Per Year</h2>
-     <div>
-                        <table class="table table-bordered">
-                    
-                            <tbody>
-                            <tr>
-                                <td>MONEY</td>
-                                <td>YEAR</td>
-                            </tr>
-                            <tr ng-repeat='data in ATTSpent'>
-                                    <td>{{data.year}}</td>
-                                    <td>{{data.money}}</td>
-                             </tr>
-                            </tbody>
-                        </table>
-    </div>
-</div>
-
-</div>
-
-<div class="float2">
-        <h2>Payment Type Trans</h2>
-            <div>
-                        <table class="table table-bordered">
-                    
-                            <tbody>
-                            <tr>
-                                <td>Amount</td>
-                                <td>Payment Type</td>
-                            </tr>
-                            <tr ng-repeat='data in paymentTypesTrans'>
-                                    <td>{{data.amount}}</td>
-                                    <td>{{data.payment_type}}</td>
-                             </tr>
-                            </tbody>
-                        </table>
-            </div>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+    </div>
+
+    <div class="float2">
+        <h2>Insight Data - Citizen Energy Spent Per Year</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in CitizenEnergySpent'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="float2">
+
+        <h2>Insight Data - ATT Spent Per Year</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in ATTSpent'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="float2">
+    <h2>Payment Type Trans</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>Amount</td>
+                    <td>Payment Type</td>
+                </tr>
+                <tr ng-repeat='data in paymentTypesTrans'>
+                    <td>{{data.amount}}</td>
+                    <td>{{data.payment_type}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 
@@ -528,91 +533,51 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>MONEY</td>
-            <td>YEAR</td>
-        </tr>
-        <tr ng-repeat='data in homestuff'>
-                <td>{{data.year}}</td>
-            <td>{{data.money}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="float2">
-<h2>Insight Data - Grocercies</h2>
-<div>
-    <table class="table table-bordered">
-
-        <tbody>
-        <tr>
-            <td>MONEY</td>
-            <td>YEAR</td>
-        </tr>
-        <tr ng-repeat='data in Grocercies'>
-                <td>{{data.year}}</td>
-            <td>{{data.money}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
-</div>
-
-<div class="float2">
-<h2>Insight Data - state farm Car</h2>
-<div>
-    <table class="table table-bordered">
-
-        <tbody>
-        <tr>
-            <td>MONEY</td>
-            <td>YEAR</td>
-        </tr>
-        <tr ng-repeat='data in SFCar'>
-                <td>{{data.year}}</td>
-                <td>{{data.money}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
-</div>
-
-
-<div class="float2">
-<h2>Insight Data - House Princibal</h2>
-<div>
-    <table class="table table-bordered">
-
-        <tbody>
-        <tr>
-            <td>MONEY</td>
-            <td>YEAR</td>
-        </tr>
-        <tr ng-repeat='data in houseExtraPrin'>
-                <td>{{data.year}}</td>
-                <td>{{data.money}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
-</div>
-
-
-<div class="float2">
-<h2>Insight Data - Amazon Per Year</h2>
-    <div>
-        <table class="table table-bordered">
-    
-            <tbody>
             <tr>
                 <td>MONEY</td>
                 <td>YEAR</td>
             </tr>
-            <tr ng-repeat='data in amazonSpent'>
+            <tr ng-repeat='data in homestuff'>
+                <td>{{data.year}}</td>
+                <td>{{data.money}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="float2">
+    <h2>Insight Data - Grocercies</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>MONEY</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr ng-repeat='data in Grocercies'>
                     <td>{{data.year}}</td>
                     <td>{{data.money}}</td>
-             </tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="float2">
+    <h2>Insight Data - state farm Car</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>MONEY</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr ng-repeat='data in SFCar'>
+                    <td>{{data.year}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -620,104 +585,144 @@
 
 
 <div class="float2">
-<h2>Insight Data - Kroger Per Year</h2>
- <div>
-            <table class="table table-bordered">
-        
-                <tbody>
+    <h2>Insight Data - House Princibal</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>MONEY</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr ng-repeat='data in houseExtraPrin'>
+                    <td>{{data.year}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="float2">
+    <h2>Insight Data - Amazon Per Year</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>MONEY</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr ng-repeat='data in amazonSpent'>
+                    <td>{{data.year}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="float2">
+    <h2>Insight Data - Kroger Per Year</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
                 <tr>
                     <td>MONEY</td>
                     <td>YEAR</td>
                 </tr>
                 <tr ng-repeat='data in KrogerSpent'>
-                        <td>{{data.year}}</td>
-                        <td>{{data.money}}</td>
-                 </tr>
-                </tbody>
-            </table>
-</div>
+                    <td>{{data.year}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
 
 <div class="float2">
-<h2>Insight Data - Medical Spent Per Year</h2>
+    <h2>Insight Data - Medical Spent Per Year</h2>
     <div>
-                            <table class="table table-bordered">
-                        
-                                <tbody>
-                                <tr>
-                                    <td>MONEY</td>
-                                    <td>YEAR</td>
-                                </tr>
-                                <tr ng-repeat='data in medicalSpent'>
-                                        <td>{{data.year}}</td>
-                                        <td>{{data.money}}</td>
-                                 </tr>
-                                </tbody>
-                            </table>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>MONEY</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr ng-repeat='data in medicalSpent'>
+                    <td>{{data.year}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
 <div class="float2">
-<h2>Insight Data - HouseUtils</h2>
-<div>
-    <table class="table table-bordered">
+    <h2>Insight Data - HouseUtils</h2>
+    <div>
+        <table class="table table-bordered">
 
-        <tbody>
-        <tr>
-            <td>YEAR</td>
-            <td>MONTH</td>
-            <td>MONEY</td>
-        </tr>
-        <tr ng-repeat='data in HouseUtils'>
-                <td>{{data.year}}</td>
-                <td>{{data.month}}</td>
-                <td>{{data.money}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
+            <tbody>
+                <tr>
+                    <td>YEAR</td>
+                    <td>MONTH</td>
+                    <td>MONEY</td>
+                </tr>
+                <tr ng-repeat='data in HouseUtils'>
+                    <td>{{data.year}}</td>
+                    <td>{{data.month}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </div>
 
 <div class="float2">
-<h2>Gerneral Data</h2>
-<div>
-    <table class="table table-bordered">
+    <h2>Gerneral Data</h2>
+    <div>
+        <table class="table table-bordered">
 
-        <tbody>
-        <tr>
-            <td>Category</td>
-            <td>Money</td>
-        </tr>
-        <tr>
-            <td>{{Data_Grocercies.Type}}</td>
-            <td>{{Data_Grocercies.money}}</td>
-         </tr>
-         <tr>
-            <td>{{Data_Car.Type}}</td>
-            <td>{{Data_Car.money}}</td>
-         </tr>
-         <tr>
-            <td>{{Data_Apartment.Type}}</td>
-            <td>{{Data_Apartment.money}}</td>
-         </tr>
-         <tr>
-            <td>{{Data_GeneralHousing.Type}}</td>
-            <td>{{Data_GeneralHousing.money}}</td>
-         </tr>
-         <tr>
-            <td>{{Data_TotalMortage.Type}}</td>
-            <td>{{Data_TotalMortage.money}}</td>
-         </tr>
-         <tr>
-            <td>{{Data_ExtraPrincibal.Type}}</td>
-            <td>{{Data_ExtraPrincibal.money}}</td>
-         </tr>
-        </tbody>
-    </table>
-</div>
+            <tbody>
+                <tr>
+                    <td>Category</td>
+                    <td>Money</td>
+                </tr>
+                <tr>
+                    <td>{{Data_Grocercies.Type}}</td>
+                    <td>{{Data_Grocercies.money}}</td>
+                </tr>
+                <tr>
+                    <td>{{Data_Car.Type}}</td>
+                    <td>{{Data_Car.money}}</td>
+                </tr>
+                <tr>
+                    <td>{{Data_Apartment.Type}}</td>
+                    <td>{{Data_Apartment.money}}</td>
+                </tr>
+                <tr>
+                    <td>{{Data_GeneralHousing.Type}}</td>
+                    <td>{{Data_GeneralHousing.money}}</td>
+                </tr>
+                <tr>
+                    <td>{{Data_TotalMortage.Type}}</td>
+                    <td>{{Data_TotalMortage.money}}</td>
+                </tr>
+                <tr>
+                    <td>{{Data_ExtraPrincibal.Type}}</td>
+                    <td>{{Data_ExtraPrincibal.money}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </div>
 
@@ -731,14 +736,14 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>YEAR</td>
-            <td>MONEY</td>
-        </tr>
-        <tr ng-repeat='data in networthYearCalculation'>
+            <tr>
+                <td>YEAR</td>
+                <td>MONEY</td>
+            </tr>
+            <tr ng-repeat='data in networthYearCalculation'>
                 <td>{{data.end_of_year}}</td>
                 <td>{{data.money_value}}</td>
-         </tr>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -748,14 +753,14 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>YEAR</td>
-            <td>MONEY</td>
-        </tr>
-        <tr ng-repeat='data in networthYearCalculationCategory'>
+            <tr>
+                <td>YEAR</td>
+                <td>MONEY</td>
+            </tr>
+            <tr ng-repeat='data in networthYearCalculationCategory'>
                 <td>{{data.category_type}}</td>
                 <td>{{data.money_value}}</td>
-         </tr>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -768,67 +773,67 @@
 </div>
 
 
-    <div class="outer overflow">
-        <div class="float2">
-                <h2>Elements Pay</h2>
-                <div>
-                    <table class="table table-bordered">
-                
-                        <tbody>
-                        <tr>
-                            <td>MONEY</td>
-                            <td>YEAR</td>
-                        </tr>
-                        <tr ng-repeat='data in elementsPay'>
-                            <td>{{data.year}}</td>
-                            <td>{{data.money}}</td>
-                         </tr>
-                        </tbody>
-                    </table>
-                </div>
-        </div>
-        
-        <div class="float2">
-                <h2>Lilly Pay</h2>
-                <div>
-                    <table class="table table-bordered">
-                
-                        <tbody>
-                        <tr>
-                            <td>MONEY</td>
-                            <td>YEAR</td>
-                        </tr>
-                        <tr ng-repeat='data in lillyPay'>
-                            <td>{{data.year}}</td>
-                            <td>{{data.money}}</td>
-                         </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-        </div>
-        
-        <div class="float2">
-                <h2>CHASE CREDIT CARD</h2>
-                <div>
-                    <table class="table table-bordered">
-                
-                        <tbody>
-                        <tr>
-                            <td>MONEY</td>
-                            <td>YEAR</td>
-                        </tr>
-                        <tr ng-repeat='data in chaseCreditCardPay'>
-                            <td>{{data.year}}</td>
-                            <td>{{data.money}}</td>
-                         </tr>
-                        </tbody>
-                    </table>
-                </div>
+<div class="outer overflow">
+    <div class="float2">
+        <h2>Elements Pay</h2>
+        <div>
+            <table class="table table-bordered">
 
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in elementsPay'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        
     </div>
+
+    <div class="float2">
+        <h2>Lilly Pay</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in lillyPay'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="float2">
+        <h2>CHASE CREDIT CARD</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in chaseCreditCardPay'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
 
 
 
@@ -840,14 +845,14 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>MONEY</td>
-            <td>YEAR</td>
-        </tr>
-        <tr ng-repeat='data in PayYear'>
+            <tr>
+                <td>MONEY</td>
+                <td>YEAR</td>
+            </tr>
+            <tr ng-repeat='data in PayYear'>
                 <td>{{data.year}}</td>
                 <td>{{data.money}}</td>
-         </tr>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -857,14 +862,14 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>Year</td>
-            <td>Money</td>
-        </tr>
-        <tr ng-repeat='data in SethPay'>
+            <tr>
+                <td>Year</td>
+                <td>Money</td>
+            </tr>
+            <tr ng-repeat='data in SethPay'>
                 <td>{{data.year}}</td>
                 <td>{{data.amount}}</td>
-         </tr>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -874,14 +879,14 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>Year</td>
-            <td>Money</td>
-        </tr>
-        <tr ng-repeat='data in EmilyPay'>
+            <tr>
+                <td>Year</td>
+                <td>Money</td>
+            </tr>
+            <tr ng-repeat='data in EmilyPay'>
                 <td>{{data.year}}</td>
                 <td>{{data.amount}}</td>
-         </tr>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -897,12 +902,12 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>Date</td>
-        </tr>
-        <tr ng-repeat='data in nextPayDay'>
-            <td>{{data.next_pay_day}}</td>
-         </tr>
+            <tr>
+                <td>Date</td>
+            </tr>
+            <tr ng-repeat='data in nextPayDay'>
+                <td>{{data.next_pay_day}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -912,14 +917,14 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>Company</td>
-            <td>Amount</td>
-        </tr>
-        <tr ng-repeat='data in totalCreditCards'>
-            <td>{{data.company}}</td>
-            <td>{{data.total_sum}}</td>
-         </tr>
+            <tr>
+                <td>Company</td>
+                <td>Amount</td>
+            </tr>
+            <tr ng-repeat='data in totalCreditCards'>
+                <td>{{data.company}}</td>
+                <td>{{data.total_sum}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -929,14 +934,14 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>MONEY</td>
-            <td>YEAR</td>
-        </tr>
-        <tr ng-repeat='data in specialEvents'>
-            <td>{{data.difference_date}}</td>
-            <td>{{data.event_name}}</td>
-         </tr>
+            <tr>
+                <td>MONEY</td>
+                <td>YEAR</td>
+            </tr>
+            <tr ng-repeat='data in specialEvents'>
+                <td>{{data.difference_date}}</td>
+                <td>{{data.event_name}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -947,16 +952,16 @@
 <div>
     <table class="table table-bordered">
         <tbody>
-        <tr>
-            <td>Salary</td>
-            <td>Trans</td>
-            <td>Difference</td>
-        </tr>
-        <tr>
-            <td>{{year2018Salary}}</td>
-            <td>{{year2018Trans}}</td>
-            <td>{{year2018Difference}}</td>
-        </tr>
+            <tr>
+                <td>Salary</td>
+                <td>Trans</td>
+                <td>Difference</td>
+            </tr>
+            <tr>
+                <td>{{year2018Salary}}</td>
+                <td>{{year2018Trans}}</td>
+                <td>{{year2018Difference}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -968,21 +973,21 @@
     <table class="table table-bordered">
 
         <tbody>
-        <td>Catgory</td>
-        <td>Budget Money</td>
-        <td>Spent Money</td>
-        <td>Budget %</td>
-        <td>Spent %</td>
-        <td>Left Over</td>
+            <td>Catgory</td>
+            <td>Budget Money</td>
+            <td>Spent Money</td>
+            <td>Budget %</td>
+            <td>Spent %</td>
+            <td>Left Over</td>
 
-        <tr ng-repeat='year in yearCategory2018'>
-            <td>{{year.category}}</td>
-            <td>{{year.budget_money}}</td>
-            <td>{{year.spent_money}}</td>
-            <td>{{year.budget_percentage}}</td>
-            <td>{{year.spent_percentage}}</td>
-            <td  ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{year.difference}}</td>
-           </tr>
+            <tr ng-repeat='year in yearCategory2018'>
+                <td>{{year.category}}</td>
+                <td>{{year.budget_money}}</td>
+                <td>{{year.spent_money}}</td>
+                <td>{{year.budget_percentage}}</td>
+                <td>{{year.spent_percentage}}</td>
+                <td ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}">{{year.difference}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -992,18 +997,18 @@
 <div>
     <table class="table table-bordered">
         <tbody>
-        <tr>
-            <td>Salary</td>
-            <td>Trans</td>
-            <td>Difference</td>
-            <td>Budget</td>
-        </tr>
-        <tr>
-            <td>{{year2019Salary}}</td>
-            <td>{{year2019Trans}}</td>
-            <td>{{year2019Difference}}</td>
-            <td>{{year2019Budget}}</td>
-        </tr>
+            <tr>
+                <td>Salary</td>
+                <td>Trans</td>
+                <td>Difference</td>
+                <td>Budget</td>
+            </tr>
+            <tr>
+                <td>{{year2019Salary}}</td>
+                <td>{{year2019Trans}}</td>
+                <td>{{year2019Difference}}</td>
+                <td>{{year2019Budget}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -1014,21 +1019,21 @@
     <table class="table table-bordered">
 
         <tbody>
-        <td>Catgory</td>
-        <td>Budget Money</td>
-        <td>Spent Money</td>
-        <td>Budget %</td>
-        <td>Spent %</td>
-        <td>Left Over</td>
+            <td>Catgory</td>
+            <td>Budget Money</td>
+            <td>Spent Money</td>
+            <td>Budget %</td>
+            <td>Spent %</td>
+            <td>Left Over</td>
 
-        <tr ng-repeat='year in yearCategory2019'>
-            <td>{{year.category}}</td>
-            <td>{{year.budget_money}}</td>
-            <td>{{year.spent_money}}</td>
-            <td>{{year.budget_percentage}}</td>
-            <td>{{year.spent_percentage}}</td>
-            <td  ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{year.difference}}</td>
-           </tr>
+            <tr ng-repeat='year in yearCategory2019'>
+                <td>{{year.category}}</td>
+                <td>{{year.budget_money}}</td>
+                <td>{{year.spent_money}}</td>
+                <td>{{year.budget_percentage}}</td>
+                <td>{{year.spent_percentage}}</td>
+                <td ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}">{{year.difference}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -1038,8 +1043,8 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr ng-repeat='data in year2019'>
-            <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
+            <tr ng-repeat='data in year2019'>
+                <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
              data.month === 'FEBRUARY' && {'background-color': 'pink'}|| 
              data.month === 'MARCH' && {'background-color': 'green'}|| 
              data.month === 'APRIL' && {'background-color': 'gray'}|| 
@@ -1050,8 +1055,9 @@
              data.month === 'SEPTEMBER' && {'background-color': '#FF4500'}|| 
              data.month === 'OCTOBER' && {'background-color': 'orange'}|| 
              data.month === 'NOVEMBER' && {'background-color': 'green'}||
-            data.month === 'DECEMBER' && {'background-color': 'red'}"> {{data.month}}</td>
-            <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
+            data.month === 'DECEMBER' && {'background-color': 'red'}">
+                    {{data.month}}</td>
+                <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
             data.month === 'FEBRUARY' && {'background-color': 'pink'}|| 
             data.month === 'MARCH' && {'background-color': 'green'}|| 
             data.month === 'APRIL' && {'background-color': 'gray'}|| 
@@ -1063,11 +1069,11 @@
             data.month === 'OCTOBER' && {'background-color': 'orange'}|| 
             data.month === 'NOVEMBER' && {'background-color': 'green'}||
            data.month === 'DECEMBER' && {'background-color': 'red'}">{{data.year}}</td>
-            <td>{{data.category}}</td>
-            <td>{{data.c_money}}</td>
-            <td>{{data.MONEY}}</td>
-            <td  ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{data.money_difference}}</td>
-           </tr>
+                <td>{{data.category}}</td>
+                <td>{{data.c_money}}</td>
+                <td>{{data.MONEY}}</td>
+                <td ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}">{{data.money_difference}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -1077,17 +1083,17 @@
     <table class="table table-bordered">
 
         <tbody>
-        <tr>
-            <td>MONTH ID</td>
-            <td>YEAR</td>
-            <td>Pay Amount</td>
-            <td>Budget Amount</td>
-            <td>Spent Amount</td>
-            <td>Difference</td>
+            <tr>
+                <td>MONTH ID</td>
+                <td>YEAR</td>
+                <td>Pay Amount</td>
+                <td>Budget Amount</td>
+                <td>Spent Amount</td>
+                <td>Difference</td>
 
-        </tr>
-        <tr ng-repeat='data in payvspent2019'>
-            <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
+            </tr>
+            <tr ng-repeat='data in payvspent2019'>
+                <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
              data.month === '2' && {'background-color': 'pink'}|| 
              data.month === '3' && {'background-color': 'green'}|| 
              data.month === '4' && {'background-color': 'gray'}|| 
@@ -1098,8 +1104,9 @@
              data.month === '9' && {'background-color': '#FF4500'}|| 
              data.month === '10' && {'background-color': 'orange'}|| 
              data.month === '11' && {'background-color': 'green'}||
-            data.month === '12' && {'background-color': 'red'}"> {{data.month}}</td>
-            <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
+            data.month === '12' && {'background-color': 'red'}">
+                    {{data.month}}</td>
+                <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
             data.month === '2' && {'background-color': 'pink'}|| 
             data.month === '3' && {'background-color': 'green'}|| 
             data.month === '4' && {'background-color': 'gray'}|| 
@@ -1110,12 +1117,12 @@
             data.month === '9' && {'background-color': '#FF4500'}|| 
             data.month === '10' && {'background-color': 'orange'}|| 
             data.month === '11' && {'background-color': 'green'}||
-           data.month === '12' && {'background-color': 'red'}">{{data.year}}</td> 
-           <td>{{data.pay_amount}}</td>
-           <td>{{data.budget_amount}}</td>
-            <td>{{data.spent_amount}}</td>
-            <td  ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}" >{{data.money_difference}}</td>
-           </tr>
+           data.month === '12' && {'background-color': 'red'}">{{data.year}}</td>
+                <td>{{data.pay_amount}}</td>
+                <td>{{data.budget_amount}}</td>
+                <td>{{data.spent_amount}}</td>
+                <td ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}">{{data.money_difference}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
