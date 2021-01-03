@@ -2,6 +2,8 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
 
    $scope.showNewPay = false;
    $scope.showError = false;
+   $scope.show2020Comp = true;
+   $scope.show2021Comp = true;
 
 
    var groPer = 0;
@@ -15,7 +17,54 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    var businesPer = 0;
    var savingsPer = 0;
 
+   var groPerSpent21 = 0;
+   var miscPerSpent21 = 0;
+   var carPerSpent21 = 0;
+   var housingPerSpent21 = 0;
+   var edcPerSpent21 = 0;
+   var medPerSpent21 = 0;
+   var clothesPerSpent21 = 0;
+   var donationPerSpent21 = 0;
+   var businesPerSpent21 = 0;
+   var savingsPerSpent21 = 0;
+
+   var groPerBudget21 = 0;
+   var miscPerBudget21 = 0;
+   var carPerBudget21 = 0;
+   var housingPerBudget21 = 0;
+   var edcPerBudget21 = 0;
+   var medPerBudget21 = 0;
+   var clothesPerBudget21 = 0;
+   var donationPerBudget21 = 0;
+   var businesPerBudget21 = 0;
+   var savingsPerBudget21 = 0;
+
+   
+
+   $scope.show2020 = function(){
+      if($scope.show2020Comp == true){
+         $scope.show2020Comp = false;
+         console.log('false');
+      } else {
+         $scope.show2020Comp = true;
+         console.log('true');
+      }
+   }
+   $scope.show2021 = function(){
+      if($scope.show2021Comp = true){
+         $scope.show2021Comp = false;
+         console.log('false');
+
+      }else {
+         $scope.show2021Comp = true;
+         console.log('true');
+
+      }   
+   }
+   
+
    BudgetFactory.yearCategoryReview2020().then(function (response) {
+      console.log(response.data.data);
       $scope.yearCategory2020 = response.data.data;
       for (var i = 0; i < response.data.data.length; i++) {
          if (response.data.data[i].category == "GROCERIES") {
@@ -50,6 +99,7 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
          }
 
       }
+      
       var chart = new CanvasJS.Chart("chartContainer", {
          animationEnabled: true,
          title: {
@@ -78,6 +128,117 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    });
 
 
+   var data18 = [];
+   var data19 = [];
+   var data20 = [];
+   var data21 = [];
+   var data22 = [];
+   var data23 = [];
+
+   BudgetFactory.UtilsOnYear().then(function (response) {
+
+      $scope.UtilsOnYear = response.data.data;
+
+      console.log(response.data.data);
+
+      for (var i = 0; i < response.data.data.length; i++) {
+         var singleData = new Object();
+         var year = parseFloat(response.data.data[i].year);
+         singleData.x = new Date(2020, response.data.data[i].month, 00);
+         singleData.y = parseFloat(response.data.data[i].money);
+
+
+         if(year == 2019){
+            data19.push(singleData);
+         }
+         if(year == 2020){
+            data20.push(singleData);
+         }
+         if(year == 2021){
+            data21.push(singleData);
+         }
+         if(year == 2022){
+            data22.push(singleData);
+         }
+         if(year == 2023){
+            data23.push(singleData);
+         }
+      }
+
+      var chart = new CanvasJS.Chart("utilCharController", {
+         title: {
+            text: "Utils in House"
+         },
+         axisX: {
+            valueFormatString: "MMM"
+         },
+         axisY2: {
+            title: "Price",
+            prefix: "$",
+            suffix: ""
+         },
+         toolTip: {
+            shared: true
+         },
+         legend: {
+            cursor: "pointer",
+            verticalAlign: "top",
+            horizontalAlign: "center",
+            dockInsidePlotArea: true
+         },
+         data: [{
+            type:"line",
+            axisYType: "secondary",
+            name: "2019",
+            showInLegend: true,
+            markerSize: 0,
+            yValueFormatString: "$###",
+            dataPoints: data19
+         }
+         ,
+         {
+            type: "line",
+            axisYType: "secondary",
+            name: "2020",
+            showInLegend: true,
+            markerSize: 0,
+            yValueFormatString:  "$###",
+            dataPoints: data20
+         },
+         {
+            type: "line",
+            axisYType: "secondary",
+            name: "2021",
+            showInLegend: true,
+            markerSize: 0,
+            yValueFormatString:  "$###",
+            dataPoints: data21
+         },
+         {
+            type: "line",
+            axisYType: "2022",
+            name: "2021",
+            showInLegend: true,
+            markerSize: 0,
+            yValueFormatString:  "$###",
+            dataPoints: data22
+         },
+         {
+            type: "line",
+            axisYType: "secondary",
+            name: "2023",
+            showInLegend: true,
+            markerSize: 0,
+            yValueFormatString:  "$###",
+            dataPoints: data23
+         }
+      ]
+      });
+      chart.render();
+
+      
+   });
+
 
    BudgetFactory.fullYearReview2019().then(function (response) {
       $scope.year2019 = response.data.data;
@@ -96,12 +257,9 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
       $scope.year2021 = response.data.data;
    });
 
-   //
-
    BudgetFactory.predictValues2020().then(function (response) {
       $scope.predictValues2020 = response.data.data;
    })
-
 
    BudgetFactory.yearCategoryReview2019().then(function (response) {
       $scope.yearCategory2019 = response.data.data;
@@ -117,6 +275,82 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
 
    BudgetFactory.yearCategoryReview2021().then(function (response) {
       $scope.yearCategory2021 = response.data.data;
+
+      console.log(response.data.data);
+      $scope.yearCategory2020 = response.data.data;
+      for (var i = 0; i < response.data.data.length; i++) {
+         if (response.data.data[i].category == "GROCERIES") {
+            groPerSpent21 = response.data.data[i].spent_percentage;
+            groPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "MISC") {
+            miscPerSpent21 = response.data.data[i].spent_percentage;
+            miscPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "CAR") {
+            carPerSpent21 = response.data.data[i].spent_percentage;
+            carPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "HOUSING") {
+            housingPerSpent21 = response.data.data[i].spent_percentage;
+            housingPerBudget21 = response.data.data[i].budget_percentage;
+
+         }
+         if (response.data.data[i].category == "EDUCATION") {
+            edcPerSpent21 = response.data.data[i].spent_percentage;
+            edcPerBudget21 = response.data.data[i].budget_percentage;
+
+         }
+         if (response.data.data[i].category == "MEDICAL") {
+            medPerSpent21 = response.data.data[i].spent_percentage;
+            medPerBudget21 = response.data.data[i].budget_percentage;
+
+         }
+         if (response.data.data[i].category == "CLOTHES") {
+            clothesPerSpent21 = response.data.data[i].spent_percentage;
+            clothesPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "DONATION") {
+            donationPerSpent21 = response.data.data[i].spent_percentage;
+            donationPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "BUSINESS") {
+            businesPerSpent21 = response.data.data[i].spent_percentage;
+            businesPerBudget21 = response.data.data[i].budget_percentage;
+
+         }
+         if (response.data.data[i].category == "SAVINGS") {
+            savingsPerSpent21 = response.data.data[i].spent_percentage;
+            savingsPerBudget21 = response.data.data[i].budget_percentage;
+         }
+
+      }
+      
+      var chart21 = new CanvasJS.Chart("chartContainerBudget21", {
+         animationEnabled: true,
+         title: {
+            text: "Spect % on Caregories "
+         },
+         data: [{
+            type: "pie",
+            startAngle: 240,
+            yValueFormatString: "##0.00\"%\"",
+            indexLabel: "{label} {y}",
+            dataPoints: [
+               { y: groPerBudget21, label: "GROCERIES" },
+               { y: miscPerBudget21, label: "MISC" },
+               { y: carPerBudget21, label: "CAR" },
+               { y: housingPerBudget21, label: "HOUSING" },
+               { y: edcPerBudget21, label: "EDUCATION" },
+               { y: medPerBudget21, label: "MEDICAL" },
+               { y: clothesPerBudget21, label: "CLOTHES" },
+               { y: donationPerBudget21, label: "DONATION" },
+               { y: businesPerBudget21, label: "BUSINESS" },
+               { y: savingsPerBudget21, label: "SAVINGS" },
+            ]
+         }]
+      });
+      chart21.render();
    })
 
    BudgetFactory.yearReview2020().then(function (response) {
@@ -180,8 +414,6 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    });
 
    BudgetFactory.insightData().then(function (response) {
-      $scope.BLDDD = response.data.data.BLDDD;
-      $scope.BLDDDLL = response.data.data.BLDDDLL;
       $scope.homestuff = response.data.data.homestuff;
       $scope.Grocercies = response.data.data.Grocercies;
       $scope.CarGas = response.data.data.CarGas;
@@ -190,7 +422,6 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    });
 
    BudgetFactory.predictValuesItems().then(function (response) {
-      $scope.predictValuesBLDDD2020 = response.data.data.BLDDD;
       $scope.predictValuesGas2020 = response.data.data.Gas;
    });
 

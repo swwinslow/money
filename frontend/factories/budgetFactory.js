@@ -70,6 +70,26 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.predictValuesItems2020 = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/predictValuesItems',
+            data: {
+                "year": '2020'
+            }
+        });    
+    }
+    
+    data.predictValuesItems2021 = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/predictValuesItems',
+            data: {
+                "year": '2021'
+            }
+        });    
+    }
+
     data.resturantsData = function(){
         return $http({  
             method: "POST",
@@ -105,6 +125,13 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         return $http({  
             method: "POST",
             url: baseUrl + '/IPLSpent',
+        });    
+    }
+
+    data.UtilsOnYear = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/UtilsOnYear',
         });    
     }
     data.ATTSpent = function(){
@@ -267,6 +294,24 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             url: baseUrl + '/BLDDDPerYear',
             data: {
                 "year": '2020'
+            }
+        });    
+    }
+    data.BLDDDPerYear2019 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/BLDDDPerYear',
+            data: {
+                "year": '2019'
+            }
+        });    
+    }
+    data.BLDDDPerYear2018 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/BLDDDPerYear',
+            data: {
+                "year": '2018'
             }
         });    
     }

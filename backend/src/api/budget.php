@@ -186,6 +186,13 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
+        //
+        $app->POST('/UtilsOnYear', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::UtilsOnYear($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
 
         $app->POST('/HouseUtils', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();

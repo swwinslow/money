@@ -19,6 +19,10 @@ app.controller('HeaderViewController', function(CONFIG, $scope, $location){
     $scope.recipe = function(){
         $location.path("/recipe");
     };
+
+    $scope.blddd = function(){
+        $location.path("/blddd");
+    };
     
     $scope.home = function(){
         $location.path("/");

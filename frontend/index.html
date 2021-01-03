@@ -12,62 +12,50 @@
 
 <body>
 
-<div ng-include="'views/_header.html'"></div>
-<div ng-view></div>
+    <div ng-include="'views/_header.html'"></div>
+    <div ng-view></div>
 
 
-<!--Angular Scripts-->
+    <!--Angular Scripts-->
 
-<script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/lodash/dist/lodash.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/bowser/src/bowser.js"></script>
+    <script src="../configs/canvasjs.min.js"></script>
 
-<script src="../bower_components/angular-route/angular-route.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <script src="app.js"></script>
 
-<script src="../bower_components/lodash/dist/lodash.js"></script>
+    <!-- Config -->
+    <script src="config/config.js"></script>
+    <script src="config/routes.js"></script>
 
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Factories -->
+    <script src="factories/payFactory.js"></script>
+    <script src="factories/investmentsFactory.js"></script>
+    <script src="factories/recipeFactory.js"></script>
+    <script src="factories/budgetFactory.js"></script>
+    <script src="factories/transFactory.js"></script>
+    <script src="factories/completeFactory.js"></script>
+    <script src="factories/bldddFactory.js"></script>
 
-<script src="../bower_components/bowser/src/bowser.js"></script>
-<script src="../configs/canvasjs.min.js"></script>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script src="app.js"></script>
-<!-- Config -->
-<script src="config/config.js"></script>
-<script src="config/routes.js"></script>
-
-<script src="controllers/RecipeController.js"></script>
-<script src="factories/budgetFactory.js"></script>
-
-
-
-<!-- Factories -->
-<script src="factories/payFactory.js"></script>
-<script src="factories/investmentsFactory.js"></script>
-<script src="factories/recipeFactory.js"></script>
-
-
-<script src="factories/transFactory.js"></script>
-
-<script src="factories/completeFactory.js"></script>
-
-
-<!--Controllers-->
-<script src="controllers/HomePageController.js"></script>
-<script src="controllers/HeaderViewController.js"></script>
-
-<script src="controllers/404ViewController.js"></script>
-<script src="controllers/PayViewController.js"></script>
-<script src="controllers/InvestmnetViewContoller.js"></script>
-<script src="controllers/TransactionViewController.js"></script>
-<script src="controllers/BudgetController.js"></script>
-
-
-
+    <!--Controllers-->
+    <script src="controllers/HomePageController.js"></script>
+    <script src="controllers/BudgetController.js"></script>
+    <script src="controllers/HeaderViewController.js"></script>
+    <script src="controllers/404ViewController.js"></script>
+    <script src="controllers/PayViewController.js"></script>
+    <script src="controllers/InvestmnetViewContoller.js"></script>
+    <script src="controllers/TransactionViewController.js"></script>
+    <script src="controllers/BudgetController.js"></script>
+    <script src="controllers/RecipeController.js"></script>
+    <script src="controllers/BLDDDController.js"></script>
 </body>
 
 </html>

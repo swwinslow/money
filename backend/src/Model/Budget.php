@@ -257,6 +257,21 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
+    public static function UtilsOnYear(){
+        global $database;
+        $statement = $database->prepare("SELECT MONTH(DATE) AS month, YEAR(DATE) as year, ROUND(SUM(money),2) as money FROM `trans` WHERE (`business` LIKE 'IPL' OR business = 'Citizen Energy') GROUP BY MONTH(DATE), YEAR(DATE) order by YEAR(DATE), MONTH(date) ASC        ");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    //
+
+
     // public static function (){
     //     global $database;
     //     $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `business` LIKE 'Amazon' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");

@@ -28,6 +28,10 @@ app.config(function ($routeProvider, CONFIG) {
         controller: "RecipeController",
         templateUrl: 'views/recipe.html'
     }).
+    when('/blddd', {
+        controller: "BLDDDController",
+        templateUrl: 'views/blddd.html'
+    }).
     otherwise({
         controller: '404ViewController',
         templateUrl: 'views/404.html'
