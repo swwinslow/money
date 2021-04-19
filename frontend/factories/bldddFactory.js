@@ -20,5 +20,7 @@ app.factory('BLDDDFacotry', function($http, $rootScope) {
         return $http.get(baseUrl + "/PayTotal");
     }
 
+
+
     return data;
 });

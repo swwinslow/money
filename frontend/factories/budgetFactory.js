@@ -526,5 +526,29 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });
     }
 
+    data.YearBLDDDSeth = function() {
+        return $http({
+            method: "POST",
+            url: baseUrl + '/YearBLDDDSeth',
+            data: {}
+        });
+    }
+    
+    data.YearBLDDDEmily = function() {
+        return $http({
+            method: "POST",
+            url: baseUrl + '/YearBLDDDEmily',
+            data: {}
+        });
+    }
+
+    data.YearBLDDDBoth = function() {
+        return $http({
+            method: "POST",
+            url: baseUrl + '/YearBLDDDBoth',
+            data: {}
+        });
+    }
+
     return data;
 });

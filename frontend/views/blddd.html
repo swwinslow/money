@@ -119,6 +119,25 @@
 </div>
 
 <div class="float2">
+    <h2>Insight Data - 2021</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>Business</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr ng-repeat='data in BLDDDPerYear2021'>
+                    <td>{{data.business}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="float2">
     <h2>Insight Data - 2020</h2>
     <div>
         <table class="table table-bordered">
@@ -214,3 +233,54 @@
         </tbody>
     </table>
 </div>
+
+<div>
+    <h2>2021 - BLDD - Seth</h2>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>MONTH</td>
+                <td>SPENT</td>
+            </tr>
+            <tr ng-repeat='data in YearBLDDDSeth'>
+                <td>{{data.month}}</td>
+                <td>{{data.money}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+        <h2>2021 - BLDD - Emily</h2>
+        <table class="table table-bordered">
+    
+            <tbody>
+                <tr>
+                    <td>MONTH</td>
+                    <td>SPENT</td>
+                </tr>
+                <tr ng-repeat='data in YearBLDDDEmily'>
+                    <td>{{data.month}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+            <h2>2021 - BLDD - BOTH</h2>
+            <table class="table table-bordered">
+        
+                <tbody>
+                    <tr>
+                        <td>MONTH</td>
+                        <td>SPENT</td>
+                    </tr>
+                    <tr ng-repeat='data in YearBLDDDBoth'>
+                        <td>{{data.month}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>

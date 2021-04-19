@@ -1,0 +1,106 @@
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 10px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .outer {
+        border: 5px dotted rgb(214, 129, 137);
+        border-radius: 5px;
+        width: absolute;
+        padding: 10px;
+        margin-bottom: 40px;
+    }
+
+    .float1 {
+        padding: 10px;
+        border-radius: 5px;
+        float: center;
+        width: 800px;
+    }
+
+    .float {
+        padding: 10px;
+        border-radius: 5px;
+        float: left;
+        width: 600px;
+    }
+
+    .float2 {
+        padding: 10px;
+        border-radius: 5px;
+        float: left;
+        width: 450px;
+    }
+
+    .overflow {
+        overflow: auto;
+    }
+</style>
+
+<h3>Pelo</h3>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Workout_Timestamp</td>
+                <td>length_min</td>
+                <td>Avg_Watts</td>
+                <td>Avg_Resistance</td>
+            </tr>
+            <tr ng-repeat='data in minuteworkout'>
+                <td>{{data.Workout_Timestamp}}</td>
+                <td>{{data.length_min}}</td>
+                <td>{{data.Avg_Watts}}</td>
+                <td>{{data.Avg_Resistance}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Total Mileage</h3>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Miles</td>
+            </tr>
+            <tr ng-repeat='data in getTotalMilage'>
+                <td>{{data.Distance}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<h3>Total Mileage</h3>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Total Count</td>
+                <td>Length (min)</td>
+
+            </tr>
+            <tr ng-repeat='data in getLargestLength'>
+                <td>{{data.total_count}}</td>
+                <td>{{data.length_min}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

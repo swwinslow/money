@@ -81,7 +81,7 @@ class Budget implements \JsonSerializable
 
     public static function networthYearCalculation(){
         global $database;
-        $statement = $database->prepare("select end_of_year, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth where MONTH(date) = '12' group by end_of_year order by end_of_year DESC");
+        $statement = $database->prepare("select end_of_year, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth where MONTH(date) = '6' group by end_of_year order by end_of_year DESC");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -158,6 +158,42 @@ class Budget implements \JsonSerializable
     public static function houseExtraPrin(){
         global $database;
         $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `items` LIKE '%Extra Principal%' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function YearBLDDDSeth(){
+        global $database;
+        $statement = $database->prepare("SELECT MONTH(DATE) as month, ROUND(SUM(money),2) as money FROM `trans` WHERE `items` LIKE '%BLDDD%' and person = 'Seth' and YEAR(DATE) = '2021' GROUP BY MONTH(DATE) order by MONTH(DATE) DESC;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function YearBLDDDBoth(){
+        global $database;
+        $statement = $database->prepare("SELECT MONTH(DATE) as month, ROUND(SUM(money),2) as money FROM `trans` WHERE `items` LIKE '%BLDDD%' and person = 'Both' and YEAR(DATE) = '2021' GROUP BY MONTH(DATE) order by MONTH(DATE) DESC;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function YearBLDDDEmily(){
+        global $database;
+        $statement = $database->prepare("SELECT MONTH(DATE) as month, ROUND(SUM(money),2) as money FROM `trans` WHERE `items` LIKE '%BLDDD%' and person = 'Emily' and YEAR(DATE) = '2021' GROUP BY MONTH(DATE) order by MONTH(DATE) DESC;");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;

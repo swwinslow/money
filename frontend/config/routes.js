@@ -32,6 +32,10 @@ app.config(function ($routeProvider, CONFIG) {
         controller: "BLDDDController",
         templateUrl: 'views/blddd.html'
     }).
+    when('/pelo', {
+        controller: "PeloController",
+        templateUrl: 'views/pelo.html'
+    }).
     otherwise({
         controller: '404ViewController',
         templateUrl: 'views/404.html'

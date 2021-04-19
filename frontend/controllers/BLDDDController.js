@@ -16,12 +16,25 @@ app.controller('BLDDDController', function ($http, CONFIG, $scope, $location, Bu
     });
     BudgetFactory.BLDDDPerYear2019().then(function (response) {
         $scope.BLDDDPerYear2019 = response.data.data;
-     });
-     BudgetFactory.BLDDDPerYear2018().then(function (response) {
+    });
+    
+    BudgetFactory.BLDDDPerYear2018().then(function (response) {
         $scope.BLDDDPerYear2018 = response.data.data;
-     });
+    });
 
-     BudgetFactory.insightData().then(function (response) {
+    BudgetFactory.insightData().then(function (response) {
         $scope.BLDDD = response.data.data.BLDDD;
+    });
+
+    BudgetFactory.YearBLDDDSeth().then(function (response) {
+        $scope.YearBLDDDSeth = response.data.data;
+    });
+
+    BudgetFactory.YearBLDDDEmily().then(function (response) {
+        $scope.YearBLDDDEmily = response.data.data;
+    });
+
+    BudgetFactory.YearBLDDDBoth().then(function (response) {
+        $scope.YearBLDDDBoth = response.data.data;
     });
 });
