@@ -89,6 +89,15 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
+    data.predictValuesItemsCurrentYear = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/predictValuesItemsCurrentYear',
+            data: {
+                "year": '202'
+            }
+        });    
+    }
 
     data.resturantsData = function(){
         return $http({  
@@ -175,16 +184,7 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-    data.salaryReview2019 = function(){
-        return $http({
-            method: "POST",
-            url: baseUrl + '/salaryReview',
-            data: {
-                "year": '2019'
-            }
-        });    
-    }
-
+    //SALARY REVIEW
     data.salaryReview2020 = function(){
         return $http({
             method: "POST",
@@ -194,13 +194,21 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
-
     data.salaryReview2021 = function(){
         return $http({
             method: "POST",
             url: baseUrl + '/salaryReview',
             data: {
                 "year": '2021'
+            }
+        });    
+    }
+    data.salaryReview2022 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/salaryReview',
+            data: {
+                "year": '2022'
             }
         });    
     }
@@ -246,8 +254,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-    //
-
     data.yearCategoryReview2021 = function(){
         return $http({
             method: "POST",
@@ -258,16 +264,7 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-    data.payVSpent2019 = function(){
-        return $http({
-            method: "POST",
-            url: baseUrl + '/payVSpent',
-            data: {
-                "year": '2019'
-            }
-        });    
-    }
-
+    //PAY V SPENT PER YEAR
     data.payVSpent2020 = function(){
         return $http({
             method: "POST",
@@ -277,7 +274,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
-
     data.payVSpent2021 = function(){
         return $http({
             method: "POST",
@@ -287,7 +283,35 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
+    data.payVSpent2022 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/payVSpent',
+            data: {
+                "year": '2022'
+            }
+        });    
+    }
 
+    //BLDDD - PER YEAR
+    data.BLDDDPerYear2018 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/BLDDDPerYear',
+            data: {
+                "year": '2018'
+            }
+        });    
+    }
+    data.BLDDDPerYear2019 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/BLDDDPerYear',
+            data: {
+                "year": '2019'
+            }
+        });    
+    }
     data.BLDDDPerYear2020 = function(){
         return $http({
             method: "POST",
@@ -297,45 +321,67 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
-    data.BLDDDPerYear2019 = function(){
+    data.BLDDDPerYear2021 = function(){
         return $http({
             method: "POST",
             url: baseUrl + '/BLDDDPerYear',
             data: {
-                "year": '2019'
+                "year": '2021'
             }
         });    
     }
-    data.BLDDDPerYear2018 = function(){
+    data.BLDDDPerYear2022 = function(){
         return $http({
             method: "POST",
             url: baseUrl + '/BLDDDPerYear',
             data: {
-                "year": '2018'
-            }
-        });    
-    }
-
-    data.BLDDDPerYear2019 = function(){
-        return $http({
-            method: "POST",
-            url: baseUrl + '/BLDDDPerYear',
-            data: {
-                "year": '2019'
+                "year": '2022'
             }
         });    
     }
 
-    data.BLDDDPerYear2018 = function(){
-        return $http({
+    //YearBLDDDTotal
+    data.YearBLDDDTotal = function(){
+        return $http({  
             method: "POST",
-            url: baseUrl + '/BLDDDPerYear',
-            data: {
-                "year": '2018'
-            }
-        });    
+            url: baseUrl + '/YearBLDDDTotal',
+        });   
     }
+
+    //computeBLDDDTotal
+    data.computeBLDDDTotal = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/computeBLDDDTotal',
+        });   
+    }
+    
     //
+    data.BMVYear = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/BMVYear',
+        });   
+    }
+
+    //
+    data.NetworthPerQuarter = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/NetworthPerQuarter',
+        });   
+    }
+
+
+    //
+    data.networthYearPercentage = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/networthYearPercentage',
+        });   
+    }
+
+
 
     data.HouseUtils = function(){
         return $http({
@@ -457,25 +503,7 @@ app.factory('BudgetFactory', function($http, $rootScope) {
     }
 
 
-    data.miscItems2019 = function(){
-        return $http({
-            method: "POST",
-            url: baseUrl + '/miscItems',
-            data: {
-                "year": '2019'
-            }
-        });    
-    }
 
-    data.miscItems2020 = function(){
-        return $http({
-            method: "POST",
-            url: baseUrl + '/miscItems',
-            data: {
-                "year": '2020'
-            }
-        });    
-    }
 
     data.gerneralData = function(){
         return $http({
@@ -487,14 +515,40 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-    //
-
+    ////// MISC PER YEAR /////
+    data.miscItems2019 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/miscItems',
+            data: {
+                "year": '2019'
+            }
+        });    
+    }
+    data.miscItems2020 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/miscItems',
+            data: {
+                "year": '2020'
+            }
+        });    
+    }
     data.miscItems2021 = function(){
         return $http({
             method: "POST",
             url: baseUrl + '/miscItems',
             data: {
                 "year": '2021'
+            }
+        });    
+    }
+    data.miscItems2022 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/miscItems',
+            data: {
+                "year": '2022'
             }
         });    
     }

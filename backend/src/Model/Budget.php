@@ -81,7 +81,32 @@ class Budget implements \JsonSerializable
 
     public static function networthYearCalculation(){
         global $database;
-        $statement = $database->prepare("select end_of_year, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth where MONTH(date) = '6' group by end_of_year order by end_of_year DESC");
+        $statement = $database->prepare("select end_of_year, date, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth group by date order by date DESC");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    //
+    public static function networthYearPercentage(){
+        global $database;
+        $statement = $database->prepare("SELECT *, (t1.category_money_value / t2.total_money_value * 100) as percentage FROM (select category_type, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS category_money_value from net_worth where YEAR(date) = '2021' and MONTH(date) = '12' group by category_type order by date DESC) as t1, (select ROUND(SUM(`category_value` - `category_ liabilities`),2) AS total_money_value from net_worth where YEAR(date) = '2021' and MONTH(date) = '6' group by date order by date DESC) as t2");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public static function NetworthPerQuarter(){
+        global $database;
+        $statement = $database->prepare("select MONTH(NOW()) as month_current, end_of_year as 'year', date, MONTH(date) as 'month', ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth group by date order by date DESC LIMIT 16");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -95,7 +120,20 @@ class Budget implements \JsonSerializable
     //need to implement in the front end
     public static function networthYearCalculationCategory() {
         global $database;
-        $statement = $database->prepare("select `category_type`, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth where MONTH(date) = '12' and YEAR(date) = '2020' group by category_type");
+        $statement = $database->prepare("select `category_type`, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth where MONTH(date) = '12' and YEAR(date) = '2021' group by category_type");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    //
+    public static function BMVYear(){
+        global $database;
+        $statement = $database->prepare("select ROUND(SUM(money),2) as money, YEAR(date) as year from trans where business = 'BMV' group by YEAR(date) order by YEAR(date) ASC");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -179,6 +217,19 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
+    //
+    public static function YearBLDDDTotal(){
+        global $database;
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as amount, YEAR(date) as year from trans where items LIKE '%BLDDD%' group by YEAR(date);");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
     public static function YearBLDDDBoth(){
         global $database;
         $statement = $database->prepare("SELECT MONTH(DATE) as month, ROUND(SUM(money),2) as money FROM `trans` WHERE `items` LIKE '%BLDDD%' and person = 'Both' and YEAR(DATE) = '2021' GROUP BY MONTH(DATE) order by MONTH(DATE) DESC;");
@@ -190,6 +241,45 @@ class Budget implements \JsonSerializable
         $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
     }
+
+    public static function computeBLDDDTotal(){
+        global $database;    
+        //total data
+        $statement = $database->prepare("SELECT MONTH(DATE) as month, Year(date) as year, ROUND(SUM(money),2) as total_money FROM `trans` WHERE `items` LIKE '%BLDDD%' and (YEAR(DATE) = YEAR(CURDATE())) GROUP BY MONTH(date) order by month desc");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+        $totalData = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        $statement = $database->prepare("SELECT MONTH(DATE) as month, Year(date) as year, ROUND(SUM(money),2) as both_money FROM `trans` WHERE `items` LIKE '%BLDDD%' and person = 'Both' and (YEAR(DATE) = YEAR(CURDATE())) GROUP BY MONTH(date) order by month desc");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+        $bothData = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        $statement = $database->prepare("SELECT MONTH(DATE) as month, Year(date) as year, ROUND(SUM(money),2) as emily_money FROM `trans` WHERE `items` LIKE '%BLDDD%' and person = 'Emily' and (YEAR(DATE) = YEAR(CURDATE())) GROUP BY MONTH(date) order by month desc");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+        $emilyData = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        $statement = $database->prepare("SELECT MONTH(DATE) as month, Year(date) as year, ROUND(SUM(money),2) as seth_money FROM `trans` WHERE `items` LIKE '%BLDDD%' and person = 'Seth' and (YEAR(DATE) = YEAR(CURDATE())) GROUP BY MONTH(date) order by month desc");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+        $sethData = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        $data = array('Total' => $totalData,  'Both' => $bothData, 'Emily' => $emilyData, 'Seth' => $sethData);
+
+        return $data;
+    }
+
+    
+
 
     public static function YearBLDDDEmily(){
         global $database;
@@ -481,6 +571,25 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
+    public static function predictValuesItemsCurrentYear($body)
+    {
+        global $database;
+        $statement = $database->prepare("SELECT ((end_month_predict + current_end_predict) / 2) as middle_number, end_month_predict,  current_end_predict,    TOTAL_MONEY_SPENT      FROM (SELECT *, (end_month_predict_year_percentage * TOTAL_MONEY_SPENT) AS end_month_predict, (current_predict_year_percentage * TOTAL_MONEY_SPENT) AS current_end_predict  FROM (SELECT *, (all_days / end_of_month) as end_month_predict_year_percentage,(all_days / current_days) as current_predict_year_percentage FROM (SELECT SUM(money) AS TOTAL_MONEY_SPENT,DAYOFYEAR(NOW()) AS current_days, 365 AS all_days,DAYOFYEAR(LAST_DAY(NOW())) as end_of_month FROM (SELECT ROUND(SUM(money),2) as money, MONTH(DATE) as month FROM `trans` WHERE `items` LIKE '%BLDDD%' and YEAR(DATE) = YEAR(CURDATE()) GROUP BY MONTH(DATE) ORDER BY `trans`.`date` ASC) as p1) as p2) as p3) as p4;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+        $blddd = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        $statement = $database->prepare("SELECT ((end_month_predict + current_end_predict) / 2) as middle_number, end_month_predict, current_end_predict, TOTAL_MONEY_SPENT FROM (SELECT *, (end_month_predict_year_percentage * TOTAL_MONEY_SPENT) AS end_month_predict, (current_predict_year_percentage * TOTAL_MONEY_SPENT) AS current_end_predict FROM (SELECT *, (all_days / end_of_month) as end_month_predict_year_percentage,(all_days / current_days) as current_predict_year_percentage FROM (SELECT SUM(money) AS TOTAL_MONEY_SPENT,DAYOFYEAR(NOW()) AS current_days, 365 AS all_days,DAYOFYEAR(LAST_DAY(NOW())) as end_of_month FROM (SELECT ROUND(SUM(money),2) as money, MONTH(DATE) as month FROM `trans` WHERE CATEGORY = 'Car' and `items` LIKE 'Gas' and YEAR(DATE) = YEAR(CURDATE()) GROUP BY MONTH(DATE) ORDER BY `trans`.`date` ASC) as p1) as p2) as p3) as p4");
+        $statement->execute();
+        $gas = $statement->fetchAll(\PDO::FETCH_ASSOC);   
+       
+        $data = array('BLDDD' => $blddd,  'Gas' => $gas);
+
+        return $data;
+    }
+
 
     public static function resturantsData($body)
     {
@@ -566,7 +675,7 @@ class Budget implements \JsonSerializable
         $statement->execute();
         $extraPrin = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-         $data = array('Grocercies' => $grocercies, 'Car' => $car,'Apartment' => $apartment,'GeneralHousing' => $generalHousing,'TotalMortage' => $totalmMortage,'ExtraPrincibal' => $extraPrin);
+        $data = array('Grocercies' => $grocercies, 'Car' => $car,'Apartment' => $apartment,'GeneralHousing' => $generalHousing,'TotalMortage' => $totalmMortage,'ExtraPrincibal' => $extraPrin);
 
        return $data;
     }

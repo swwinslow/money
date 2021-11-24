@@ -1,0 +1,89 @@
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 10px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .outer {
+        border: 5px dotted rgb(214, 129, 137);
+        border-radius: 5px;
+        width: absolute;
+        padding: 10px;
+        margin-bottom: 40px;
+    }
+
+    .float1 {
+        padding: 10px;
+        border-radius: 5px;
+        float: center;
+        width: 800px;
+    }
+
+    .float {
+        padding: 10px;
+        border-radius: 5px;
+        float: left;
+        width: 600px;
+    }
+
+    .float2 {
+        padding: 10px;
+        border-radius: 5px;
+        float: left;
+        width: 450px;
+    }
+
+    .overflow {
+        overflow: auto;
+    }
+</style>
+
+<h1>NETWORTH</h1>
+<div id="chartContainerBudget22" style="height: 300px; max-width: 920px; margin: 0px auto;"></div>
+
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Date</td>
+                <td>MONEY</td>
+            </tr>
+            <tr ng-repeat='data in networthYearCalculation'>
+                <td>{{data.date}}</td>
+                <td>{{data.money_value}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>NETWORTH - Cat 12-2021</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>YEAR</td>
+                <td>MONEY</td>
+            </tr>
+            <tr ng-repeat='data in networthYearCalculationCategory'>
+                <td>{{data.category_type}}</td>
+                <td>{{data.money_value}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="lineChartContainer" style="height: auto; width: auto;"></div>

@@ -24,6 +24,10 @@ app.controller('HeaderViewController', function(CONFIG, $scope, $location){
         $location.path("/blddd");
     };
     
+    $scope.networth = function(){
+        $location.path("/networth");
+    };
+    
     $scope.home = function(){
         $location.path("/");
     }

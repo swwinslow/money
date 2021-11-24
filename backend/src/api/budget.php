@@ -57,6 +57,12 @@ $app->group('/api', function () use ($app){
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
+        $app->POST('/predictValuesItemsCurrentYear', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::predictValuesItemsCurrentYear($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
 
         $app->POST('/yearReview', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
@@ -207,6 +213,46 @@ $app->group('/api', function () use ($app){
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
+
+        //NetworthPerQuarter
+        $app->POST('/NetworthPerQuarter', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::NetworthPerQuarter($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        //networthYearPercentage
+        $app->POST('/networthYearPercentage', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::networthYearPercentage($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+        
+        //YearBLDDDTotal
+        $app->POST('/YearBLDDDTotal', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::YearBLDDDTotal($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        //computeBLDDDTotal
+        $app->POST('/computeBLDDDTotal', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::computeBLDDDTotal($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+    
+        $app->POST('/BMVYear', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::BMVYear($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
         
         $app->POST('/BLDDDMonths', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
