@@ -49,24 +49,20 @@
         overflow: auto;
     }
 </style>
+    <h3>SETH</h3>
 
-<h3>Pelo</h3>
+
+<h3>Last Time Stamp</h3>
 <div>
     <table class="table table-bordered">
 
         <tbody>
             <tr>
-                <td>Workout_Timestamp</td>
-                <td>length_min</td>
-                <td>Avg_Watts</td>
-                <td>Avg_Resistance</td>
-            </tr>
-            <tr ng-repeat='data in minuteworkout'>
-                <td>{{data.Workout_Timestamp}}</td>
-                <td>{{data.length_min}}</td>
-                <td>{{data.Avg_Watts}}</td>
-                <td>{{data.Avg_Resistance}}</td>
+                <td>Date</td>
 
+            </tr>
+            <tr ng-repeat='data in latestTimeStamp'>
+                <td>{{data.Workout_Timestamp}}</td>
             </tr>
         </tbody>
     </table>
@@ -86,7 +82,7 @@
         </tbody>
     </table>
 </div>
-<h3>Total Mileage</h3>
+<h3>COUNTS</h3>
 <div>
     <table class="table table-bordered">
 
@@ -98,8 +94,90 @@
             </tr>
             <tr ng-repeat='data in getLargestLength'>
                 <td>{{data.total_count}}</td>
-                <td>{{data.length_min}}</td>
+                <td>{{data.Length_minutes}}</td>
 
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Best Rides</h3>
+<div>
+    <table class="table table-bordered">
+            
+        <tbody>
+            <tr>
+                <td>Length (minutes)</td>
+                <td>Workout_Timestamp</td>
+                <td>Total_Output</td>
+                <td>Avg_Resistance</td>
+                <td>Avg_Cadence_RPM</td>
+                <td>Avg_Speed_mph</td>
+                <td>Distance (mi)</td>
+                <td>Calories_Burned</td>
+                <td>mile_average</td>
+
+            </tr>
+            <tr ng-repeat='data in getBestRide'>
+                <td>{{data.Length_minutes}}</td>
+                <td>{{data.Workout_Timestamp}}</td>
+                <td>{{data.Total_Output}}</td>
+                <td>{{data.Avg_Resistance}}</td>
+                <td>{{data.Avg_Cadence_RPM}}</td>
+                <td>{{data.Avg_Speed_mph}}</td>
+                <td>{{data.Distance_mi}}</td>
+                <td>{{data.Calories_Burned}}</td>
+                <td>{{data.mile_average}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h3>Total Minutes</h3>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Total Minutes</td>
+            </tr>
+            <tr ng-repeat='data in TotalMinutesForever'>
+                <td>{{data.Total_Minutes}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Total Minutes Per Month</h3>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Total Minutes</td>
+                <td>Year & Month</td>
+            </tr>
+            <tr ng-repeat='data in TotalMinutesPerMonth'>
+                <td>{{data.Total_Minutes}}</td>
+                <td>{{data.year_and_month}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Total Miles Per Month</h3>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Total Miles</td>
+                <td>Year & Month</td>
+            </tr>
+            <tr ng-repeat='data in TotalMilesPerMonth'>
+                <td>{{data.Total_Miles}}</td>
+                <td>{{data.year_and_month}}</td>
             </tr>
         </tbody>
     </table>

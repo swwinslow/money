@@ -59,6 +59,7 @@ app.controller('BLDDDController', function ($http, CONFIG, $scope, $location, Bu
 
     BudgetFactory.computeBLDDDTotal().then(function (response) {
         $scope.completeBLDDD = [];
+        console.log(response.data.data);
         $scope.totalData = response.data.data.Total;
         $scope.bothData = response.data.data.Both;
         $scope.emilyData = response.data.data.Emily;

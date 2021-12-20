@@ -32,9 +32,13 @@ app.config(function ($routeProvider, CONFIG) {
         controller: "BLDDDController",
         templateUrl: 'views/blddd.html'
     }).
-    when('/pelo', {
+    when('/pelo-seth', {
         controller: "PeloController",
         templateUrl: 'views/pelo.html'
+    }).
+    when('/pelo-emily', {
+        controller: "PeloEmilyController",
+        templateUrl: 'views/pelo-emily.html'
     }).
     when('/networth', {
         controller: "NetWorthController",

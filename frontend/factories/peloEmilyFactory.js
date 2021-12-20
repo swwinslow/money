@@ -1,7 +1,7 @@
-app.factory('PeloFactory', function($http, $rootScope) {
+app.factory('PeloEmilyFactory', function($http, $rootScope) {
 
     var data = {};
-    var baseUrl = location.origin +'/money/backend/public/api/pelo';
+    var baseUrl = location.origin +'/money/backend/public/api/pelo-emily';
 
 
     data.minuteworkout = function() {
@@ -17,22 +17,10 @@ app.factory('PeloFactory', function($http, $rootScope) {
     data.getBestRide = function() {
         return $http.get(baseUrl + "/getBestRide");
     }
-
+    //
     data.latestTimeStamp = function() {
         return $http.get(baseUrl + "/latestTimeStamp");
     }
-    data.TotalMinutesForever = function() {
-        return $http.get(baseUrl + "/TotalMinutesForever");
-    }
-    data.TotalMinutesPerMonth = function() {
-        return $http.get(baseUrl + "/TotalMinutesPerMonth");
-    }
-    data.TotalMilesPerMonth = function() {
-        return $http.get(baseUrl + "/TotalMilesPerMonth");
-    }
-
-
-
 
     return data;
 });

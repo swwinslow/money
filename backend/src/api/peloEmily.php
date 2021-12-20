@@ -1,11 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", true);
-use backend\src\Model\Pelo;
+use backend\src\Model\PeloEmily;
 require_once "../utilities/response.php";
 
 $app->group('/api', function () use ($app){
-    $app->group('/pelo', function() use ($app) {
+    $app->group('/pelo-emily', function() use ($app) {
 
         /* ========================================================== *
          * GET
@@ -13,56 +13,38 @@ $app->group('/api', function () use ($app){
 
         $app->get('/20minuteworkout', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
-            $workout = Pelo::get20MinWorkout($body);
+            $workout = PeloEmily::get20MinWorkout($body);
             $output = new Response($workout);
             $response->getBody()->write(json_encode($output));
         });
 
         $app->get('/getTotalMilage', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
-            $workout = Pelo::getTotalMilage($body);
+            $workout = PeloEmily::getTotalMilage($body);
             $output = new Response($workout);
             $response->getBody()->write(json_encode($output));
         });
 
         $app->get('/getLargestLength', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
-            $workout = Pelo::getLargestLength($body);
+            $workout = PeloEmily::getLargestLength($body);
             $output = new Response($workout);
             $response->getBody()->write(json_encode($output));
         });
 
         $app->get('/getBestRide', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
-            $workout = Pelo::getBestRide($body);
+            $workout = PeloEmily::getBestRide($body);
             $output = new Response($workout);
             $response->getBody()->write(json_encode($output));
         });
         $app->get('/latestTimeStamp', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
-            $workout = Pelo::latestTimeStamp($body);
+            $workout = PeloEmily::latestTimeStamp($body);
             $output = new Response($workout);
             $response->getBody()->write(json_encode($output));
         });
-        $app->get('/TotalMinutesForever', function($request, $response, $args) use ($app){
-            $body = $request->getParsedBody();
-            $workout = Pelo::TotalMinutesForever($body);
-            $output = new Response($workout);
-            $response->getBody()->write(json_encode($output));
-        });
-        $app->get('/TotalMinutesPerMonth', function($request, $response, $args) use ($app){
-            $body = $request->getParsedBody();
-            $workout = Pelo::TotalMinutesPerMonth($body);
-            $output = new Response($workout);
-            $response->getBody()->write(json_encode($output));
-        });
-        $app->get('/TotalMilesPerMonth', function($request, $response, $args) use ($app){
-            $body = $request->getParsedBody();
-            $workout = Pelo::TotalMilesPerMonth($body);
-            $output = new Response($workout);
-            $response->getBody()->write(json_encode($output));
-        });
-
+        //
         
         
         //

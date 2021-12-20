@@ -54,6 +54,7 @@ require __DIR__ . '/../src/api/complete.php';
 require __DIR__ . '/../src/api/budget.php';
 require __DIR__ . '/../src/api/recipe.php';
 require __DIR__ . '/../src/api/pelo.php';
+require __DIR__ . '/../src/api/peloEmily.php';
 
 
 //Register Models
@@ -64,6 +65,7 @@ require __DIR__ . '/../src/Model/Complete.php';
 require __DIR__ . '/../src/Model/Budget.php';
 require __DIR__ . '/../src/Model/Recipe.php';
 require __DIR__ . '/../src/Model/Pelo.php';
+require __DIR__ . '/../src/Model/PeloEmily.php';
 
 
 // Run app
