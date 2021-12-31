@@ -4,6 +4,7 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    $scope.showError = false;
    $scope.show2020Comp = true;
    $scope.show2021Comp = true;
+   $scope.show2022Comp = true;
 
 
    var groPer = 0;
@@ -39,6 +40,17 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    var businesPerBudget21 = 0;
    var savingsPerBudget21 = 0;
 
+   var groPerBudget22 = 0;
+   var miscPerBudget22 = 0;
+   var carPerBudget22 = 0;
+   var housingPerBudget22 = 0;
+   var edcPerBudget22 = 0;
+   var medPerBudget22 = 0;
+   var clothesPerBudget22 = 0;
+   var donationPerBudget22 = 0;
+   var businesPerBudget22 = 0;
+   var savingsPerBudget22 = 0;
+   
    var nwBank = 0;
    var nwRetirement   = 0;
    var nwInvestment = 0;
@@ -151,6 +163,10 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    BudgetFactory.fullYearReview2021().then(function (response) {
       $scope.year2021 = response.data.data;
    });
+   BudgetFactory.fullYearReview2022().then(function (response) {
+      $scope.year2022 = response.data.data;
+   });
+
 
    BudgetFactory.predictValues2020().then(function (response) {
       $scope.predictValues2020 = response.data.data;
@@ -243,6 +259,87 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
       chart21.render();
    })
 
+   BudgetFactory.yearCategoryReview2022().then(function (response) {
+      $scope.yearCategory2022 = response.data.data;
+      console.log("!!!!");
+      console.log(response.data.data);
+      console.log("!!!!");
+
+
+      for (var i = 0; i < response.data.data.length; i++) {
+         if (response.data.data[i].category == "GROCERIES") {
+            groPerSpent22 = response.data.data[i].spent_percentage;
+            groPerBudget22 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "MISC") {
+            miscPerSpent22 = response.data.data[i].spent_percentage;
+            miscPerBudget22 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "CAR") {
+            carPerSpent22 = response.data.data[i].spent_percentage;
+            carPerBudget22 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "HOUSING") {
+            housingPerSpent22 = response.data.data[i].spent_percentage;
+            housingPerBudget22 = response.data.data[i].budget_percentage;
+
+         }
+         if (response.data.data[i].category == "EDUCATION") {
+            edcPerSpent21 = response.data.data[i].spent_percentage;
+            edcPerBudget21 = response.data.data[i].budget_percentage;
+
+         }
+         if (response.data.data[i].category == "MEDICAL") {
+            medPerSpent22 = response.data.data[i].spent_percentage;
+            medPerBudget22 = response.data.data[i].budget_percentage;
+
+         }
+         if (response.data.data[i].category == "CLOTHES") {
+            clothesPerSpent22 = response.data.data[i].spent_percentage;
+            clothesPerBudget22 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "DONATION") {
+            donationPerSpent22 = response.data.data[i].spent_percentage;
+            donationPerBudget22 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "BUSINESS") {
+            businesPerSpent22 = response.data.data[i].spent_percentage;
+            businesPerBudget22 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "SAVINGS") {
+            savingsPerSpent22 = response.data.data[i].spent_percentage;
+            savingsPerBudget22 = response.data.data[i].budget_percentage;
+         }
+
+      }
+      
+      var chart22 = new CanvasJS.Chart("chartContainerBudget22", {
+         animationEnabled: true,
+         title: {
+            text: "Spent % on Caregories "
+         },
+         data: [{
+            type: "pie",
+            startAngle: 240,
+            yValueFormatString: "##0.00\"%\"",
+            indexLabel: "{label} {y}",
+            dataPoints: [
+               { y: groPerSpent22, label: "GROCERIES" },
+               { y: miscPerBudget22, label: "MISC" },
+               { y: carPerBudget22, label: "CAR" },
+               { y: housingPerBudget22, label: "HOUSING" },
+               { y: edcPerBudget22, label: "EDUCATION" },
+               { y: medPerBudget22, label: "MEDICAL" },
+               { y: clothesPerBudget22, label: "CLOTHES" },
+               { y: donationPerBudget22, label: "DONATION" },
+               { y: businesPerBudget22, label: "BUSINESS" },
+               { y: savingsPerBudget22, label: "SAVINGS" },
+            ]
+         }]
+      });
+      chart22.render();
+   })
+
    BudgetFactory.networthYearPercentage().then(function (response) {
       $scope.networthYearPercentage = response.data.data;
 
@@ -273,27 +370,7 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
          }
       }
       
-      var chart22 = new CanvasJS.Chart("chartContainerBudget22", {
-         animationEnabled: true,
-         title: {
-            text: "Networth % on Categories "
-         },
-         data: [{
-            type: "pie",
-            startAngle: 240,
-            yValueFormatString: "##0.00\"%\"",
-            indexLabel: "{label} {y}",
-            dataPoints: [
-               { y: nwBank, label: "Bank" },
-               { y: nwRetirement, label: "Retirment" },
-               { y: nwCar, label: "Car" },
-               { y: nwHouse, label: "House" },
-               { y: nwEducation, label: "Education" },
-               { y: nwBusiness, label: "BUSINESS" },
-               { y: nwSavings, label: "Savings" },
-            ]
-         }]
-      });
+      
       chart22.render();
    });
 

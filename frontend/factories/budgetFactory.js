@@ -49,6 +49,15 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
+    data.fullYearReview2022 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/fullYearReview',
+            data: {
+                "year": '2022'
+            }
+        });    
+    }
 
     data.salaryReview2018 = function(){
         return $http({
@@ -260,6 +269,15 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             url: baseUrl + '/yearCategoryReview',
             data: {
                 "year": '2021'
+            }
+        });    
+    }
+    data.yearCategoryReview2022 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/yearCategoryReview',
+            data: {
+                "year": '2022'
             }
         });    
     }

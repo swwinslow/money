@@ -57,6 +57,8 @@ app.controller('NetWorthController', function ($http, CONFIG, $scope, $location,
                  { y: nwEducation, label: "Education" },
                  { y: nwBusiness, label: "Business" },
                  { y: nwSavings, label: "Savings" },
+                 { y: nwInvestment, label: "Investment" },
+
               ]
            }]
         });
