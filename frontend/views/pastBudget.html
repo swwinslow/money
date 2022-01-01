@@ -1,0 +1,147 @@
+<div>
+
+    <h1>YEAR 2021</h1>
+
+    <div>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>Salary</td>
+                    <td>Trans</td>
+                    <td>Salary - Trans =</td>
+                    <td>Budget</td>
+                    <td>Salary - Budget =</td>
+
+                </tr>
+                <tr>
+                    <td>{{year2021Salary}}</td>
+                    <td>{{year2021Trans}}</td>
+                    <td>{{year2021Difference}}</td>
+                    <td>{{year2021budget}}</td>
+                    <td>{{year2021Uncounted}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Cats 2021</h2>
+
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <td>Catgory</td>
+                <td>Budget Money</td>
+                <td>Spent Money</td>
+                <td>Budget %</td>
+                <td>Spent %</td>
+                <td>Left Over</td>
+
+                <tr ng-repeat='year in yearCategory2021'>
+                    <td>{{year.category}}</td>
+                    <td>{{year.budget_money}}</td>
+                    <td>{{year.spent_money}}</td>
+                    <td>{{year.budget_percentage}}</td>
+                    <td>{{year.spent_percentage}}</td>
+                    <td ng-style="year.NEGATIVE === 'TRUE' && {'background-color': 'red'} || year.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}">{{year.difference}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="chartContainerBudget21" style="height: 300px; max-width: 920px; margin: 0px auto;"></div>
+
+
+    <h2>MONTHS 2021</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr ng-repeat='data in year2021'>
+                    <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
+             data.month === 'FEBRUARY' && {'background-color': 'pink'}|| 
+             data.month === 'MARCH' && {'background-color': 'green'}|| 
+             data.month === 'APRIL' && {'background-color': 'gray'}|| 
+             data.month === 'MAY' && {'background-color': '#40e0d0'}|| 
+             data.month === 'JUNE' && {'background-color': 'yellow'}|| 
+             data.month === 'JULY' && {'background-color': 'white'}|| 
+             data.month === 'AUGUST' && {'background-color': 'blue'}|| 
+             data.month === 'SEPTEMBER' && {'background-color': '#FF4500'}|| 
+             data.month === 'OCTOBER' && {'background-color': 'orange'}|| 
+             data.month === 'NOVEMBER' && {'background-color': 'green'}||
+            data.month === 'DECEMBER' && {'background-color': 'red'}">
+                        {{data.month}}</td>
+                    <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
+            data.month === 'FEBRUARY' && {'background-color': 'pink'}|| 
+            data.month === 'MARCH' && {'background-color': 'green'}|| 
+            data.month === 'APRIL' && {'background-color': 'gray'}|| 
+            data.month === 'MAY' && {'background-color': '#40e0d0'}|| 
+            data.month === 'JUNE' && {'background-color': 'yellow'}|| 
+            data.month === 'JULY' && {'background-color': 'white'}|| 
+            data.month === 'AUGUST' && {'background-color': 'blue'}|| 
+            data.month === 'SEPTEMBER' && {'background-color': '#FF4500'}|| 
+            data.month === 'OCTOBER' && {'background-color': 'orange'}|| 
+            data.month === 'NOVEMBER' && {'background-color': 'green'}||
+           data.month === 'DECEMBER' && {'background-color': 'red'}">{{data.year}}</td>
+                    <td>{{data.category}}</td>
+                    <td>{{data.c_money}}</td>
+                    <td>{{data.MONEY}}</td>
+                    <td ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}">{{data.money_difference}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Pay V Spent 2021</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>MONTH ID</td>
+                    <td>YEAR</td>
+                    <td>Pay Amount</td>
+                    <td>Budget Amount</td>
+                    <td>UnCounted Amount</td>
+                    <td>Spent Amount</td>
+                    <td>Difference</td>
+
+                </tr>
+                <tr ng-repeat='data in payvspent2021'>
+                    <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
+             data.month === '2' && {'background-color': 'pink'}|| 
+             data.month === '3' && {'background-color': 'green'}|| 
+             data.month === '4' && {'background-color': 'gray'}|| 
+             data.month === '5' && {'background-color': '#40e0d0'}|| 
+             data.month === '6' && {'background-color': 'yellow'}|| 
+             data.month === '7' && {'background-color': 'white'}|| 
+             data.month === '8' && {'background-color': 'blue'}|| 
+             data.month === '9' && {'background-color': '#FF4500'}|| 
+             data.month === '10' && {'background-color': 'orange'}|| 
+             data.month === '11' && {'background-color': 'green'}||
+            data.month === '12' && {'background-color': 'red'}">
+                        {{data.month}}</td>
+                    <td ng-style="data.month === '1' && {'background-color': 'blue'} ||
+            data.month === '2' && {'background-color': 'pink'}|| 
+            data.month === '3' && {'background-color': 'green'}|| 
+            data.month === '4' && {'background-color': 'gray'}|| 
+            data.month === '5' && {'background-color': '#40e0d0'}|| 
+            data.month === '6' && {'background-color': 'yellow'}|| 
+            data.month === '7' && {'background-color': 'white'}|| 
+            data.month === '8' && {'background-color': 'blue'}|| 
+            data.month === '9' && {'background-color': '#FF4500'}|| 
+            data.month === '10' && {'background-color': 'orange'}|| 
+            data.month === '11' && {'background-color': 'green'}||
+           data.month === '12' && {'background-color': 'red'}">{{data.year}}</td>
+                    <td>{{data.pay_amount}}</td>
+                    <td>{{data.budget_amount}}</td>
+                    <td>{{data.uncounted_money}}</td>
+                    <td>{{data.spent_amount}}</td>
+                    <td ng-style="data.NEGATIVE === 'TRUE' && {'background-color': 'red'} || data.NEGATIVE === 'FALSE' && {'background-color': '#8FBC8F'}">{{data.money_difference}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="lineChartContainer" style="height: auto; width: auto;"></div>

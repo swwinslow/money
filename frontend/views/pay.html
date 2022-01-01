@@ -1,49 +1,143 @@
-<h1>Pay</h1>
 
-<P ng-show='showError'>{{showErrorMessage}}</P>
-<button ng-click="addPay()"> Add Pay</button>
-
-<div ng-show='showNewPay'>
-<table class="table table-bordered" >
-    <thead>
-      <tr>
-        <th>Company</th>
-        <th>Amount</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="text" ng-model="newPay.company"></td>
-        <td><input type="text" ng-model="newPay.amount"></td>
-        <td><input type="date" ng-model="newPay.date"></td>
-      </tr>
-    </tbody>
-</table>
-<button ng-click='submitPay(newPay)'> Save Pay</button>
+<H1>------------PAY PAY PAY--------------</H1>
 </div>
 
-<div ng-show='showErrorWithNew'>
-    <h1>{{showErrorMessage}}</h1>
+
+<div class="outer overflow">
+    <div class="float2">
+        <h2>Elements Pay</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in elementsPay'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="float2">
+        <h2>Lilly Pay</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in lillyPay'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="float2">
+        <h2>CHASE CREDIT CARD</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in chaseCreditCardPay'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
 </div>
 
-<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Company</th>
-        <th>Amount</th>
-        <th>Date</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat='pay in payments'>
-        <td><input type="text" ng-model="pay.company"></td>
-        <td><input type="text" ng-model="pay.amount"></td>
-        <td><input type="text" ng-model="pay.date"></td>
-        <td><button ng-click='updatePay(pay)'>Update</button></td>
-        <td><button ng-click='deletePay(pay)'>Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
+
+
+
+
+
+<h2>Insight Data - Pay By Year</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>MONEY</td>
+                <td>YEAR</td>
+            </tr>
+            <tr ng-repeat='data in PayYear'>
+                <td>{{data.year}}</td>
+                <td>{{data.money}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>Insight Data - Seth Pay</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Year</td>
+                <td>Money</td>
+            </tr>
+            <tr ng-repeat='data in SethPay'>
+                <td>{{data.year}}</td>
+                <td>{{data.amount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>Insight Data - Emily Pay</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Year</td>
+                <td>Money</td>
+            </tr>
+            <tr ng-repeat='data in EmilyPay'>
+                <td>{{data.year}}</td>
+                <td>{{data.amount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+</div>
+
+<h2>Next Pay</h2>
+<div>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Date</td>
+            </tr>
+            <tr ng-repeat='data in nextPayDay'>
+                <td>{{data.next_pay_day}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

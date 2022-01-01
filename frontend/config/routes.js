@@ -44,6 +44,10 @@ app.config(function ($routeProvider, CONFIG) {
         controller: "NetWorthController",
         templateUrl: 'views/net_worth.html'
     }).
+    when('/pastBudget', {
+        controller: "PastBudgetController",
+        templateUrl: 'views/pastbudget.html'
+    }).
     otherwise({
         controller: '404ViewController',
         templateUrl: 'views/404.html'

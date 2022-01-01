@@ -33,6 +33,9 @@ app.controller('HeaderViewController', function(CONFIG, $scope, $location){
     $scope.peloemily = function(){
         $location.path("/pelo-emily");
     };
+    $scope.pastBudget = function(){
+        $location.path("/pastBudget");
+    };
     //
     
     $scope.home = function(){

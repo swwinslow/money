@@ -698,7 +698,7 @@ class Budget implements \JsonSerializable
     {
           
         global $database;
-        $statement = $database->prepare("SELECT YEAR(DATE) as year, ROUND(SUM(amount),2) as amount FROM `pay` WHERE `person_name` = 'Emily' and type_payment = 'Work - Kronos' group by year");
+        $statement = $database->prepare("SELECT YEAR(DATE) as year, ROUND(SUM(amount),2) as amount FROM `pay` WHERE `person_name` = 'Emily' and type_payment = 'Work - UKG' group by year");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
