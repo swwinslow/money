@@ -54,7 +54,7 @@ class PeloEmily implements \JsonSerializable
         } 
 
         global $database;
-        $statement = $database->prepare("select * from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '20'  ");
+        $statement = $database->prepare("select * from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '20'  ");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -67,7 +67,7 @@ class PeloEmily implements \JsonSerializable
     public static function getTotalMilage($body)
     {
         global $database;
-        $statement = $database->prepare("Select ROUND(SUM(Distance_mi),2) as Distance from pelo_emily");
+        $statement = $database->prepare("Select ROUND(SUM(Distance_mi),2) as Distance from aa_pelo_emily");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -80,7 +80,7 @@ class PeloEmily implements \JsonSerializable
     public static function getLargestLength($body)
     {
         global $database;
-        $statement = $database->prepare("select * FROM (SELECT COUNT(*) as total_count, Length_minutes from pelo_emily where Fitness_Discipline = 'Cycling' group by Length_minutes order by total_count desc) as t1 where total_count >= 4");
+        $statement = $database->prepare("select * FROM (SELECT COUNT(*) as total_count, Length_minutes from aa_pelo_emily where Fitness_Discipline = 'Cycling' group by Length_minutes order by total_count desc) as t1 where total_count >= 4");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -92,7 +92,7 @@ class PeloEmily implements \JsonSerializable
     public static function getBestRide($body)
     {
         global $database;
-        $statement = $database->prepare("(select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '5'order by Total_Output desc LIMIT 1)   UNION  (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '10'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '15'order by Total_Output desc LIMIT 1 )  UNION  (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '20'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '30'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '45'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '60'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '60'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '75'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '90'order by Total_Output desc LIMIT 1 )");
+        $statement = $database->prepare("(select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '5'order by Total_Output desc LIMIT 1)   UNION  (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '10'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '15'order by Total_Output desc LIMIT 1 )  UNION  (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '20'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '30'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '45'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '60'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '60'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '75'order by Total_Output desc LIMIT 1 )  UNION (select *, ROUND((Length_minutes /  Distance_mi),3) as mile_average from aa_pelo_emily where Fitness_Discipline = 'Cycling' and Length_minutes = '90'order by Total_Output desc LIMIT 1 )");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -104,7 +104,7 @@ class PeloEmily implements \JsonSerializable
     public static function latestTimeStamp($body)
     {
         global $database;
-        $statement = $database->prepare("select Workout_Timestamp from pelo_emily order by Workout_Timestamp desc LIMIT 1");
+        $statement = $database->prepare("select Workout_Timestamp from aa_pelo_emily order by Workout_Timestamp desc LIMIT 1");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;

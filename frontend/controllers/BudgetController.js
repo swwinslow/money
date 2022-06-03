@@ -26,6 +26,8 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    
    BudgetFactory.fullYearReview2022().then(function (response) {
       $scope.year2022 = response.data.data;
+
+
    });
 
 
@@ -101,6 +103,70 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
          }]
       });
       chart22.render();
+
+      var chartBudgetAcutal = new CanvasJS.Chart("chartBudgetAcutal", {
+         animationEnabled: true,
+         theme: "light2",
+         title: {
+            text: "Budget vs Acutal Graph"
+         },
+         axisX: {
+            titel: "MMM"
+         },
+         axisY: {
+            prefix: "$",
+         },
+         toolTip: {
+            shared: true
+         },
+         legend: {
+            cursor: "pointer",
+         },
+         data: [{
+            type: "column",
+            name: "Acutal Sales",
+            showInLegend: true,
+            xValueFormatString: "MMMM YYYY",
+		      yValueFormatString: "$#,##0",
+            indexLabel: "",
+            dataPoints: [
+               { x: new Date(2021, 0), y: 20000 },
+               { x: new Date(2021, 1), y: 20000 },
+               { x: new Date(2021, 2), y: 20000 },
+               { x: new Date(2021, 3), y: 20000 },
+               { x: new Date(2021, 4), y: 20000 },
+               { x: new Date(2021, 5), y: 20000 },
+               { x: new Date(2021, 6), y: 20000 },
+               { x: new Date(2021, 7), y: 20000 },
+               { x: new Date(2021, 8), y: 20000 },
+               { x: new Date(2021, 9), y: 20000 },
+               { x: new Date(2021, 10), y: 20000 },
+               { x: new Date(2021, 11), y: 20000 },
+            ]
+         },
+         {
+            type: "line",
+            name: "Spent",
+            showInLegend: true,
+            yValueFormatString: "#,##0.# Units",
+            dataPoints: [
+               { x: new Date(2021, 0), y: 11000 },
+               { x: new Date(2021, 1), y: 11000 },
+               { x: new Date(2021, 2), y: 11000 },
+               { x: new Date(2021, 3), y: 11000 },
+               { x: new Date(2021, 4), y: 11000 },
+               { x: new Date(2021, 5), y: 11000 },
+               { x: new Date(2021, 6), y: 11000 },
+               { x: new Date(2021, 7), y: 11000 },
+               { x: new Date(2021, 8), y: 11000 },
+               { x: new Date(2021, 9), y: 11000 },
+               { x: new Date(2021, 10), y: 11000 },
+               { x: new Date(2021, 11), y: 11000 },
+            ]
+         }]
+      });
+
+      chartBudgetAcutal.render();
    })
 
    BudgetFactory.yearReview2021().then(function (response) {
@@ -168,6 +234,10 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    BudgetFactory.houseExtraPrin().then(function (response) {
       $scope.houseExtraPrin = response.data.data;
    });
+
+   BudgetFactory.housePayments().then(function (response) {
+      $scope.housePayments = response.data.data;
+   });
    
    BudgetFactory.amazonSpent().then(function (response) {
       $scope.amazonSpent = response.data.data;
@@ -179,6 +249,10 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
 
    BudgetFactory.IPLSpent().then(function (response) {
       $scope.IPLSpent = response.data.data;
+   })
+
+   BudgetFactory.RingSpent().then(function (response) {
+      $scope.RingSpent = response.data.data;
    })
 
    BudgetFactory.CitizenEnergySpent().then(function (response) {
@@ -199,6 +273,8 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
       var data21 = [];
       var data22 = [];
       var data23 = [];
+      var data24 = [];
+
 
       $scope.UtilsOnYear = response.data.data;
       for (var i = 0; i < response.data.data.length; i++) {
@@ -222,6 +298,9 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
          }
          if(year == 2023){
             data23.push(singleData);
+         }
+         if(year == 2024){
+            data24.push(singleData);
          }
       }
 
@@ -291,6 +370,15 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
             markerSize: 0,
             yValueFormatString:  "$###",
             dataPoints: data23
+         },
+         {
+            type: "line",
+            axisYType: "secondary",
+            name: "2024",
+            showInLegend: true,
+            markerSize: 0,
+            yValueFormatString:  "$###",
+            dataPoints: data24
          }
       ]
       });

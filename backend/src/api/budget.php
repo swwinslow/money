@@ -132,6 +132,12 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
+        $app->POST('/RingSpent', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::RingSpent($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
 
         //
         $app->POST('/amazonSpent', function($request, $response, $args) use ($app){
@@ -274,6 +280,20 @@ $app->group('/api', function () use ($app){
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
+        
+        $app->POST('/veevaPay', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::veevaPay($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        $app->POST('/totalPay', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::totalPay($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
 
         $app->POST('/chaseCreditCardPay', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
@@ -348,6 +368,12 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
         
+        $app->POST('/housePayments', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::housePayments($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
 
         $app->POST('/payVSpent', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();

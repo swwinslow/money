@@ -18,8 +18,10 @@ app.controller('PayViewController', function(CONFIG, $scope, $location, PayFacto
      BudgetFactory.lillyPay().then(function (response) {
         $scope.lillyPay = response.data.data;
      });
+     BudgetFactory.veevaPay().then(function (response) {
+      $scope.veevaPay = response.data.data;
+     });
      BudgetFactory.EmilyPay().then(function (response) {
-         console.log(response.data.data);
         $scope.EmilyPay = response.data.data;
      });
   
@@ -33,6 +35,18 @@ app.controller('PayViewController', function(CONFIG, $scope, $location, PayFacto
     BudgetFactory.chaseCreditCardPay().then(function (response) {
         $scope.chaseCreditCardPay = response.data.data;
     });
+
+    BudgetFactory.totalPay().then(function (response) {
+      $scope.totalPay = response.data.data;
+
+      $scope.lillyTotal = $scope.totalPay.Lilly[0].money;
+      $scope.UKGTotal = $scope.totalPay.UKG[0].money;
+      $scope.veevaTotal = $scope.totalPay.Veeva[0].money;
+      $scope.ccTotal = $scope.totalPay.CC[0].money;
+      $scope.bankTotal = $scope.totalPay.Bank[0].money;
+      $scope.total = $scope.totalPay.Total[0].money;
+
+     });
   
 
 });

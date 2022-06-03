@@ -146,6 +146,13 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.RingSpent = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/RingSpent',
+        });    
+    }
+
     data.UtilsOnYear = function(){
         return $http({  
             method: "POST",
@@ -434,6 +441,23 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.totalPay = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/totalPay',
+            data: { }
+        });    
+    }
+
+    data.veevaPay = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/veevaPay',
+            data: { }
+        });    
+    }
+
+
 
     data.elementsPay = function(){
         return $http({
@@ -503,6 +527,17 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             data: { }
         });    
     }
+
+    data.housePayments = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/housePayments',
+            data: { }
+        });    
+    }
+
+
+    
     
     data.specialEvents = function(){
         return $http({

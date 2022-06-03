@@ -57,6 +57,8 @@ app.controller('BLDDDController', function ($http, CONFIG, $scope, $location, Bu
         $scope.YearBLDDDBoth = response.data.data;
     });
 
+
+
     BudgetFactory.computeBLDDDTotal().then(function (response) {
         $scope.completeBLDDD = [];
         console.log(response.data.data);
@@ -95,5 +97,112 @@ app.controller('BLDDDController', function ($http, CONFIG, $scope, $location, Bu
                 }
             }
         }
+        
+        var janMonth = 0;
+        var febMonth = 0;
+        var marMonth = 0;
+        var aprMonth = 0;
+        var mayMonth = 0;
+        var junMonth = 0;
+        var julMonth = 0;
+        var augMonth = 0;
+        var sepMonth = 0;
+        var octMonth = 0;
+        var novMonth = 0;
+        var decMonth = 0;
+
+        for (var i = 0; i < $scope.totalData.length; i++){
+            if($scope.totalData[i].month == '1'){
+                janMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '2'){
+                febMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '3'){
+                marMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '4'){
+                aprMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '5'){
+                mayMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '6'){
+                junMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '7'){
+                julMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '8'){
+                augMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '9'){
+                sepMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '10'){
+                octMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '11'){
+                novMonth = parseFloat($scope.totalData[i].total_money);
+            } else if ($scope.totalData[i].month == '12'){
+                decMonth = parseFloat($scope.totalData[i].total_money);
+            }
+        }
+
+        var chartBLDDD = new CanvasJS.Chart("chartBLDDD", {
+            animationEnabled: true,
+            theme: "light2",
+            title: {
+               text: "Budget vs Acutal Graph"
+            },
+            axisX: {
+               titel: "MMM"
+            },
+            axisY: {
+               prefix: "$",
+            },
+            toolTip: {
+               shared: true
+            },
+            legend: {
+               cursor: "pointer",
+            },
+            data: [{
+               type: "column",
+               name: "Acutal Sales",
+               showInLegend: true,
+               xValueFormatString: "MMMM YYYY",
+                 yValueFormatString: "$#,##0",
+               indexLabel: "",
+               dataPoints: [
+                  { x: new Date(2022, 0), y: 425 },
+                  { x: new Date(2022, 1), y: 425 },
+                  { x: new Date(2022, 2), y: 425 },
+                  { x: new Date(2022, 3), y: 425 },
+                  { x: new Date(2022, 4), y: 425 },
+                  { x: new Date(2022, 5), y: 425 },
+                  { x: new Date(2022, 6), y: 425 },
+                  { x: new Date(2022, 7), y: 425 },
+                  { x: new Date(2022, 8), y: 425 },
+                  { x: new Date(2022, 9), y: 425 },
+                  { x: new Date(2022, 10), y: 425 },
+                  { x: new Date(2022, 11), y: 425 },
+               ]
+            },
+            {
+               type: "line",
+               name: "Spent",
+               showInLegend: true,
+               yValueFormatString: "#,##0.# Units",
+               dataPoints: [
+                  { x: new Date(2022, 0), y: janMonth },
+                  { x: new Date(2022, 1), y: febMonth },
+                  { x: new Date(2022, 2), y: marMonth },
+                  { x: new Date(2022, 3), y: aprMonth },
+                  { x: new Date(2022, 4), y: mayMonth },
+                  { x: new Date(2022, 5), y: junMonth },
+                  { x: new Date(2022, 6), y: julMonth },
+                  { x: new Date(2022, 7), y: augMonth },
+                  { x: new Date(2022, 8), y: sepMonth },
+                  { x: new Date(2022, 9), y: octMonth },
+                  { x: new Date(2022, 10), y: novMonth },
+                  { x: new Date(2022, 11), y: decMonth },
+               ]
+            }]
+         });
+   
+         chartBLDDD.render();
+
     });
 });
+

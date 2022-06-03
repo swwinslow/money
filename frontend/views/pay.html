@@ -1,11 +1,62 @@
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 10px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .outer {
+        border: 5px dotted rgb(214, 129, 137);
+        border-radius: 5px;
+        width: absolute;
+        padding: 10px;
+        margin-bottom: 40px;
+    }
+
+    .float1 {
+        padding: 10px;
+        border-radius: 5px;
+        float: center;
+        width: 800px;
+    }
+
+    .float {
+        padding: 10px;
+        border-radius: 5px;
+        float: left;
+        width: 600px;
+    }
+
+    .float2 {
+        padding: 10px;
+        border-radius: 5px;
+        float: left;
+        width: 450px;
+    }
+
+    .overflow {
+        overflow: auto;
+    }
+</style>
 <H1>------------PAY PAY PAY--------------</H1>
 </div>
 
+Total: {{total}}
 
 <div class="outer overflow">
     <div class="float2">
-        <h2>Elements Pay</h2>
+        <h2>Elements Pay</h2> Total: {{bankTotal}}
         <div>
             <table class="table table-bordered">
 
@@ -24,7 +75,7 @@
     </div>
 
     <div class="float2">
-        <h2>Lilly Pay</h2>
+        <h2>Lilly Pay</h2> Total: {{lillyTotal}}
         <div>
             <table class="table table-bordered">
 
@@ -44,7 +95,26 @@
     </div>
 
     <div class="float2">
-        <h2>CHASE CREDIT CARD</h2>
+        <h2>Veeva Pay</h2> Total: {{veevaTotal}}
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in veevaPay'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="float2">
+        <h2>CHASE CREDIT CARD</h2> Total: {{ccTotal}}
         <div>
             <table class="table table-bordered">
 
@@ -66,12 +136,9 @@
 </div>
 
 
-
-
-
-
+<div class="outer overflow">
 <h2>Insight Data - Pay By Year</h2>
-<div>
+<div class="float2">
     <table class="table table-bordered">
 
         <tbody>
@@ -88,7 +155,7 @@
 </div>
 
 <h2>Insight Data - Seth Pay</h2>
-<div>
+<div class="float2">
     <table class="table table-bordered">
 
         <tbody>
@@ -105,7 +172,7 @@
 </div>
 
 <h2>Insight Data - Emily Pay</h2>
-<div>
+<div class="float2">
     <table class="table table-bordered">
 
         <tbody>
@@ -120,24 +187,6 @@
         </tbody>
     </table>
 </div>
-
-
-
-
-
 </div>
 
-<h2>Next Pay</h2>
-<div>
-    <table class="table table-bordered">
-
-        <tbody>
-            <tr>
-                <td>Date</td>
-            </tr>
-            <tr ng-repeat='data in nextPayDay'>
-                <td>{{data.next_pay_day}}</td>
-            </tr>
-        </tbody>
-    </table>
 </div>
