@@ -1,6 +1,6 @@
 app.controller('NetWorthController', function ($http, CONFIG, $scope, $location, BudgetFactory) {
 
-       //networthYearCalculation
+   //networthYearCalculation
    BudgetFactory.networthYearCalculation().then(function (response) {
     $scope.networthYearCalculation = response.data.data;
     });

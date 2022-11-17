@@ -8,9 +8,7 @@ app.controller('HomePageController', function(CONFIG, $scope, $location, Complet
     $scope.totalDifferent = 0;
 
     $scope.showError = false;
-
-
-
+    
     CompleteFactory.getPayTotal().then(function (response){
       var data = response.data.data;
 

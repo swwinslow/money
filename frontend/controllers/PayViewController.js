@@ -1,6 +1,5 @@
 app.controller('PayViewController', function(CONFIG, $scope, $location, PayFactory, BudgetFactory){
 
-
    BudgetFactory.payVSpent2020().then(function (response) {
         $scope.payvspent2020 = response.data.data;
    });
@@ -62,9 +61,9 @@ app.controller('PayViewController', function(CONFIG, $scope, $location, PayFacto
         $scope.SethPay = response.data.data;
      });
 
-   //   BudgetFactory.insightData().then(function (response) {
-   //      $scope.PayYear = response.data.data.PayYear;
-   //   });
+     BudgetFactory.insightData().then(function (response) {
+        $scope.PayYear = response.data.data.PayYear;
+     });
 
     BudgetFactory.chaseCreditCardPay().then(function (response) {
         $scope.chaseCreditCardPay = response.data.data;
@@ -72,23 +71,19 @@ app.controller('PayViewController', function(CONFIG, $scope, $location, PayFacto
 
 
 
-    BudgetFactory.currentPayBreakdown().then(function (response) {
+   BudgetFactory.currentPayBreakdown().then(function (response) {
       $scope.currentPayBreakdown = response.data.data;
-  });
+   });
 
+   BudgetFactory.totalPay().then(function (response) {
+      $scope.totalPay = response.data.data;
 
+      $scope.lillyTotal = $scope.totalPay.Lilly[0].money;
+      $scope.UKGTotal = $scope.totalPay.UKG[0].money;
+      $scope.veevaTotal = $scope.totalPay.Veeva[0].money;
+      $scope.ccTotal = $scope.totalPay.CC[0].money;
+      $scope.bankTotal = $scope.totalPay.Bank[0].money;
+      $scope.total = $scope.totalPay.Total[0].money;
 
-   //  BudgetFactory.totalPay().then(function (response) {
-   //    $scope.totalPay = response.data.data;
-
-   //    $scope.lillyTotal = $scope.totalPay.Lilly[0].money;
-   //    $scope.UKGTotal = $scope.totalPay.UKG[0].money;
-   //    $scope.veevaTotal = $scope.totalPay.Veeva[0].money;
-   //    $scope.ccTotal = $scope.totalPay.CC[0].money;
-   //    $scope.bankTotal = $scope.totalPay.Bank[0].money;
-   //    $scope.total = $scope.totalPay.Total[0].money;
-
-   //   });
-  
-
+   });
 });

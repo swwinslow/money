@@ -12,7 +12,6 @@ app.controller('PastBudgetController', function (CONFIG, $scope, $location, Budg
     var savingsPerSpent21 = 0;
     var retirementPerSpent21 = 0;
 
- 
     var groPerBudget21 = 0;
     var miscPerBudget21 = 0;
     var carPerBudget21 = 0;
@@ -60,7 +59,6 @@ app.controller('PastBudgetController', function (CONFIG, $scope, $location, Budg
            if (response.data.data[i].category == "SAVINGS") {
               savingsPer = response.data.data[i].spent_percentage;
            }
-  
         }
         
         var chart = new CanvasJS.Chart("chartContainer", {
@@ -90,7 +88,6 @@ app.controller('PastBudgetController', function (CONFIG, $scope, $location, Budg
         chart.render();
      });
   
-  
      BudgetFactory.fullYearReview2019().then(function (response) {
         $scope.year2019 = response.data.data;
      });
@@ -104,71 +101,71 @@ app.controller('PastBudgetController', function (CONFIG, $scope, $location, Budg
 
    BudgetFactory.predictValues2020().then(function (response) {
     $scope.predictValues2020 = response.data.data;
- })
+   })
 
- BudgetFactory.yearCategoryReview2018().then(function (response) {
-    $scope.yearCategory2018 = response.data.data;
- })
- BudgetFactory.yearCategoryReview2019().then(function (response) {
-    $scope.yearCategory2019 = response.data.data;
- })
- BudgetFactory.yearCategoryReview2020().then(function (response) {
-    $scope.yearCategory2020 = response.data.data;
- });
+   BudgetFactory.yearCategoryReview2018().then(function (response) {
+      $scope.yearCategory2018 = response.data.data;
+   })
+   BudgetFactory.yearCategoryReview2019().then(function (response) {
+      $scope.yearCategory2019 = response.data.data;
+   })
+
+   BudgetFactory.yearCategoryReview2020().then(function (response) {
+      $scope.yearCategory2020 = response.data.data;
+   });
  
- BudgetFactory.yearCategoryReview2021().then(function (response) {
-    $scope.yearCategory2021 = response.data.data;
+   BudgetFactory.yearCategoryReview2021().then(function (response) {
+      $scope.yearCategory2021 = response.data.data;
 
-    for (var i = 0; i < response.data.data.length; i++) {
-       if (response.data.data[i].category == "GROCERIES") {
-          groPerSpent21 = response.data.data[i].spent_percentage;
-          groPerBudget21 = response.data.data[i].budget_percentage;
-       }
-       if (response.data.data[i].category == "MISC") {
-          miscPerSpent21 = response.data.data[i].spent_percentage;
-          miscPerBudget21 = response.data.data[i].budget_percentage;
-       }
-       if (response.data.data[i].category == "CAR") {
-          carPerSpent21 = response.data.data[i].spent_percentage;
-          carPerBudget21 = response.data.data[i].budget_percentage;
-       }
-       if (response.data.data[i].category == "HOUSING") {
-          housingPerSpent21 = response.data.data[i].spent_percentage;
-          housingPerBudget21 = response.data.data[i].budget_percentage;
+      for (var i = 0; i < response.data.data.length; i++) {
+         if (response.data.data[i].category == "GROCERIES") {
+            groPerSpent21 = response.data.data[i].spent_percentage;
+            groPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "MISC") {
+            miscPerSpent21 = response.data.data[i].spent_percentage;
+            miscPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "CAR") {
+            carPerSpent21 = response.data.data[i].spent_percentage;
+            carPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "HOUSING") {
+            housingPerSpent21 = response.data.data[i].spent_percentage;
+            housingPerBudget21 = response.data.data[i].budget_percentage;
 
-       }
-       if (response.data.data[i].category == "EDUCATION") {
-          edcPerSpent21 = response.data.data[i].spent_percentage;
-          edcPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "EDUCATION") {
+            edcPerSpent21 = response.data.data[i].spent_percentage;
+            edcPerBudget21 = response.data.data[i].budget_percentage;
 
-       }
-       if (response.data.data[i].category == "MEDICAL") {
-          medPerSpent21 = response.data.data[i].spent_percentage;
-          medPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "MEDICAL") {
+            medPerSpent21 = response.data.data[i].spent_percentage;
+            medPerBudget21 = response.data.data[i].budget_percentage;
 
-       }
-       if (response.data.data[i].category == "CLOTHES") {
-          clothesPerSpent21 = response.data.data[i].spent_percentage;
-          clothesPerBudget21 = response.data.data[i].budget_percentage;
-       }
-       if (response.data.data[i].category == "DONATION") {
-          donationPerSpent21 = response.data.data[i].spent_percentage;
-          donationPerBudget21 = response.data.data[i].budget_percentage;
-       }
-       if (response.data.data[i].category == "BUSINESS") {
-          businesPerSpent21 = response.data.data[i].spent_percentage;
-          businesPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "CLOTHES") {
+            clothesPerSpent21 = response.data.data[i].spent_percentage;
+            clothesPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "DONATION") {
+            donationPerSpent21 = response.data.data[i].spent_percentage;
+            donationPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "BUSINESS") {
+            businesPerSpent21 = response.data.data[i].spent_percentage;
+            businesPerBudget21 = response.data.data[i].budget_percentage;
 
-       }
-       if (response.data.data[i].category == "SAVINGS") {
-          savingsPerSpent21 = response.data.data[i].spent_percentage;
-          savingsPerBudget21 = response.data.data[i].budget_percentage;
-       }
-       if (response.data.data[i].category == "RETIREMENT") {
-        retirementPerSpent21 = response.data.data[i].spent_percentage;
-        retirementPerBudget21 = response.data.data[i].budget_percentage;
-     }
-
+         }
+         if (response.data.data[i].category == "SAVINGS") {
+            savingsPerSpent21 = response.data.data[i].spent_percentage;
+            savingsPerBudget21 = response.data.data[i].budget_percentage;
+         }
+         if (response.data.data[i].category == "RETIREMENT") {
+         retirementPerSpent21 = response.data.data[i].spent_percentage;
+         retirementPerBudget21 = response.data.data[i].budget_percentage;
+      }
     }
     
     var chart21 = new CanvasJS.Chart("chartContainerBudget21", {

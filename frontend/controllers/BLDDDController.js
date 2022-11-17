@@ -11,8 +11,6 @@ app.controller('BLDDDController', function ($http, CONFIG, $scope, $location, Bu
         $scope.resturantsData = response.data.data;
     });
 
-
-    //YearBLDDDTotal
     BudgetFactory.YearBLDDDTotal().then(function (response) {
         $scope.YearBLDDDTotal = response.data.data;
     });
@@ -56,8 +54,6 @@ app.controller('BLDDDController', function ($http, CONFIG, $scope, $location, Bu
     BudgetFactory.YearBLDDDBoth().then(function (response) {
         $scope.YearBLDDDBoth = response.data.data;
     });
-
-
 
     BudgetFactory.computeBLDDDTotal().then(function (response) {
         $scope.completeBLDDD = [];

@@ -26,8 +26,6 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    
    BudgetFactory.fullYearReview2022().then(function (response) {
       $scope.year2022 = response.data.data;
-
-
    });
 
 
@@ -84,7 +82,7 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
          },
          data: [{
             type: "pie",
-            startAngle: 240,
+            startAngle: 0,
             yValueFormatString: "##0.00\"%\"",
             indexLabel: "{label} {y}",
             dataPoints: [
@@ -186,14 +184,7 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    ////////// STANDARD METRICS ////////////
    ////////// STANDARD METRICS ////////////
    ////////// STANDARD METRICS ////////////
-   ////////// STANDARD METRICS ////////////
-   ////////// STANDARD METRICS ////////////
-   ////////// STANDARD METRICS ////////////
-   ////////// STANDARD METRICS ////////////
-   ////////// STANDARD METRICS ////////////
-   ////////// STANDARD METRICS ////////////
-   ////////// STANDARD METRICS ////////////
-   ////////// STANDARD METRICS ////////////
+
    BudgetFactory.insightData().then(function (response) {
       $scope.homestuff = response.data.data.homestuff;
       $scope.Grocercies = response.data.data.Grocercies;
@@ -278,11 +269,11 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
       var data23 = [];
       var data24 = [];
 
-
       $scope.UtilsOnYear = response.data.data;
       for (var i = 0; i < response.data.data.length; i++) {
          var singleData = new Object();
          var year = parseFloat(response.data.data[i].year);
+         //2020 -- left because it shows on the same year period
          singleData.x = new Date(2020, response.data.data[i].month, 00);
          singleData.y = parseFloat(response.data.data[i].money);
 
