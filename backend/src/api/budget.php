@@ -411,6 +411,13 @@ $app->group('/api', function () use ($app){
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
+
+        $app->POST('/currentPayBreakdown', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::currentPayBreakdown($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
         
         //
         /* ========================================================== *

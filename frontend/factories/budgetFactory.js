@@ -9,6 +9,20 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         return $http.get(baseUrl + "/saving");
     }
 
+    // data.getPayonCurrentYear = function(){
+    //     return $http.get(baseUrl + "/getPayonCurrentYear");
+    // }
+
+
+
+    data.currentPayBreakdown = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/currentPayBreakdown',
+            data: {}
+        });    
+    }
+
     data.fullYearReview2019 = function(){
         return $http({
             method: "POST",
@@ -28,6 +42,17 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
+
+    data.fullYearReview2023 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/fullYearReview',
+            data: {
+                "year": '2023s'
+            }
+        });    
+    }
+    //
 
 
     data.fullYearReviewLeft2020 = function(){
@@ -187,8 +212,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             url: baseUrl + '/nextPayDay',
         });    
     }
-
-    //
 
     data.insightData = function(){
         return $http({

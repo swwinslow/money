@@ -874,8 +874,20 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
-    
+    public static function currentPayBreakdown($body)
+    {
+        $year = date("Y");
+        
+        global $database;
+        $statement = $database->prepare("select $year as year, `type_payment`, ROUND(SUM(`amount`),2) AS amount from pay WHERE YEAR(date) = $year group by type_payment;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
 
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
 
     public static function insightData($body){
         global $database;
