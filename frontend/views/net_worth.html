@@ -69,7 +69,7 @@
     </table>
 </div>
 
-<h2>NETWORTH - Cat 12-2021</h2>
+<h2>NETWORTH</h2>
 <div>
     <table class="table table-bordered">
 
@@ -79,7 +79,7 @@
                 <td>MONEY</td>
             </tr>
             <tr ng-repeat='data in networthYearCalculationCategory'>
-                <td>{{data.category_type}}</td>
+                <td> {{data.year}}-{{data.month}}-{{data.day}} : {{data.category_type}}</td>
                 <td>{{data.money_value}}</td>
             </tr>
         </tbody>

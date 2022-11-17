@@ -231,6 +231,10 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
       $scope.paymentTypesTrans = response.data.data;
    });
 
+   BudgetFactory.IRAPerYear().then(function (response) {
+      $scope.IRAPerYear = response.data.data;
+   });
+
    BudgetFactory.houseExtraPrin().then(function (response) {
       $scope.houseExtraPrin = response.data.data;
    });
@@ -268,7 +272,6 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    })
 
    BudgetFactory.UtilsOnYear().then(function (response) {
-      var data19 = [];
       var data20 = [];
       var data21 = [];
       var data22 = [];
@@ -283,10 +286,6 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
          singleData.x = new Date(2020, response.data.data[i].month, 00);
          singleData.y = parseFloat(response.data.data[i].money);
 
-
-         if(year == 2019){
-            data19.push(singleData);
-         }
          if(year == 2020){
             data20.push(singleData);
          }
@@ -325,16 +324,7 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
             horizontalAlign: "center",
             dockInsidePlotArea: true
          },
-         data: [{
-            type:"line",
-            axisYType: "secondary",
-            name: "2019",
-            showInLegend: true,
-            markerSize: 0,
-            yValueFormatString: "$###",
-            dataPoints: data19
-         }
-         ,
+         data: [
          {
             type: "line",
             axisYType: "secondary",

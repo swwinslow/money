@@ -120,7 +120,25 @@ class Budget implements \JsonSerializable
     //need to implement in the front end
     public static function networthYearCalculationCategory() {
         global $database;
-        $statement = $database->prepare("select `category_type`, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth where MONTH(date) = '12' and YEAR(date) = '2021' group by category_type");
+        
+        $year = '2022';
+        
+        // $month = '03';
+        // $day = '31';
+        
+        // $month = '06';
+        // $day = '30';
+        
+        // $month = '09';
+        // $day = '30';
+        
+        $month = '12';
+        $day = '31';
+        
+        
+        
+        $statement = $database->prepare("select $year as year, $month as month, $day as day, `category_type`, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth where MONTH(date) = $month and YEAR(date) = $year group by category_type");
+        
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -171,6 +189,18 @@ class Budget implements \JsonSerializable
     public static function veevaPay(){
         global $database;
         $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(AMOUNT),2) as money FROM `pay` WHERE `company` = 'Veeva' GROUP BY YEAR(DATE) ORDER BY YEAR(DATE) DESC;");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+    
+    public static function UKGPay(){
+        global $database;
+        $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(AMOUNT),2) as money FROM `pay` WHERE `company` = 'UKG' GROUP BY YEAR(DATE) ORDER BY YEAR(DATE) DESC;");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -386,6 +416,21 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
+    public static function IRAPerYear(){
+        global $database;
+        $statement = $database->prepare("SELECT SUM(money) as money, person FROM `trans` where business = 'Vanguard' and items LIKE 'IRA%' and items LIKE '%2022%' group by person");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+
+    //
+
     public static function KrogerSpent(){
         global $database;
         $statement = $database->prepare("SELECT YEAR(DATE) AS year, ROUND(SUM(money),2) as money FROM `trans` WHERE `business` LIKE 'Kroger' GROUP BY YEAR(DATE) order by YEAR(DATE) DESC");
@@ -478,7 +523,7 @@ class Budget implements \JsonSerializable
 
     public static function UtilsOnYear(){
         global $database;
-        $statement = $database->prepare("SELECT MONTH(DATE) AS month, YEAR(DATE) as year, ROUND(SUM(money),2) as money FROM `trans` WHERE (`business` LIKE 'IPL' OR business = 'Citizen Energy') GROUP BY MONTH(DATE), YEAR(DATE) order by YEAR(DATE), MONTH(date) ASC        ");
+        $statement = $database->prepare("SELECT MONTH(DATE) AS month, YEAR(DATE) as year, ROUND(SUM(money),2) as money FROM `trans` WHERE (`business` LIKE 'AES - Indiana' OR business = 'Citizen Energy') GROUP BY MONTH(DATE), YEAR(DATE) order by YEAR(DATE), MONTH(date) ASC        ");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -551,7 +596,7 @@ class Budget implements \JsonSerializable
         }  
 
         global $database;
-        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, MONTH(date) as month FROM trans where ((business = 'IPL') OR (business = 'Citizen Energy') OR (business = 'Mortgage' AND items != '%Extra Principal%')) and YEAR(date) = $year group by MONTH(date)");
+        $statement = $database->prepare("SELECT ROUND(SUM(money),2) as money, MONTH(date) as month FROM trans where ((business = 'AES - Indiana') OR (business = 'Citizen Energy') OR (business = 'Mortgage' AND items != '%Extra Principal%')) and YEAR(date) = $year group by MONTH(date)");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -777,7 +822,7 @@ class Budget implements \JsonSerializable
     {
           
         global $database;
-        $statement = $database->prepare("SELECT *, MONTH(NOW()) as month_current FROM (select * from (SELECT YEAR(date) as year, MONTH(date) as month, ROUND(SUM(money),2) as money FROM trans where business = 'Citizen Energy' OR business = 'IPL' and category = 'HOUSING' group by YEAR(Date), MONTH(date) ORDER BY YEAR(date)) as query1 where query1.year <= YEAR(NOW())) as query2 where (query2.year = YEAR(NOW()) - 1 OR query2.year = YEAR(NOW()));        ");
+        $statement = $database->prepare("SELECT *, MONTH(NOW()) as month_current FROM (select * from (SELECT YEAR(date) as year, MONTH(date) as month, ROUND(SUM(money),2) as money FROM trans where business = 'Citizen Energy' OR business = 'AES - Indiana' and category = 'HOUSING' group by YEAR(Date), MONTH(date) ORDER BY YEAR(date)) as query1 where query1.year <= YEAR(NOW())) as query2 where (query2.year = YEAR(NOW()) - 1 OR query2.year = YEAR(NOW()));        ");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -805,7 +850,7 @@ class Budget implements \JsonSerializable
     {
           
         global $database;
-        $statement = $database->prepare("SELECT YEAR(DATE) as year, ROUND(SUM(amount),2) as amount FROM `pay` WHERE `person_name` = 'Seth' and type_payment = 'Work - Lilly' group by year");
+        $statement = $database->prepare("SELECT YEAR(DATE) as year, ROUND(SUM(amount),2) as amount FROM `pay` WHERE `person_name` = 'Seth' and (type_payment = 'Work - Lilly' or type_payment    = 'Work - Veeva') group by year");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;

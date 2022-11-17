@@ -287,6 +287,13 @@ $app->group('/api', function () use ($app){
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
+        
+        $app->POST('/UKGPay', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::UKGPay($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
 
         $app->POST('/totalPay', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
@@ -364,6 +371,14 @@ $app->group('/api', function () use ($app){
         $app->POST('/houseExtraPrin', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $allBudget = Budget::houseExtraPrin($body);
+            $output = new Response($allBudget);
+            $response->getBody()->write(json_encode($output));
+        });
+
+        
+        $app->POST('/IRAPerYear', function($request, $response, $args) use ($app){
+            $body = $request->getParsedBody();
+            $allBudget = Budget::IRAPerYear($body);
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });

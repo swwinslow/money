@@ -95,6 +95,28 @@ Total: {{total}}
     </div>
 
     <div class="float2">
+        <h2>UKG Pay</h2> Total: {{UKGTotal}}
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in UKGPay'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    
+
+    <div class="float2">
         <h2>Veeva Pay</h2> Total: {{veevaTotal}}
         <div>
             <table class="table table-bordered">

@@ -7,6 +7,7 @@ app.controller('NetWorthController', function ($http, CONFIG, $scope, $location,
 
     BudgetFactory.networthYearCalculationCategory().then(function (response) {
         $scope.networthYearCalculationCategory = response.data.data;
+        console.log($scope.networthYearCalculationCategory);
     });
 
     BudgetFactory.networthYearPercentage().then(function (response) {

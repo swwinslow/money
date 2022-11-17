@@ -423,7 +423,16 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             data: {}
         });    
     }
+    
 
+    
+    data.IRAPerYear = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/IRAPerYear',
+            data: {}
+        });    
+    }
 
     data.networthYearCalculation = function(){
         return $http({
@@ -453,6 +462,14 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         return $http({
             method: "POST",
             url: baseUrl + '/veevaPay',
+            data: { }
+        });    
+    }
+    
+    data.UKGPay = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/UKGPay',
             data: { }
         });    
     }

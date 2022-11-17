@@ -21,6 +21,11 @@ app.controller('PayViewController', function(CONFIG, $scope, $location, PayFacto
      BudgetFactory.veevaPay().then(function (response) {
       $scope.veevaPay = response.data.data;
      });
+
+     BudgetFactory.UKGPay().then(function (response) {
+      $scope.UKGPay = response.data.data;
+      console.log(response.data.data);
+     });
      BudgetFactory.EmilyPay().then(function (response) {
         $scope.EmilyPay = response.data.data;
      });
