@@ -258,10 +258,16 @@ class Budget implements \JsonSerializable
         if ($statement->rowCount() <= 0) {
             return;
         }
-
         $total = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-        $data = array('Lilly' => $lilly,  'Veeva' => $veeva, 'UKG' => $ukg, 'Bank' => $elements, 'CC' => $cc, 'Total' => $total);
+        $statement = $database->prepare("SELECT ROUND(SUM(AMOUNT),2) as money FROM `pay` where date <= CURDATE()");
+        $statement->execute();
+        if ($statement->rowCount() <= 0) {
+            return;
+        }
+        $totalToDate = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        $data = array('Lilly' => $lilly,  'Veeva' => $veeva, 'UKG' => $ukg, 'Bank' => $elements, 'CC' => $cc, 'Total' => $total, 'TotalToDay' => $totalToDate);
 
         return $data;
     }

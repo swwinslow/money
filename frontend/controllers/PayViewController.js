@@ -84,6 +84,7 @@ app.controller('PayViewController', function(CONFIG, $scope, $location, PayFacto
       $scope.ccTotal = $scope.totalPay.CC[0].money;
       $scope.bankTotal = $scope.totalPay.Bank[0].money;
       $scope.total = $scope.totalPay.Total[0].money;
+      $scope.totalToDate = $scope.totalPay.TotalToDay[0].money;
 
    });
 });
