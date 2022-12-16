@@ -84,6 +84,25 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
+    data.fullYearReviewYear = function(){
+        var currentTime = new Date()
+
+        var currentYear = new Date().getFullYear();
+        var nextYear = currentYear + 1;
+
+        var day = currentTime.get();
+
+        console.log('here is the night')
+        console.log(day);
+        // return $http({
+        //     method: "POST",
+        //     url: baseUrl + '/fullYearReview',
+        //     data: {
+        //         "year": nextYear
+        //     }
+        // });    
+    }
+
     data.salaryReview2018 = function(){
         return $http({
             method: "POST",

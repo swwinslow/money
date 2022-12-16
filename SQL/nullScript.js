@@ -9,21 +9,50 @@ console.log('hello');
 //read in the file
 let dataJSON = {
     "information" : {
-        "name": "State Farm",
-        "money": "61.83",
-        "items": "Corolla - Car Insurance",
-        "category": "CAR",
-        "person": "Seth", //Seth, Emily, Both
-        "paymentType": "Chase Freedom Unlimited",
+        "name": "n/a",
+        "money": "0.00",
+        "items": "Placeholder",
+        "category": "",
+        "person": "Both", //Seth, Emily, Both
+        "paymentType": "N/A",
         "notes": "TODO...check"
     },
     "dates":  {
         "day": "01",
-        "startMonth": "03",
+        "startMonth": "01",
         "startYear": "2023",
-        "endMonth": "03",
+        "endMonth": "01",
         "endYear": "2024"
-    }
+    },
+    "categories":[
+        {
+            "name": "HOUSING"
+        },
+        {
+            "name": "CAR"
+        },
+        {
+            "name": "GROCERIES"
+        },
+        {
+            "name": "DONATION"
+        },
+        {
+            "name": "MISC"
+        },
+        {
+            "name": "RETIREMENT"
+        },
+        {
+            "name": "EDUCATION"
+        },
+        {
+            "name": "CLOTHES"
+        },
+        {
+            "name": "MEDICAL"
+        }
+    ]
 
 };
 
@@ -31,7 +60,6 @@ let dataJSON = {
 let business = dataJSON.information.name;
 let money = dataJSON.information.money;
 let items = dataJSON.information.items;
-let category = dataJSON.information.category;
 let person = dataJSON.information.person;
 let paymentType = dataJSON.information.paymentType;
 let notes = dataJSON.information.notes;
@@ -95,20 +123,25 @@ for(var i = 0; i < goAround; i++){
         loopMonth += 1;
     }
 }
+let categories = dataJSON.categories;
+
+for(z = 0; z<categories.length; z++){
+    let category = categories[z].name;
 
 //create the sql statements
-for(i = 0; i < months.length; i++){
-    var date = months[i];
-    //adding the 10 hour time for the timestamp
-    var dateInDate = new Date(months[i] + `T10:01:01Z`);    
-    const formattedDate = dateInDate.toLocaleString("en-US", {
-        month: "short",
-        year: "numeric"
-    });
-    
-    var totalItem = formattedDate + " - " + items;
-    var dbString = `INSERT INTO trans (business, money,date,bought_date,items, category,person, payment_type, notes) VALUES ('` + business + `',` + money + `,'` + date + `','` + date + `','` + totalItem + `','` + category + `','` +person + `','` +paymentType + `','` + notes + `');`;
-    console.log(dbString);
+    for(i = 0; i < months.length; i++){
+        var date = months[i];
+        //adding the 10 hour time for the timestamp
+        var dateInDate = new Date(months[i] + `T10:01:01Z`);    
+        const formattedDate = dateInDate.toLocaleString("en-US", {
+            month: "short",
+            year: "numeric"
+        });
+        
+        var totalItem = formattedDate + " - " + items;
+        var dbString = `INSERT INTO trans (business, money,date,bought_date,items, category,person, payment_type, notes) VALUES ('` + business + `',` + money + `,'` + date + `','` + date + `','` + totalItem + `','` + category + `','` +person + `','` +paymentType + `','` + notes + `');`;
+        console.log(dbString);
+    }
 }
 
 function monthDiff(dateFrom, dateTo) {

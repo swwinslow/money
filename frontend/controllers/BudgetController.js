@@ -24,6 +24,11 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    var donationPerSpent22 = 0;
    var businesPerSpent22 = 0;
    
+   // BudgetFactory.fullYearReviewYear().then(function (response) {
+   //    $scope.aaa = response.data.data;
+   // });
+
+   
    BudgetFactory.fullYearReview2022().then(function (response) {
       $scope.year2022 = response.data.data;
    });
