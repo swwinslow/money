@@ -36,9 +36,11 @@ app.controller('HeaderViewController', function(CONFIG, $scope, $location){
     $scope.pastBudget = function(){
         $location.path("/pastBudget");
     };
-    //
-    
     $scope.home = function(){
+        $location.path("/home");
+    };
+    
+    $scope.stop = function(){
         $location.path("/");
     }
 });

@@ -1,0 +1,218 @@
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 10px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .outer {
+        border: 5px dotted rgb(214, 129, 137);
+        border-radius: 5px;
+        width: absolute;
+        padding: 10px;
+        margin-bottom: 40px;
+    }
+
+    .float1 {
+        padding: 10px;
+        border-radius: 5px;
+        float: center;
+        width: 800px;
+    }
+
+    .float {
+        padding: 10px;
+        border-radius: 5px;
+        float: left;
+        width: 600px;
+    }
+
+    .float2 {
+        padding: 10px;
+        border-radius: 5px;
+        float: left;
+        width: 450px;
+    }
+
+    .overflow {
+        overflow: auto;
+    }
+</style>
+
+
+<h3>HOUSE - 2022</h3>
+<div id="utilCharController" style="height: 300px; max-width: 920px; margin: 0px auto;"></div>
+
+
+<div class="outer overflow">
+
+    <div class="float2">
+        <h2>Insight Data - IPLSpent Per Year</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in IPLSpent'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="float2">
+        <h2>Insight Data - Citizen Energy Spent Per Year</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in CitizenEnergySpent'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="float2">
+
+        <h2>Insight Data - ATT Spent Per Year</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in ATTSpent'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="float2">
+        <h2>Insight Data - RING Spent Per Year</h2>
+        <div>
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in RingSpent'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="float2">
+        <h2>Insight Data - House Princibal</h2>
+        <div>
+            <table class="table table-bordered">
+    
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in houseExtraPrin'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="float2">
+        <h2>Insight Data - Total House Payments</h2>
+        <div>
+            <table class="table table-bordered">
+    
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in housePayments'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="float2">
+        <h2>Insight Data - Hardware Stuff</h2>
+        <div>
+            <table class="table table-bordered">
+        
+                <tbody>
+                    <tr>
+                        <td>MONEY</td>
+                        <td>YEAR</td>
+                    </tr>
+                    <tr ng-repeat='data in homestuff'>
+                        <td>{{data.year}}</td>
+                        <td>{{data.money}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+<div class="float2">
+    <h2>Insight Data - HouseUtils</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>YEAR</td>
+                    <td>MONTH</td>
+                    <td>MONEY</td>
+                </tr>
+                <tr ng-repeat='data in HouseUtils'>
+                    <td>{{data.year}}</td>
+                    <td>{{data.month}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+   

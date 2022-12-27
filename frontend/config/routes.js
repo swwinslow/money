@@ -48,6 +48,10 @@ app.config(function ($routeProvider, CONFIG) {
         controller: "PastBudgetController",
         templateUrl: 'views/pastbudget.html'
     }).
+    when('/home', {
+        controller: "HomeController",
+        templateUrl: 'views/home_page.html'
+    }).
     otherwise({
         controller: '404ViewController',
         templateUrl: 'views/404.html'
