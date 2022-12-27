@@ -116,7 +116,6 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
-
     //need to implement in the front end
     public static function networthYearCalculationCategory() {
         global $database;
@@ -148,7 +147,33 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
-    //
+    public static function netWorthMoveData() {
+
+        $last_quarter_date = '2022-12-31';
+        $last_quarter_year = '2022';
+        $next_quarter_date = '2023-03-31';
+        $next_quarter_year = '2023';
+        
+
+        global $database;
+        
+        
+        $statement = $database->prepare("INSERT INTO `net_worth`(`Category`, `category_type`, `category_value`, `category_ liabilities`, `date`, `end_of_year`, `person`, `update_timestamp`, `notes`) SELECT `Category`, category_type, category_value, `category_ liabilities`, $next_quarter_date, $next_quarter_year, person, update_timestamp, notes FROM net_worth WHERE date = $last_quarter_date LIMIT 3");
+
+        $statement->execute();
+
+        $statement2 = $database->prepare("SELECT * FROM net_worth WHERE `date` = $next_quarter_date");
+
+        $statement2->execute();
+        
+        if ($statement2->rowCount() <= 0) {
+            return;
+        }
+
+        $data = $statement2->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
     public static function BMVYear(){
         global $database;
         $statement = $database->prepare("select ROUND(SUM(money),2) as money, YEAR(date) as year from trans where business = 'BMV' group by YEAR(date) order by YEAR(date) DESC");

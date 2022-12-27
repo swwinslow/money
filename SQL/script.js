@@ -9,21 +9,21 @@ console.log('hello');
 //read in the file
 let dataJSON = {
     "information" : {
-        "name": "State Farm",
-        "money": "61.83",
-        "items": "Corolla - Car Insurance",
-        "category": "CAR",
-        "person": "Seth", //Seth, Emily, Both
-        "paymentType": "Chase Freedom Unlimited",
-        "notes": "TODO...check"
+        "name": "Costco",
+        "money": "5.00",
+        "items": "Membership",
+        "category": "GROCERIES",
+        "person": "Both", //Seth, Emily, Both
+        "paymentType": "Chase Sapphire Reserve",
+        "notes": ""
     },
     "dates":  {
-        "day": "01",
-        "startMonth": "03",
-        "startYear": "2023",
-        "endMonth": "03",
-        "endYear": "2024"
-    }
+        "day": "17 ",
+        "startMonth": "12",
+        "startYear": "2022",
+        "endMonth": "12",
+        "endYear": "2023"
+    },
 
 };
 
@@ -99,12 +99,15 @@ for(var i = 0; i < goAround; i++){
 //create the sql statements
 for(i = 0; i < months.length; i++){
     var date = months[i];
+    // console.log(date);
     //adding the 10 hour time for the timestamp
-    var dateInDate = new Date(months[i] + `T10:01:01Z`);    
+    var dateInDate = new Date(months[i]);    
+    // console.log(dateInDate);
     const formattedDate = dateInDate.toLocaleString("en-US", {
         month: "short",
         year: "numeric"
     });
+    // console.log(formattedDate);
     
     var totalItem = formattedDate + " - " + items;
     var dbString = `INSERT INTO trans (business, money,date,bought_date,items, category,person, payment_type, notes) VALUES ('` + business + `',` + money + `,'` + date + `','` + date + `','` + totalItem + `','` + category + `','` +person + `','` +paymentType + `','` + notes + `');`;

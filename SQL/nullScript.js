@@ -9,20 +9,20 @@ console.log('hello');
 //read in the file
 let dataJSON = {
     "information" : {
-        "name": "n/a",
-        "money": "0.00",
-        "items": "Placeholder",
-        "category": "",
+        "name": "Costco",
+        "money": "5.00",
+        "items": "Membership",
+        "category": "GROCERIES",
         "person": "Both", //Seth, Emily, Both
-        "paymentType": "N/A",
-        "notes": "TODO...check"
+        "paymentType": "Chase Sapphire Reserve",
+        "notes": ""
     },
     "dates":  {
-        "day": "01",
-        "startMonth": "01",
-        "startYear": "2023",
-        "endMonth": "01",
-        "endYear": "2024"
+        "day": "17 ",
+        "startMonth": "12",
+        "startYear": "2022",
+        "endMonth": "12",
+        "endYear": "2023"
     },
     "categories":[
         {

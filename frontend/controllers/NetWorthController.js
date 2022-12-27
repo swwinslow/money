@@ -1,6 +1,12 @@
 app.controller('NetWorthController', function ($http, CONFIG, $scope, $location, BudgetFactory) {
 
-   //networthYearCalculation
+   $scope.MoveNetWorthCategories = function(){
+      BudgetFactory.netWorthMoveData().then(function (response) {
+         console.log('here it is');
+         console.log(response.data.data);
+      });
+    };
+
    BudgetFactory.networthYearCalculation().then(function (response) {
     $scope.networthYearCalculation = response.data.data;
     });

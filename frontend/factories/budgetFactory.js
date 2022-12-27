@@ -439,6 +439,13 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });   
     }
 
+    data.netWorthMoveData = function(){
+        return $http({  
+            method: "POST",
+            url: baseUrl + '/netWorthMoveData',
+        });   
+    }
+
 
     //
     data.networthYearPercentage = function(){
