@@ -9,19 +9,19 @@ console.log('hello');
 //read in the file
 let dataJSON = {
     "information" : {
-        "name": "Costco",
-        "money": "5.00",
-        "items": "Membership",
-        "category": "GROCERIES",
+        "name": "NORDVPN",
+        "money": "8.25",
+        "items": "VPN",
+        "category": "MISC",
         "person": "Both", //Seth, Emily, Both
-        "paymentType": "Chase Sapphire Reserve",
-        "notes": ""
+        "paymentType": "Chase Freedom Unlimited",
+        "notes": "Total: 99"
     },
     "dates":  {
-        "day": "17 ",
-        "startMonth": "12",
+        "day": "25 ",
+        "startMonth": "11",
         "startYear": "2022",
-        "endMonth": "12",
+        "endMonth": "11",
         "endYear": "2023"
     },
 
