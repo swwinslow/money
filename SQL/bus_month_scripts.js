@@ -2,12 +2,12 @@
 //read in the file
 let dataJSON = {
     "information" : {
-        "year": "2023"
+        "year": "2024"
     },
     "categories":[
         {
             "category": "HOUSING",
-            "amount": 4400.
+            "amount": 3000.
         },
         {
             "category": "CAR",
@@ -19,7 +19,7 @@ let dataJSON = {
         },
         {
             "category": "DONATION",
-            "amount": 400
+            "amount": 1340
         },
         {
             "category": "MISC",
@@ -31,7 +31,7 @@ let dataJSON = {
         },
         {
             "category": "EDUCATION",
-            "amount": 475.00
+            "amount": 415.00
         },
         {
             "category": "CLOTHES",
@@ -42,8 +42,6 @@ let dataJSON = {
             "amount": 175.00
         }
     ]
-
-
 };
 
 //put data to environment data

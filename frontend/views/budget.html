@@ -53,7 +53,7 @@
 <h1>Budget Mapping</h1>
 <div>
 
-    <h1>Overview 2022</h1>
+    <h1>Overview {{currentYearDisplay}}</h1>
 
     <div>
         <table class="table table-bordered">
@@ -67,17 +67,17 @@
 
                 </tr>
                 <tr>
-                    <td>{{year2022Salary}}</td>
-                    <td>{{year2022Trans}}</td>
-                    <td>{{year2022Difference}}</td>
-                    <td>{{year2022budget}}</td>
-                    <td>{{year2022Uncounted}}</td>
+                    <td>{{top_line_Salary}}</td>
+                    <td>{{top_line_Trans}}</td>
+                    <td>{{top_line_Difference}}</td>
+                    <td>{{top_line_budget}}</td>
+                    <td>{{top_line_Uncounted}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <h2>Categories 2022</h2>
+    <h2>Categories {{currentYearDisplay}}</h2>
 
     <div>
         <table class="table table-bordered">
@@ -90,7 +90,7 @@
                 <td>Spent %</td>
                 <td>Left Over</td>
 
-                <tr ng-repeat='year in yearCategory2022'>
+                <tr ng-repeat='year in yearCategoryCurrentYear'>
                     <td>{{year.category}}</td>
                     <td>{{year.budget_money}}</td>
                     <td>{{year.spent_money}}</td>
@@ -105,12 +105,11 @@
     <div id="chartContainerBudget22" style="height: 300px; max-width: 920px; margin: 0px auto;"></div>
 
 
-    <h2>MONTHS 2022</h2>
+    <h2>MONTHS {{currentYearDisplay}}</h2>
     <div>
         <table class="table table-bordered">
-
             <tbody>
-                <tr ng-repeat='data in year2022'>
+                <tr ng-repeat='data in currentYear'>
                     <td ng-style="data.month === 'JANUARY' && {'background-color': 'blue'} ||
              data.month === 'FEBRUARY' && {'background-color': 'pink'}|| 
              data.month === 'MARCH' && {'background-color': 'green'}|| 

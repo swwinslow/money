@@ -1,5 +1,7 @@
 app.controller('BLDDDController', function ($http, CONFIG, $scope, $location, BudgetFactory) {
 
+    $scope.currentYearDisplay = new Date().getFullYear();
+
     BudgetFactory.predictValuesItems2020().then(function (response) {
         $scope.predictValuesBLDDD2020 = response.data.data.BLDDD;
     });
@@ -13,6 +15,9 @@ app.controller('BLDDDController', function ($http, CONFIG, $scope, $location, Bu
 
     BudgetFactory.YearBLDDDTotal().then(function (response) {
         $scope.YearBLDDDTotal = response.data.data;
+    });
+    BudgetFactory.BLDDDPerYear2023().then(function (response) {
+        $scope.BLDDDPerYear2023 = response.data.data;
     });
 
     BudgetFactory.BLDDDPerYear2022().then(function (response) {
@@ -66,7 +71,6 @@ app.controller('BLDDDController', function ($http, CONFIG, $scope, $location, Bu
         $scope.bothBLDDD = 0;
         $scope.emilyBLDDD = 0;
         $scope.sethBLDDD = 0;
-
 
         for(var i = 0; i < $scope.totalData.length; i++){
             var month = $scope.totalData[i].month;

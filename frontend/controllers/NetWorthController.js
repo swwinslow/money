@@ -1,10 +1,12 @@
 app.controller('NetWorthController', function ($http, CONFIG, $scope, $location, BudgetFactory) {
 
    $scope.MoveNetWorthCategories = function(){
-      BudgetFactory.netWorthMoveData().then(function (response) {
-         console.log('here it is');
-         console.log(response.data.data);
-      });
+         var last_date_quarter = '2023-12-31';
+         var next_year_quarter = '2023';
+         var next_date_quarter = '2024-03-031';
+
+         console.log(`INSERT INTO net_worth (Category, category_type, category_value, \`category_ liabilities\`, date, end_of_year, person, update_timestamp, notes) SELECT Category, category_type, category_value, \`category_ liabilities\`, '${next_date_quarter}', '${next_year_quarter}', person, update_timestamp, notes FROM net_worth WHERE date = '${last_date_quarter}'`);
+         
     };
 
    BudgetFactory.networthYearCalculation().then(function (response) {
@@ -12,6 +14,7 @@ app.controller('NetWorthController', function ($http, CONFIG, $scope, $location,
     });
 
     BudgetFactory.networthYearCalculationCategory().then(function (response) {
+       console.log(response);
         $scope.networthYearCalculationCategory = response.data.data;
         console.log($scope.networthYearCalculationCategory);
     });

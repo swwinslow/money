@@ -11,10 +11,694 @@
 		<title>Mail Filter</title>
 		<updated>2022-12-27T24:17:55Z</updated>
 		<content></content>
-		<apps:property name='from' value=''/>
+		<apps:property name='from' value='topgolf@email.topgolf.com'/>
 		<apps:property name='hasTheWord' value='older_than:180d'/>
 		<apps:property name='shouldTrash' value='true'/>
 		<apps:property name='sizeOperator' value='s_sl'/>
 		<apps:property name='sizeUnit' value='s_smb'/>
 	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='no-reply@notification.gcs-web.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='News@insideapple.apple.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='no-reply@marketing.espnmail.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='no-reply@is.email.nextdoor.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='enewsletters@iibnews.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='noreply@glassdoor.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='email@esp.foxnation.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='market-updates@mail.zillow.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='panera@e1.panerabread.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='info@email.elements.org'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='googlestore-noreply@google.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='auto-notify@ups.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='llbean@e1.llbean.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='insiderdeals@my.joinhoney.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='Promotions@my.pizzahut.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='info@roberts-upp-mail.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='noreply@glassdoor.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='email@lucidspark.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='no-reply@mail.yelp.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='Grainger@e.grainger.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='jobs-listings@linkedin.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='info@twitter.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='messages-noreply@linkedin.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='no-reply@rs.email.nextdoor.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='no-reply@mail.goodreads.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='notify@twitter.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='birthdays@facebookmail.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='noreply@youtube.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='linkedin@e.linkedin.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='invitations@linkedin.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='notifications-noreply@linkedin.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='reminders@facebookmail.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+		<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='mywendys@email.wendys.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='yourbookstore@em.efollett.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='venmo@venmo.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='gritcapital+the-daily@substack.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='no-reply@youversion.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='insiderdeals@my.joinhoney.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='info@roberts-upp-mail.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='pat@sullivanhardware.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='Starbucks@e.starbucks.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='vanguard@eonline.e-vanguard.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='applearcade@insideapple.apple.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='notifications@notifications9.creditkarma.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='*@s.onepeloton.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='transunion@em-tuci.transunion.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='1800USBanks@email.usbank.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='hello@namecheap.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='AceLocal@localace.acehardware.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='noreply@email.teams.microsoft.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='appstore@insideapple.apple.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='no-reply@mail.ring.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='noreply@mail.experianidworks.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='notifications@mail6.creditkarma.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='info@alerts.parkmobile.io'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='lowes@e.lowes.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='notifications@creditkarma.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='scoldren@highgarden.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<updated>2022-12-27T24:17:55Z</updated>
+		<content></content>
+		<apps:property name='from' value='orders@starbucks.com'/>
+		<apps:property name='hasTheWord' value='older_than:180d'/>
+		<apps:property name='shouldTrash' value='true'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+
+	
+	
+			
 </feed>
+
+
+
+
+
+
+
+

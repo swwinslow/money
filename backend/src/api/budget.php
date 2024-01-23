@@ -235,14 +235,6 @@ $app->group('/api', function () use ($app){
             $output = new Response($allBudget);
             $response->getBody()->write(json_encode($output));
         });
-
-
-        $app->POST('/netWorthMoveData', function($request, $response, $args) use ($app){
-            $body = $request->getParsedBody();
-            $allBudget = Budget::netWorthMoveData();
-            $output = new Response($allBudget);
-            $response->getBody()->write(json_encode($output));
-        });
         
         //YearBLDDDTotal
         $app->POST('/YearBLDDDTotal', function($request, $response, $args) use ($app){
@@ -252,7 +244,6 @@ $app->group('/api', function () use ($app){
             $response->getBody()->write(json_encode($output));
         });
 
-        //computeBLDDDTotal
         $app->POST('/computeBLDDDTotal', function($request, $response, $args) use ($app){
             $body = $request->getParsedBody();
             $allBudget = Budget::computeBLDDDTotal($body);

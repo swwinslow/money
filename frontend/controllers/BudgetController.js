@@ -3,80 +3,79 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    $scope.showNewPay = false;
    $scope.showError = false;
 
-   var groPerBudget22 = 0;
-   var miscPerBudget22 = 0;
-   var carPerBudget22 = 0;
-   var housingPerBudget22 = 0;
-   var edcPerBudget22 = 0;
-   var medPerBudget22 = 0;
-   var clothesPerBudget22 = 0;
-   var donationPerBudget22 = 0;
-   var businesPerBudget22 = 0;
-   var savingsPerBudget22 = 0;
+   $scope.currentYearDisplay = new Date().getFullYear();
 
-   var groPerSpent22 = 0;
-   var miscPerSpent22 = 0;
-   var carPerSpent22 = 0;
-   var housingPerSpent22 = 0;
-   var edcPerSpent22 = 0;
-   var medPerSpent22 = 0;
-   var clothesPerSpent22 = 0;
-   var donationPerSpent22 = 0;
-   var businesPerSpent22 = 0;
-   
-   // BudgetFactory.fullYearReviewYear().then(function (response) {
-   //    $scope.aaa = response.data.data;
-   // });
+   const month = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+   $scope.monthName = month[new Date().getMonth()];
 
+   var groPerBudget = 0;
+   var miscPerBudget = 0;
+   var carPerBudget = 0;
+   var housingPerBudget = 0;
+   var edcPerBudget = 0;
+   var medPerBudget = 0;
+   var clothesPerBudget = 0;
+   var donationPerBudget = 0;
+   var businesPerBudget = 0;
+   var savingsPerBudget = 0;
+   var groPerSpent = 0;
+   var miscPerSpent = 0;
+   var carPerSpent = 0;
+   var housingPerSpent = 0;
+   var edcPerSpent = 0;
+   var medPerSpent = 0;
+   var clothesPerSpent = 0;
+   var donationPerSpent = 0;
+   var businesPerSpent = 0;
    
-   BudgetFactory.fullYearReview2022().then(function (response) {
-      $scope.year2022 = response.data.data;
+   BudgetFactory.fullYearReview().then(function (response) {
+      $scope.currentYear = response.data.data;
    });
 
-
-   BudgetFactory.yearCategoryReview2022().then(function (response) {
-      $scope.yearCategory2022 = response.data.data;
+   BudgetFactory.yearCategoryReview().then(function (response) {
+      console.log(response.data.data);
+      $scope.yearCategoryCurrentYear = response.data.data;
 
       for (var i = 0; i < response.data.data.length; i++) {
          if (response.data.data[i].category == "GROCERIES") {
-            groPerSpent22 = response.data.data[i].spent_percentage;
-            groPerBudget22 = response.data.data[i].budget_percentage;
+            groPerSpent = response.data.data[i].spent_percentage;
+            groPerBudget = response.data.data[i].budget_percentage;
          }
          if (response.data.data[i].category == "MISC") {
-            miscPerSpent22 = response.data.data[i].spent_percentage;
-            miscPerBudget22 = response.data.data[i].budget_percentage;
+            miscPerSpent = response.data.data[i].spent_percentage;
+            miscPerBudget = response.data.data[i].budget_percentage;
          }
          if (response.data.data[i].category == "CAR") {
-            carPerSpent22 = response.data.data[i].spent_percentage;
-            carPerBudget22 = response.data.data[i].budget_percentage;
+            carPerSpent = response.data.data[i].spent_percentage;
+            carPerBudget = response.data.data[i].budget_percentage;
          }
          if (response.data.data[i].category == "HOUSING") {
-            housingPerSpent22 = response.data.data[i].spent_percentage;
-            housingPerBudget22 = response.data.data[i].budget_percentage;
+            housingPerSpent = response.data.data[i].spent_percentage;
+            housingPerBudget = response.data.data[i].budget_percentage;
          }
          if (response.data.data[i].category == "EDUCATION") {
-            edcPerSpent22 = response.data.data[i].spent_percentage;
-            edcPerBudget22 = response.data.data[i].budget_percentage;
+            edcPerSpent = response.data.data[i].spent_percentage;
+            edcPerBudget = response.data.data[i].budget_percentage;
          }
          if (response.data.data[i].category == "MEDICAL") {
-            medPerSpent22 = response.data.data[i].spent_percentage;
-            medPerBudget22 = response.data.data[i].budget_percentage;
+            medPerSpent = response.data.data[i].spent_percentage;
+            medPerBudget = response.data.data[i].budget_percentage;
          }
          if (response.data.data[i].category == "CLOTHES") {
-            clothesPerSpent22 = response.data.data[i].spent_percentage;
-            clothesPerBudget22 = response.data.data[i].budget_percentage;
+            clothesPerSpent = response.data.data[i].spent_percentage;
+            clothesPerBudget = response.data.data[i].budget_percentage;
          }
          if (response.data.data[i].category == "DONATION") {
-            donationPerSpent22 = response.data.data[i].spent_percentage;
-            donationPerBudget22 = response.data.data[i].budget_percentage;
+            donationPerSpent = response.data.data[i].spent_percentage;
+            donationPerBudget = response.data.data[i].budget_percentage;
          }
          if (response.data.data[i].category == "BUSINESS") {
-            businesPerSpent22 = response.data.data[i].spent_percentage;
-            businesPerBudget22 = response.data.data[i].budget_percentage;
+            businesPerSpent = response.data.data[i].spent_percentage;
+            businesPerBudget = response.data.data[i].budget_percentage;
          }
          if (response.data.data[i].category == "RETIREMENT") {
-            retirementPerSpent22 = response.data.data[i].spent_percentage;
-            retirementPerBudget22 = response.data.data[i].budget_percentage;
+            retirementPerSpent = response.data.data[i].spent_percentage;
+            retirementPerBudget = response.data.data[i].budget_percentage;
          }
       }
       
@@ -91,99 +90,34 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
             yValueFormatString: "##0.00\"%\"",
             indexLabel: "{label} {y}",
             dataPoints: [
-               { y: groPerSpent22, label: "GROCERIES" },
-               { y: miscPerSpent22, label: "MISC" },
-               { y: carPerSpent22, label: "CAR" },
-               { y: housingPerSpent22, label: "HOUSING" },
-               { y: edcPerSpent22, label: "EDUCATION" },
-               { y: medPerSpent22, label: "MEDICAL" },
-               { y: clothesPerSpent22, label: "CLOTHES" },
-               { y: donationPerSpent22, label: "DONATION" },
-               { y: businesPerSpent22, label: "BUSINESS" },
-               { y: retirementPerSpent22, label: "RETIREMENT" },
+               { y: groPerSpent, label: "GROCERIES" },
+               { y: miscPerSpent, label: "MISC" },
+               { y: carPerSpent, label: "CAR" },
+               { y: housingPerSpent, label: "HOUSING" },
+               { y: edcPerSpent, label: "EDUCATION" },
+               { y: medPerSpent, label: "MEDICAL" },
+               { y: clothesPerSpent, label: "CLOTHES" },
+               { y: donationPerSpent, label: "DONATION" },
+               { y: businesPerSpent, label: "BUSINESS" },
+               { y: retirementPerSpent, label: "RETIREMENT" },
                
             ]
          }]
       });
       chart22.render();
-
-      var chartBudgetAcutal = new CanvasJS.Chart("chartBudgetAcutal", {
-         animationEnabled: true,
-         theme: "light2",
-         title: {
-            text: "Budget vs Acutal Graph"
-         },
-         axisX: {
-            titel: "MMM"
-         },
-         axisY: {
-            prefix: "$",
-         },
-         toolTip: {
-            shared: true
-         },
-         legend: {
-            cursor: "pointer",
-         },
-         data: [{
-            type: "column",
-            name: "Acutal Sales",
-            showInLegend: true,
-            xValueFormatString: "MMMM YYYY",
-		      yValueFormatString: "$#,##0",
-            indexLabel: "",
-            dataPoints: [
-               { x: new Date(2021, 0), y: 20000 },
-               { x: new Date(2021, 1), y: 20000 },
-               { x: new Date(2021, 2), y: 20000 },
-               { x: new Date(2021, 3), y: 20000 },
-               { x: new Date(2021, 4), y: 20000 },
-               { x: new Date(2021, 5), y: 20000 },
-               { x: new Date(2021, 6), y: 20000 },
-               { x: new Date(2021, 7), y: 20000 },
-               { x: new Date(2021, 8), y: 20000 },
-               { x: new Date(2021, 9), y: 20000 },
-               { x: new Date(2021, 10), y: 20000 },
-               { x: new Date(2021, 11), y: 20000 },
-            ]
-         },
-         {
-            type: "line",
-            name: "Spent",
-            showInLegend: true,
-            yValueFormatString: "#,##0.# Units",
-            dataPoints: [
-               { x: new Date(2021, 0), y: 11000 },
-               { x: new Date(2021, 1), y: 11000 },
-               { x: new Date(2021, 2), y: 11000 },
-               { x: new Date(2021, 3), y: 11000 },
-               { x: new Date(2021, 4), y: 11000 },
-               { x: new Date(2021, 5), y: 11000 },
-               { x: new Date(2021, 6), y: 11000 },
-               { x: new Date(2021, 7), y: 11000 },
-               { x: new Date(2021, 8), y: 11000 },
-               { x: new Date(2021, 9), y: 11000 },
-               { x: new Date(2021, 10), y: 11000 },
-               { x: new Date(2021, 11), y: 11000 },
-            ]
-         }]
-      });
-
-      chartBudgetAcutal.render();
    })
 
    BudgetFactory.yearReview2021().then(function (response) {
       $scope.yearReview2021 = response.data.data;
    })
 
-   ////// SALARY REVIEW //// 
-
-   BudgetFactory.salaryReview2022().then(function (response) {
-      $scope.year2022Difference = response.data.data[0]['money'];
-      $scope.year2022Trans = response.data.data[0]['trans'];
-      $scope.year2022Salary = response.data.data[0]['salary'];
-      $scope.year2022budget = response.data.data[0]['budget'];
-      $scope.year2022Uncounted = response.data.data[0]['uncounted_money'];
+   ////// TOP LINE //// 
+   BudgetFactory.salaryReview().then(function (response) {
+      $scope.top_line_Difference = response.data.data[0]['money'];
+      $scope.top_line_Trans = response.data.data[0]['trans'];
+      $scope.top_line_Salary = response.data.data[0]['salary'];
+      $scope.top_line_budget = response.data.data[0]['budget'];
+      $scope.top_line_Uncounted = response.data.data[0]['uncounted_money'];
    });
 
    ////////// STANDARD METRICS ////////////

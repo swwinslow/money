@@ -1,4 +1,3 @@
-console.log('hello');
 
 //categories
 //'GROCERIES','MISC','NEED','AWS','CAR','HOUSING','EDUCATION','HOUSING - APT','MEDICAL','CLOTHES','OTHER','DONATION','OTHER','BUSINESS','SAVINGS','RETIREMENT'
@@ -9,22 +8,22 @@ console.log('hello');
 //read in the file
 let dataJSON = {
     "information" : {
-        "name": "NORDVPN",
-        "money": "8.25",
-        "items": "VPN",
+        "name": "Kindle",
+        "money": "11.99",
+        "items": "Books",
         "category": "MISC",
         "person": "Both", //Seth, Emily, Both
-        "paymentType": "Chase Freedom Unlimited",
-        "notes": "Total: 99"
+        "paymentType": "Chase Price",
+        "notes": "",
+        "subscription": "Kindle"
     },
     "dates":  {
-        "day": "25 ",
-        "startMonth": "11",
-        "startYear": "2022",
-        "endMonth": "11",
-        "endYear": "2023"
-    },
-
+        "day": "02",
+        "startMonth": "01",
+        "startYear": "2021",
+        "endMonth": "12",
+        "endYear": "2025"
+    }
 };
 
 //put data to environment data
@@ -35,6 +34,7 @@ let category = dataJSON.information.category;
 let person = dataJSON.information.person;
 let paymentType = dataJSON.information.paymentType;
 let notes = dataJSON.information.notes;
+let subscription = dataJSON.information.subscription;
 
 //dates
 let day = dataJSON.dates.day;
@@ -56,7 +56,6 @@ let loopYear = startYear;
 for(var i = 0; i < goAround; i++){
     var initalMonth = loopMonth;
     var valueMonth = "";
-
 
     if (loopMonth == 1){
         valueMonth = '01';
@@ -84,9 +83,7 @@ for(var i = 0; i < goAround; i++){
         valueMonth = '12';
     }
     
-
     months.push(`${loopYear}-${valueMonth}-${day}`);
-
 
     if(loopMonth == 12){
         loopMonth = 1;
@@ -107,10 +104,18 @@ for(i = 0; i < months.length; i++){
         month: "short",
         year: "numeric"
     });
+    const formattedYear = dateInDate.toLocaleString("en-US", {
+        year: "numeric"
+    });
+    // console.log(months[i]);
     // console.log(formattedDate);
     
     var totalItem = formattedDate + " - " + items;
-    var dbString = `INSERT INTO trans (business, money,date,bought_date,items, category,person, payment_type, notes) VALUES ('` + business + `',` + money + `,'` + date + `','` + date + `','` + totalItem + `','` + category + `','` +person + `','` +paymentType + `','` + notes + `');`;
+
+    var formatedsubscription = `${subscription} - ${formattedYear}`;
+    // console.log(formatedsubscription);
+
+    var dbString = `INSERT INTO trans (business, money,date,bought_date,items, category,person, payment_type, notes, subscription) VALUES ('` + business + `',` + money + `,'` + date + `','` + date + `','` + totalItem + `','` + category + `','` + person + `','` +paymentType + `','` + notes + `','` + formatedsubscription + `');`;
     console.log(dbString);
 }
 

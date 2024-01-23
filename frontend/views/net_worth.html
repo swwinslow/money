@@ -50,22 +50,28 @@
     }
 </style>
 
-<button ng-click="MoveNetWorthCategories()">MoveNetWorthCategories</button>
+<button ng-click="MoveNetWorthCategories()">MoveNetWorthCategories - Console Logs</button>
 
 <h1>NETWORTH</h1>
 <div id="chartContainerBudget22" style="height: 300px; max-width: 920px; margin: 0px auto;"></div>
-
+</p>
 <div>
     <table class="table table-bordered">
 
         <tbody>
             <tr>
+                <td>Count</td>
                 <td>Date</td>
                 <td>MONEY</td>
+                <td>Debt</td>
+                <td>Ratio</td>
             </tr>
             <tr ng-repeat='data in networthYearCalculation'>
+                <td>{{data.total_count}}</td>
                 <td>{{data.date}}</td>
                 <td>{{data.money_value}}</td>
+                <td>{{data.money_debt}}</td>
+                <td>{{data.money_ratio}}%</td>
             </tr>
         </tbody>
     </table>

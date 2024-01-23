@@ -81,7 +81,15 @@ class Budget implements \JsonSerializable
 
     public static function networthYearCalculation(){
         global $database;
-        $statement = $database->prepare("select end_of_year, date, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth group by date order by date DESC");
+        $statement = $database->prepare(
+        "select 
+        COUNT(*) as total_count,
+        end_of_year, 
+        date, 
+        ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value,
+        ROUND(SUM(`category_ liabilities`),2) AS money_debt,
+        (ROUND((ROUND(SUM(`category_ liabilities`),2) / ROUND(SUM(`category_value` - `category_ liabilities`),2) * 100),2)) as money_ratio 
+        from net_worth group by date order by date DESC");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -91,10 +99,10 @@ class Budget implements \JsonSerializable
         return $data;
     }
 
-    //
     public static function networthYearPercentage(){
+        //TODO OPTIMIZE THIS SECTION
         global $database;
-        $statement = $database->prepare("SELECT *, (t1.category_money_value / t2.total_money_value * 100) as percentage FROM (select category_type, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS category_money_value from net_worth where YEAR(date) = '2022' and MONTH(date) = '3' group by category_type order by date DESC) as t1, (select ROUND(SUM(`category_value` - `category_ liabilities`),2) AS total_money_value from net_worth where YEAR(date) = '2022' and MONTH(date) = '3' group by date order by date DESC) as t2");
+        $statement = $database->prepare("SELECT *, (t1.category_money_value / t2.total_money_value * 100) as percentage FROM (select category_type, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS category_money_value from net_worth where YEAR(date) = '2023' and MONTH(date) = '12' group by category_type order by date DESC) as t1, (select ROUND(SUM(`category_value` - `category_ liabilities`),2) AS total_money_value from net_worth where YEAR(date) = '2023' and MONTH(date) = '12' group by date order by date DESC) as t2");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -106,7 +114,7 @@ class Budget implements \JsonSerializable
 
     public static function NetworthPerQuarter(){
         global $database;
-        $statement = $database->prepare("select MONTH(NOW()) as month_current, end_of_year as 'year', date, MONTH(date) as 'month', ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth group by date order by date DESC LIMIT 16");
+        $statement = $database->prepare("select MONTH(NOW()) as month_current, end_of_year as 'year', date, MONTH(date) as 'month', ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth group by date order by date DESC LIMIT 20");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -117,10 +125,10 @@ class Budget implements \JsonSerializable
     }
 
     //need to implement in the front end
-    public static function networthYearCalculationCategory() {
+    public static function networthYearCalculationCategory($body) {
         global $database;
         
-        $year = '2022';
+        $year = '2023';
         
         // $month = '03';
         // $day = '31';
@@ -128,15 +136,15 @@ class Budget implements \JsonSerializable
         // $month = '06';
         // $day = '30';
         
-        // $month = '09';
-        // $day = '30';
-        
         $month = '12';
         $day = '31';
         
+        // $month = '12';
+        // $day = '31';
         
-        
-        $statement = $database->prepare("select $year as year, $month as month, $day as day, `category_type`, ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value from net_worth where MONTH(date) = $month and YEAR(date) = $year group by category_type");
+        $statement = $database->prepare("select $year as year, $month as month, $day as day, `category_type`,
+        ROUND(SUM(`category_value`),2) AS money_value
+        from net_worth where MONTH(date) = $month and YEAR(date) = $year group by category_type");
         
         $statement->execute();
         if ($statement->rowCount() <= 0) {
@@ -144,33 +152,6 @@ class Budget implements \JsonSerializable
         }
 
         $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
-        return $data;
-    }
-
-    public static function netWorthMoveData() {
-
-        $last_quarter_date = '2022-12-31';
-        $last_quarter_year = '2022';
-        $next_quarter_date = '2023-03-31';
-        $next_quarter_year = '2023';
-        
-
-        global $database;
-        
-        
-        $statement = $database->prepare("INSERT INTO `net_worth`(`Category`, `category_type`, `category_value`, `category_ liabilities`, `date`, `end_of_year`, `person`, `update_timestamp`, `notes`) SELECT `Category`, category_type, category_value, `category_ liabilities`, $next_quarter_date, $next_quarter_year, person, update_timestamp, notes FROM net_worth WHERE date = $last_quarter_date LIMIT 3");
-
-        $statement->execute();
-
-        $statement2 = $database->prepare("SELECT * FROM net_worth WHERE `date` = $next_quarter_date");
-
-        $statement2->execute();
-        
-        if ($statement2->rowCount() <= 0) {
-            return;
-        }
-
-        $data = $statement2->fetchAll(\PDO::FETCH_ASSOC);
         return $data;
     }
 

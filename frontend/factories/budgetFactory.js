@@ -1,19 +1,12 @@
 app.factory('BudgetFactory', function($http, $rootScope) {
-
     var data = {};
     var baseUrl = location.origin +'/money/backend/public/api/budget';
 
+    var currentYear = new Date().getFullYear();
 
-     
     data.getSavings = function(){
         return $http.get(baseUrl + "/saving");
     }
-
-    // data.getPayonCurrentYear = function(){
-    //     return $http.get(baseUrl + "/getPayonCurrentYear");
-    // }
-
-
 
     data.currentPayBreakdown = function(){
         return $http({
@@ -43,18 +36,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-    data.fullYearReview2023 = function(){
-        return $http({
-            method: "POST",
-            url: baseUrl + '/fullYearReview',
-            data: {
-                "year": '2023s'
-            }
-        });    
-    }
-    //
-
-
     data.fullYearReviewLeft2020 = function(){
         return $http({
             method: "POST",
@@ -80,6 +61,26 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             url: baseUrl + '/fullYearReview',
             data: {
                 "year": '2022'
+            }
+        });    
+    }
+
+    data.fullYearReview2023 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/fullYearReview',
+            data: {
+                "year": '2023'
+            }
+        });    
+    }
+
+    data.fullYearReview = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/fullYearReview',
+            data: {
+                "year": currentYear
             }
         });    
     }
@@ -168,7 +169,7 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             url: baseUrl + '/amazonSpent',
         });    
     }
-    //
+
     data.KrogerSpent = function(){
         return $http({  
             method: "POST",
@@ -223,8 +224,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-    //
-
     data.nextPayDay = function(){
         return $http({  
             method: "POST",
@@ -261,12 +260,23 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
+
     data.salaryReview2022 = function(){
         return $http({
             method: "POST",
             url: baseUrl + '/salaryReview',
             data: {
                 "year": '2022'
+            }
+        });    
+    }
+
+    data.salaryReview = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/salaryReview',
+            data: {
+                "year": currentYear
             }
         });    
     }
@@ -327,6 +337,16 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             url: baseUrl + '/yearCategoryReview',
             data: {
                 "year": '2022'
+            }
+        });    
+    }
+
+    data.yearCategoryReview = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/yearCategoryReview',
+            data: {
+                "year": currentYear
             }
         });    
     }
@@ -406,6 +426,15 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
+    data.BLDDDPerYear2023 = function(){
+        return $http({
+            method: "POST",
+            url: baseUrl + '/BLDDDPerYear',
+            data: {
+                "year": '2023'
+            }
+        });    
+    }
 
     //YearBLDDDTotal
     data.YearBLDDDTotal = function(){
@@ -439,23 +468,12 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });   
     }
 
-    data.netWorthMoveData = function(){
-        return $http({  
-            method: "POST",
-            url: baseUrl + '/netWorthMoveData',
-        });   
-    }
-
-
-    //
     data.networthYearPercentage = function(){
         return $http({  
             method: "POST",
             url: baseUrl + '/networthYearPercentage',
         });   
     }
-
-
 
     data.HouseUtils = function(){
         return $http({
@@ -472,8 +490,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             data: {}
         });    
     }
-    
-
     
     data.IRAPerYear = function(){
         return $http({
@@ -523,8 +539,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-
-
     data.elementsPay = function(){
         return $http({
             method: "POST",
@@ -533,7 +547,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-
     data.chaseCreditCardPay = function(){
         return $http({
             method: "POST",
@@ -541,7 +554,7 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             data: { }
         });    
     }
-    //
+    
     data.networthYearCalculationCategory = function(){
         return $http({
             method: "POST",
@@ -583,9 +596,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
         });    
     }
 
-
-
-
     data.houseExtraPrin = function(){
         return $http({
             method: "POST",
@@ -601,9 +611,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             data: { }
         });    
     }
-
-
-    
     
     data.specialEvents = function(){
         return $http({
@@ -620,9 +627,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             data: { }
         });    
     }
-
-
-
 
     data.gerneralData = function(){
         return $http({
@@ -671,7 +675,6 @@ app.factory('BudgetFactory', function($http, $rootScope) {
             }
         });    
     }
-
 
     data.yearReview2018 = function(){
         return $http.get(baseUrl + "/yearReview/2018");

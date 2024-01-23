@@ -121,6 +121,25 @@
 
 <!--INSIGHT DATA PER YEAR-->
 <div class="float2">
+    <h2>Insight Data - 2023</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>Business</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr ng-repeat='data in BLDDDPerYear2023'>
+                    <td>{{data.business}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="float2">
     <h2>Insight Data - 2022</h2>
     <div>
         <table class="table table-bordered">
