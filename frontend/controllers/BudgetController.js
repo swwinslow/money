@@ -29,53 +29,53 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
    var businesPerSpent = 0;
    
    BudgetFactory.fullYearReview().then(function (response) {
-      $scope.currentYear = response.data.data;
+      $scope.currentYear = response.data;
    });
 
    BudgetFactory.yearCategoryReview().then(function (response) {
-      console.log(response.data.data);
-      $scope.yearCategoryCurrentYear = response.data.data;
+      $scope.yearCategoryCurrentYear = response.data;
+      console.log("HEEEEEEEEEEEEEEE");
 
-      for (var i = 0; i < response.data.data.length; i++) {
-         if (response.data.data[i].category == "GROCERIES") {
-            groPerSpent = response.data.data[i].spent_percentage;
-            groPerBudget = response.data.data[i].budget_percentage;
+      for (var i = 0; i < response.data.length; i++) {
+         if (response.data[i].category == "GROCERIES") {
+            groPerSpent = response.data[i].spent_percentage;
+            groPerBudget = response.data[i].budget_percentage;
          }
-         if (response.data.data[i].category == "MISC") {
-            miscPerSpent = response.data.data[i].spent_percentage;
-            miscPerBudget = response.data.data[i].budget_percentage;
+         if (response.data[i].category == "MISC") {
+            miscPerSpent = response.data[i].spent_percentage;
+            miscPerBudget = response.data[i].budget_percentage;
          }
-         if (response.data.data[i].category == "CAR") {
-            carPerSpent = response.data.data[i].spent_percentage;
-            carPerBudget = response.data.data[i].budget_percentage;
+         if (response.data[i].category == "CAR") {
+            carPerSpent = response.data[i].spent_percentage;
+            carPerBudget = response.data[i].budget_percentage;
          }
-         if (response.data.data[i].category == "HOUSING") {
-            housingPerSpent = response.data.data[i].spent_percentage;
-            housingPerBudget = response.data.data[i].budget_percentage;
+         if (response.data[i].category == "HOUSING") {
+            housingPerSpent = response.data[i].spent_percentage;
+            housingPerBudget = response.data[i].budget_percentage;
          }
-         if (response.data.data[i].category == "EDUCATION") {
-            edcPerSpent = response.data.data[i].spent_percentage;
-            edcPerBudget = response.data.data[i].budget_percentage;
+         if (response.data[i].category == "EDUCATION") {
+            edcPerSpent = response.data[i].spent_percentage;
+            edcPerBudget = response.data[i].budget_percentage;
          }
-         if (response.data.data[i].category == "MEDICAL") {
-            medPerSpent = response.data.data[i].spent_percentage;
-            medPerBudget = response.data.data[i].budget_percentage;
+         if (response.data[i].category == "MEDICAL") {
+            medPerSpent = response.data[i].spent_percentage;
+            medPerBudget = response.data[i].budget_percentage;
          }
-         if (response.data.data[i].category == "CLOTHES") {
-            clothesPerSpent = response.data.data[i].spent_percentage;
-            clothesPerBudget = response.data.data[i].budget_percentage;
+         if (response.data[i].category == "CLOTHES") {
+            clothesPerSpent = response.data[i].spent_percentage;
+            clothesPerBudget = response.data[i].budget_percentage;
          }
-         if (response.data.data[i].category == "DONATION") {
-            donationPerSpent = response.data.data[i].spent_percentage;
-            donationPerBudget = response.data.data[i].budget_percentage;
+         if (response.data[i].category == "DONATION") {
+            donationPerSpent = response.data[i].spent_percentage;
+            donationPerBudget = response.data[i].budget_percentage;
          }
-         if (response.data.data[i].category == "BUSINESS") {
-            businesPerSpent = response.data.data[i].spent_percentage;
-            businesPerBudget = response.data.data[i].budget_percentage;
+         if (response.data[i].category == "BUSINESS") {
+            businesPerSpent = response.data[i].spent_percentage;
+            businesPerBudget = response.data[i].budget_percentage;
          }
-         if (response.data.data[i].category == "RETIREMENT") {
-            retirementPerSpent = response.data.data[i].spent_percentage;
-            retirementPerBudget = response.data.data[i].budget_percentage;
+         if (response.data[i].category == "RETIREMENT") {
+            retirementPerSpent = response.data[i].spent_percentage;
+            retirementPerBudget = response.data[i].budget_percentage;
          }
       }
       
@@ -113,41 +113,49 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
 
    ////// TOP LINE //// 
    BudgetFactory.salaryReview().then(function (response) {
-      $scope.top_line_Difference = response.data.data[0]['money'];
-      $scope.top_line_Trans = response.data.data[0]['trans'];
-      $scope.top_line_Salary = response.data.data[0]['salary'];
-      $scope.top_line_budget = response.data.data[0]['budget'];
-      $scope.top_line_Uncounted = response.data.data[0]['uncounted_money'];
+      $scope.top_line_Difference = response.data[0]['money'];
+      $scope.top_line_Trans = response.data[0]['trans'];
+      $scope.top_line_Salary = response.data[0]['salary'];
+      $scope.top_line_budget = response.data[0]['budget'];
+      $scope.top_line_Uncounted = response.data[0]['uncounted_money'];
    });
+
+   /// SUBSCRIPTION ////
+   BudgetFactory.subscription().then(function (response) {
+      $scope.subscription = response.data.data;
+   })
+
+   /// SUBSCRIPTION ////
 
    ////////// STANDARD METRICS ////////////
    ////////// STANDARD METRICS ////////////
    ////////// STANDARD METRICS ////////////
 
    BudgetFactory.insightData().then(function (response) {
-      $scope.homestuff = response.data.data.homestuff;
-      $scope.Grocercies = response.data.data.Grocercies;
-      $scope.CarGas = response.data.data.CarGas;
-      $scope.SFCar = response.data.data.SFCar;
-      $scope.PayYear = response.data.data.PayYear;
+      console.log(response.data);
+      $scope.homestuff = response.data.homestuff;
+      $scope.Grocercies = response.data.Grocercies;
+      $scope.CarGas = response.data.CarGas;
+      $scope.SFCar = response.data.SFCar;
+      $scope.PayYear = response.data.PayYear;
    });
 
    BudgetFactory.gerneralData().then(function (response) {
-      $scope.gerneralData = response.data.data;
-      $scope.Data_Grocercies = response.data.data.Grocercies[0];
-      $scope.Data_Car = response.data.data.Car[0];
-      $scope.Data_Apartment = response.data.data.Apartment[0];
-      $scope.Data_GeneralHousing = response.data.data.GeneralHousing[0];
-      $scope.Data_TotalMortage = response.data.data.TotalMortage[0];
-      $scope.Data_ExtraPrincibal = response.data.data.ExtraPrincibal[0];
+      $scope.gerneralData = response.data;
+      $scope.Data_Grocercies = response.data.Grocercies[0];
+      $scope.Data_Car = response.data.Car[0];
+      $scope.Data_Apartment = response.data.Apartment[0];
+      $scope.Data_GeneralHousing = response.data.GeneralHousing[0];
+      $scope.Data_TotalMortage = response.data.TotalMortage[0];
+      $scope.Data_ExtraPrincibal = response.data.ExtraPrincibal[0];
    });
 
    BudgetFactory.HouseUtils().then(function (response) {
-      $scope.HouseUtils = response.data.data;
+      $scope.HouseUtils = response.data;
    });
 
    BudgetFactory.BMVYear().then(function (response) {
-      $scope.BMVYear = response.data.data;
+      $scope.BMVYear = response.data;
    });
 
    BudgetFactory.lifeEvents().then(function (response) {
@@ -161,10 +169,6 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
       $scope.paymentTypesTrans = response.data.data;
    });
 
-   BudgetFactory.IRAPerYear().then(function (response) {
-      $scope.IRAPerYear = response.data.data;
-   });
-
    BudgetFactory.amazonSpent().then(function (response) {
       $scope.amazonSpent = response.data.data;
    })
@@ -173,9 +177,14 @@ app.controller('BudgetController', function (CONFIG, $scope, $location, BudgetFa
       $scope.KrogerSpent = response.data.data;
    })
 
+   BudgetFactory.CostcoSpent().then(function (response) {
+      $scope.CostcoSpent = response.data.data;
+   })
+
    BudgetFactory.medicalSpent().then(function (response) {
       $scope.medicalSpent = response.data.data;
    })
+
 
 
 });

@@ -152,10 +152,12 @@
 <br>
 <br>
 
+<h2>Car Payments</h2>
+
 <!-- Car -->
 <div class="outer overflow">
     <div class="float2">
-        <h2>Insight Data - Gas</h2>
+        <h2>Insight Data - Car Gas</h2>
         <div>
             <table class="table table-bordered">
 
@@ -230,31 +232,6 @@
     </div>
 </div>
 
-
-
-
-
-<div class="float2">
-    <h2>Insight Data - Grocercies</h2>
-    <div>
-        <table class="table table-bordered">
-
-            <tbody>
-                <tr>
-                    <td>MONEY</td>
-                    <td>YEAR</td>
-                </tr>
-                <tr ng-repeat='data in Grocercies'>
-                    <td>{{data.year}}</td>
-                    <td>{{data.money}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-
 <div class="float2">
     <h2>Insight Data - Amazon Per Year</h2>
     <div>
@@ -275,44 +252,6 @@
 </div>
 
 
-<div class="float2">
-    <h2>Insight Data - Kroger Per Year</h2>
-    <div>
-        <table class="table table-bordered">
-
-            <tbody>
-                <tr>
-                    <td>MONEY</td>
-                    <td>YEAR</td>
-                </tr>
-                <tr ng-repeat='data in KrogerSpent'>
-                    <td>{{data.year}}</td>
-                    <td>{{data.money}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-<div class="float2">
-    <h2>Insight Data - IRA Per Year</h2>
-    <div>
-        <table class="table table-bordered">
-
-            <tbody>
-                <tr>
-                    <td>MONEY</td>
-                    <td>Person</td>
-                </tr>
-                <tr ng-repeat='data in IRAPerYear'>
-                    <td>{{data.money}}</td>
-                    <td>{{data.person}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
 
 
 <div class="float2">
@@ -402,7 +341,7 @@
 
 
 <h2>Days Unitil</h2>
-<div>
+<!-- <div>
     <table class="table table-bordered">
 
         <tbody>
@@ -416,7 +355,29 @@
             </tr>
         </tbody>
     </table>
+</div> -->
+
+<div class="float2">
+    <h2>Days Until</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>MONEY</td>
+                    <td>Person</td>
+                </tr>
+                <tr ng-repeat='data in specialEvents'>
+                    <td>{{data.difference_date}}</td>
+                    <td>{{data.event_name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+
+
 </div>
 
 

@@ -8,37 +8,25 @@
 //read in the file
 let dataJSON = {
     "information" : {
-        "name": "Kindle",
-        "money": "11.99",
-        "items": "Books",
-        "category": "MISC",
-        "person": "Both", //Seth, Emily, Both
-        "paymentType": "Chase Price",
-        "notes": "",
-        "subscription": "Kindle"
+        "company": "UKG",
+        "amount": "1551.02",
+        "type_payment": "Work - UKG",
+        "person_name": "Emily", //Seth, Emily, Both
+        "notes": "TODO.. Check"
     },
     "dates":  {
-        "day": "02",
-        "startMonth": "01",
-        "startYear": "2021",
-        "endMonth": "12",
-        "endYear": "2025"
+        "startYear": "2024"
     }
 };
 
 //put data to environment data
-let business = dataJSON.information.name;
-let money = dataJSON.information.money;
-let items = dataJSON.information.items;
-let category = dataJSON.information.category;
-let person = dataJSON.information.person;
-let paymentType = dataJSON.information.paymentType;
+let company = dataJSON.information.company;
+let amount = dataJSON.information.amount;
+let type_payment = dataJSON.information.type_payment;
+let person_name = dataJSON.information.person_name;
 let notes = dataJSON.information.notes;
-let subscription = dataJSON.information.subscription;
 
 //dates
-let day = dataJSON.dates.day;
-let startMonth = parseFloat(dataJSON.dates.startMonth);
 let startYear = parseInt(dataJSON.dates.startYear);
 let endMonth = parseFloat(dataJSON.dates.endMonth);
 let endYear = parseInt(dataJSON.dates.endYear);

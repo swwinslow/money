@@ -1,5 +1,19 @@
 app.controller('PayViewController', function(CONFIG, $scope, $location, PayFactory, BudgetFactory){
 
+   $scope.CopyPaySeth = function(){
+      //TODO -- fix so that it is dymnaic or pull from the UI
+         var previous_year = '2024';
+         var next_year = '2025';
+         // console.log(`SELECT company, amount, date, type_payment, person_name, 'TODO...Check' FROM pay WHERE person_name = 'Seth' and YEAR(`date`) = '2024' and type_payment = 'Work - Veeva'`);
+    };
+
+   //  $scope.CopyPayEmily = function(){
+   //    //TODO -- fix so that it is dymnaic or pull from the UI
+   //       var previous_year = '2024';
+   //       var next_year = '2025';
+   //       console.log(`SELECT company, amount, date, type_payment, person_name, 'TODO...Check' FROM pay WHERE person_name = 'Seth' and YEAR(`date`) = '2024' and type_payment = 'Work - Veeva'         `);
+   //  };
+   
    BudgetFactory.payVSpent2020().then(function (response) {
         $scope.payvspent2020 = response.data.data;
    });
@@ -68,8 +82,6 @@ app.controller('PayViewController', function(CONFIG, $scope, $location, PayFacto
     BudgetFactory.chaseCreditCardPay().then(function (response) {
         $scope.chaseCreditCardPay = response.data.data;
     });
-
-
 
    BudgetFactory.currentPayBreakdown().then(function (response) {
       $scope.currentPayBreakdown = response.data.data;

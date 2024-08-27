@@ -51,7 +51,7 @@ class Budget implements \JsonSerializable
             $year = $body['year'];
         }  
         global $database;
-        $statement = $database->prepare("SELECT budget_months.month, budget_months.year, budget_months.category, ROUND(budget_months.c_money, 2) as c_money, ROUND(trans_sql.MONEY,2) AS MONEY, ROUND((budget_months.c_money - trans_sql.MONEY),2) as money_difference, CASE WHEN (budget_months.c_money - trans_sql.MONEY) < 0 THEN 'TRUE' ELSE 'FALSE' END AS NEGATIVE from (SELECT SUM(money) AS 'MONEY', YEAR(date) AS 'YEAR', category AS 'CAT', MONTH(date) AS 'MONTH' from trans where YEAR(date) = $year group by category, MONTH(date)) as trans_sql inner join budget_months on trans_sql.MONTH = budget_months.month_id and trans_sql.CAT = budget_months.category where budget_months.year = $year order by year,month_id, category");
+        $statement = $database->prepare("HouseUtils");
         $statement->execute();
         if ($statement->rowCount() <= 0) {
             return;
@@ -86,9 +86,9 @@ class Budget implements \JsonSerializable
         COUNT(*) as total_count,
         end_of_year, 
         date, 
-        ROUND(SUM(`category_value` - `category_ liabilities`),2) AS money_value,
-        ROUND(SUM(`category_ liabilities`),2) AS money_debt,
-        (ROUND((ROUND(SUM(`category_ liabilities`),2) / ROUND(SUM(`category_value` - `category_ liabilities`),2) * 100),2)) as money_ratio 
+        ROUND(SUM(`category_value` - `category_liabilities`),2) AS money_value,
+        ROUND(SUM(`category_liabilities`),2) AS money_debt,
+        (ROUND((ROUND(SUM(`category_ liabilities`),2) / ROUND(SUM(`category_value` - `category_liabilities`),2) * 100),2)) as money_ratio 
         from net_worth group by date order by date DESC");
         $statement->execute();
         if ($statement->rowCount() <= 0) {

@@ -19,6 +19,9 @@ app.controller('BLDDDController', function ($http, CONFIG, $scope, $location, Bu
     BudgetFactory.BLDDDPerYear2023().then(function (response) {
         $scope.BLDDDPerYear2023 = response.data.data;
     });
+    BudgetFactory.BLDDDPerYear2024().then(function (response) {
+        $scope.BLDDDPerYear2024 = response.data.data;
+    });
 
     BudgetFactory.BLDDDPerYear2022().then(function (response) {
         $scope.BLDDDPerYear2022 = response.data.data;

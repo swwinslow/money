@@ -51,13 +51,11 @@
 </style>
 
 
-<h3>BLDDD - 2022</h3>
+<h1>BLDDD Chart- 2024</h1>
 
 <div id="chartBLDDD" style="height: 300px; max-width: 920px; margin: 0px auto;"></div>
-
 <div>
     <table class="table table-bordered">
-
         <tbody>
             <tr>
                 <td>TOTAL SPENT</td>
@@ -71,6 +69,51 @@
                 <td>{{data.middle_number}}</td>
                 <td>{{data.end_month_predict}}</td>
 
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--INSIGHT DATA PER PERSON-->
+<div>
+    <h2>Current Year - BLDD - Insight</h2>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>MONTH</td>
+                <td>Total Money</td>
+                <td>Both Money</td>
+                <td>Emily Money</td>
+                <td>Seth Money</td>
+
+            </tr>
+            <tr ng-repeat='data in totalData'>
+                <td>{{data.month}}</td>
+                <td>{{data.total_money}}</td>
+                <td>{{data.Both}}</td>
+                <td>{{data.Emily}}</td>
+                <td>{{data.Seth}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h2>Current Year - BLDDD - Total</h2>
+    <table class="table table-bordered">
+
+        <tbody>
+            <tr>
+                <td>Both Money</td>
+                <td>Emily Money</td>
+                <td>Seth Money</td>
+
+            </tr>
+            <tr>
+                <td>{{bothBLDDD}}</td>
+                <td>{{emilyBLDDD}}</td>
+                <td>{{sethBLDDD}}</td>
             </tr>
         </tbody>
     </table>
@@ -120,6 +163,25 @@
 </div>
 
 <!--INSIGHT DATA PER YEAR-->
+<div class="float2">
+    <h2>Insight Data - 2024</h2>
+    <div>
+        <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td>Business</td>
+                    <td>YEAR</td>
+                </tr>
+                <tr ng-repeat='data in BLDDDPerYear2024'>
+                    <td>{{data.business}}</td>
+                    <td>{{data.money}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <div class="float2">
     <h2>Insight Data - 2023</h2>
     <div>
@@ -233,55 +295,5 @@
     </div>
 </div>
 
-<!--INSIGHT DATA PER PERSON-->
-<div>
-    <h2>Current Year - BLDD - Insight</h2>
-    <table class="table table-bordered">
-
-        <tbody>
-            <tr>
-                <td>MONTH</td>
-                <td>Total Money</td>
-                <td>Both Money</td>
-                <td>Emily Money</td>
-                <td>Seth Money</td>
-
-            </tr>
-            <tr ng-repeat='data in totalData'>
-                <td>{{data.month}}</td>
-                <td>{{data.total_money}}</td>
-                <td>{{data.Both}}</td>
-                <td>{{data.Emily}}</td>
-                <td>{{data.Seth}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<div>
-    <h2>Current Year - BLDDD - Total</h2>
-    <table class="table table-bordered">
-
-        <tbody>
-            <tr>
-                <td>Both Money</td>
-                <td>Emily Money</td>
-                <td>Seth Money</td>
-
-            </tr>
-            <tr>
-                <td>{{bothBLDDD}}</td>
-                <td>{{emilyBLDDD}}</td>
-                <td>{{sethBLDDD}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
 
 

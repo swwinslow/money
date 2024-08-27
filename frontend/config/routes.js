@@ -52,6 +52,26 @@ app.config(function ($routeProvider, CONFIG) {
         controller: "HomeController",
         templateUrl: 'views/home_page.html'
     }).
+    when('/subs', {
+        controller: "BudgetController",
+        templateUrl: 'views/subs.html'
+    }).
+    when('/years', {
+        controller: "YearsViewController",
+        templateUrl: 'views/years.html'
+    }).
+    when('/home/year', {
+        controller: "HomeController",
+        templateUrl: 'views/home_page.html'
+    }).
+    when('/grocery', {
+        controller: "GroceryController",
+        templateUrl: 'views/grocery.html'
+    }).
+    when('/investment', {
+        controller: "InvestmentController",
+        templateUrl: 'views/investment.html'
+    }).
     otherwise({
         controller: '404ViewController',
         templateUrl: 'views/404.html'
